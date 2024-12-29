@@ -1,9 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
+import Login from './Components/Signin-Signup/Login';
+import Navbar from './Components/Layout/Navbar';
+import Home from './Components/UserView/Home';
+import RegistrationForm from './Components/Signin-Signup/RegistrationForm';
+import { Route, Routes } from 'react-router-dom';
 
 function App() {
-  return (
-    <div className="App">
+  return (<div>
+
+    {/* <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -17,8 +23,24 @@ function App() {
         >
           Learn React
         </a>
-      </header>
+      </header>      
+    </div> */}
+
+    
+
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<RegistrationForm />} />
+      <Route path="/publishRide" element={''} />
+      <Route path="/bookRide" element={''} />
+    </Routes>
+    <div>
+      <h1 style={{textAlign:'center',padding:'100px'}}>
+        this is about section
+      </h1>
     </div>
+  </div>
   );
 }
 
