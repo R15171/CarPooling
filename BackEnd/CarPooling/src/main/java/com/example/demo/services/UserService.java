@@ -18,11 +18,9 @@ public class UserService {
 		System.out.println((uRepository.findAll().toString()));
 		return uRepository.findAll();
 	}//getAll User
-	
-	
+		
 	public User getUserByContact(String contact) {
-        // Assuming you're using JPQL or a similar query to get the user by contact
-        return uRepository.findByContact(contact);  // This might return null if no user is found
-    }
-	
+		System.out.println("ser");
+		return uRepository.findUserByContact(contact);
+	}
 }

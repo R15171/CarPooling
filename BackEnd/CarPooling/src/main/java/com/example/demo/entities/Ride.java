@@ -6,6 +6,7 @@ import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -40,9 +41,12 @@ int destinationcity;
 float fare;
 int noseat;
 Date ridedate;
+@Column(name = "ridecomplete",nullable = false)
+Date ridecomplete;
 String status;
 
-@JsonIgnoreProperties("rideid")
+
+@JsonIgnoreProperties({"rideid","uid","payments"})
 @OneToMany(mappedBy = "rideid",cascade = CascadeType.ALL)
 Set<Booking> bookings;
 

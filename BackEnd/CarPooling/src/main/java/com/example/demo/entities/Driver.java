@@ -36,7 +36,7 @@ public class Driver {
 	@JoinColumn(name="urid")
 	UserRole urid;
 	
-	String VehicleInfo;
+	String vehicleinfo;
 	String status;
 	
 	@JsonIgnoreProperties("driverid")

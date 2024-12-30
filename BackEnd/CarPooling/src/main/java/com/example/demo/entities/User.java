@@ -6,6 +6,7 @@ import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,6 +19,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
+
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -32,7 +35,10 @@ public class User {
 	int uid;
 	
 	String name;
-	String contactno;
+	
+	@Column(name = "contactno", unique = true, nullable = false)
+	String contact;
+	
 	String email;
 	String gender;
 	Date dob;
@@ -44,4 +50,8 @@ public class User {
 	@JsonIgnoreProperties({"uid","drivers"})
 	@OneToMany(mappedBy = "uid",cascade = CascadeType.ALL)
 	Set<UserRole> roles;
+	
+	@JsonIgnoreProperties("uid")
+	@OneToMany(mappedBy = "uid",cascade = CascadeType.ALL)
+	Set<Booking> bookings;
 }

@@ -5,6 +5,7 @@ import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,7 +31,8 @@ public class UserRole {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	int urid;
 	
-	String rid;
+	@Column(name = "rid")
+	String rollid;
 	
 	@JsonIgnoreProperties("roles")
 	@ManyToOne(cascade = CascadeType.ALL)
@@ -41,7 +43,4 @@ public class UserRole {
 	@OneToMany(mappedBy = "urid",cascade = CascadeType.ALL)
 	Set<Driver> drivers;
 	
-	@JsonIgnoreProperties("urid")
-	@OneToMany(mappedBy = "urid",cascade = CascadeType.ALL)
-	Set<Booking> bookings;
 }
