@@ -1,5 +1,5 @@
-CREATE DATABASE  IF NOT EXISTS `carpooling` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `carpooling`;
+CREATE DATABASE  IF NOT EXISTS `carpooling2` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `carpooling2`;
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
 -- Host: localhost    Database: carpooling2
@@ -357,14 +357,11 @@ DROP TABLE IF EXISTS `triphistory`;
 CREATE TABLE `triphistory` (
   `TripID` int NOT NULL AUTO_INCREMENT,
   `RideID` int NOT NULL,
-  `uid` int NOT NULL,
   `rating` int DEFAULT NULL,
   `Feedback` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`TripID`),
   KEY `RideID` (`RideID`),
-  KEY `triphistory_ibfk_2_idx` (`uid`),
-  CONSTRAINT `triphistory_ibfk_1` FOREIGN KEY (`RideID`) REFERENCES `ride` (`RideID`) ON DELETE CASCADE,
-  CONSTRAINT `triphistory_ibfk_2` FOREIGN KEY (`uid`) REFERENCES `user` (`UID`)
+  CONSTRAINT `triphistory_ibfk_1` FOREIGN KEY (`RideID`) REFERENCES `ride` (`RideID`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -390,7 +387,7 @@ CREATE TABLE `user` (
   `Contactno` varchar(255) NOT NULL,
   `Email` varchar(255) NOT NULL,
   `gender` varchar(255) NOT NULL,
-  `dob` date NOT NULL,
+  `dob` datetime(6) DEFAULT NULL,
   `Password` varchar(255) NOT NULL,
   `Address` varchar(255) NOT NULL,
   PRIMARY KEY (`UID`),
@@ -470,4 +467,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-12-29 14:43:57
+-- Dump completed on 2024-12-30 12:16:34

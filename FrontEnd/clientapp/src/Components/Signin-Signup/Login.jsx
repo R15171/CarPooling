@@ -5,61 +5,83 @@ import { login } from '../../ReduxStore/UserSlice';
 
 
 const Login = () => {
-  const dispatch=useDispatch();
-  let nav=useNavigate();
-  const [loginData, setFormData] = useState({
-    contact: '',
+  const dispatch = useDispatch();
+  let nav = useNavigate();
+
+  const [loginData, setLoginData] = useState({
+    contactno: '',
     password: ''
   });
-  const [msg,setMsg] =useState("");
+
+  const [msg, setMsg] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({...prevData,[name]: value,
+    setLoginData((prevData) => ({
+      ...prevData, [name]: value,
     }));
   };
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission (e.g., validation, sending data to the server)
-    const reqInf={
-      method:"POST",
-      headers:{
-          "content-type":"application/json"
+  
+    const reqInf = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(loginData)
-  }
-    fetch("https://localhost:7076/api/User/Register",reqInf)
-    .then(response => {console.log(response);
-      if(!(response.ok)){throw new Error(response.statusText);}
-      return response.json();})
-      .then(data=>{
-        dispatch(login(data));
-        nav('/home')})
-    .catch(msg=>{setMsg("Enter valid Contact no. and password");console.log(msg)})
+      body: JSON.stringify(loginData),
+    };
+  
+    fetch("http://localhost:8080/login", reqInf)
+      .then((response) => {
+        console.log(response);
+        if (!response.ok) {
+          // Log if the response was not OK (e.g., 404, 500)
+          console.error("Error: Network response was not ok", response.status);
+          throw new Error("Network response was not ok");
+        }
+        return response.json(); // Parse the response to JSON
+      })
+      .then((data) => {
+        if (data === null) {
+          setMsg("Invalid contact number or password");
+        } else {
+          console.log(data);
+          dispatch(login(data));
+          console.log(data);
+          nav("/");
+        }
+      })
+      .catch((error) => {
+        // Log the actual error for debugging
+        console.error("Error during login:", error);
+        setMsg("An error occurred while logging in");
+      });
   };
 
 
-
-
-  return (<>
+    return (<>
     <div className="d-flex justify-content-center align-items-center mt-5">
 
       <div className="container border rounded p-4 shadow"
-    style={{ maxWidth: "450px", width: "100%" }}>
-      <h2 className="text-center mb-4">Login</h2>
-        
-        <form>
+        style={{ maxWidth: "450px", width: "100%" }}>
+        <h2 className="text-center mb-4">Login</h2>
+
+        <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label htmlFor="email" className="form-label">
+            <label htmlFor="contactno" className="form-label">
               Username
             </label>
             <input
-              type="email"
+              type="text"
               className="form-control"
-              id="email"
-              placeholder="Enter your email"
+              name="contactno"
+              id='contactno'
+              placeholder="Contact No"
+              value={loginData.contactno}
+              onChange={handleChange}
+              required
             />
           </div>
           <div className="mb-3">
@@ -69,8 +91,12 @@ const Login = () => {
             <input
               type="password"
               className="form-control"
-              id="password"
-              placeholder="Enter your password"
+              name="password"
+              id='password'
+              placeholder="Set Password"
+              value={loginData.password}
+              onChange={handleChange}
+              required
             />
           </div>
           <div className="d-flex justify-content-center align-items-center">
@@ -79,12 +105,13 @@ const Login = () => {
             </button>
           </div>
         </form>
-        <div className='text text-danger' style={{textAlign:'center', padding:'10px'}}>
-          {msg} 
+        <div className='text text-danger' style={{ textAlign: 'center', padding: '10px' }}>
+          {msg}
         </div>
       </div>
     </div>
-    </>
+    <div>{JSON.stringify(loginData)}</div>
+  </>
   );
 };
 

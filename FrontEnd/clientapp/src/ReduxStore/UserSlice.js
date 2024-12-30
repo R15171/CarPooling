@@ -1,26 +1,36 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    userInfo: null, // To store logged-in user data
-  };
-const logsate={
-  login: false, // To store login status
-}
-  const userSlice = createSlice({
-    name: 'user',
-    initialState,
-    reducers: {
-      login: (state, action) => {
-        state.userInfo = action.payload; // Set user info
-        state.logsate.login = true;
-      },
-      logout: (state) => {
-        state.userInfo = null; // Clear user info
-        state.logsate.login = false;
-      },
-    },
-  });
+  userInfo: {
+    uid: '',
+    name: '',
+    email: '',
+    contact: '',
+    address: '',
+    gender: '',
+    dob: '',
+    roles: [],  // Should be an array to store multiple roles
+  },
+  logstate: {   // Should be part of the state
+    login: false,  // To store login status
+  },
+};
 
-  export const { login, logout } = userSlice.actions;
+const userSlice = createSlice({
+  name: 'user',
+  initialState,
+  reducers: {
+    login: (state, action) => {
+      state.userInfo = action.payload;  // Set user info
+      state.logstate.login = true;        // Update login status
+    },
+    logout: (state) => {
+      state.userInfo = {};  // Clear user info
+      state.logstate.login = false;  // Update login status
+    },
+  },
+});
+
+export const { login, logout } = userSlice.actions;
 
 export default userSlice.reducer;

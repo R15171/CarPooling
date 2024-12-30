@@ -51,7 +51,6 @@ const BookRide = () => {
 
   return (
     <div className="book-ride-container">
-      <Navbar />
       <h2>Book a Ride</h2>
       <form onSubmit={handleSubmit} className="book-ride-form">
         <div className="form-group">

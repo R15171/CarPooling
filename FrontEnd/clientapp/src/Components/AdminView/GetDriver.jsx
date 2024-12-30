@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './GetDrivers.css'; // Import the CSS file
+import '../Css/GetDrivers.css'; // Import the CSS file
 
 const GetDriver = () => {
   const [drivers, setDrivers] = useState([]);
