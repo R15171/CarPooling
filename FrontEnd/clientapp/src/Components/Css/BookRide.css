@@ -1,0 +1,60 @@
+.book-ride-container {
+  width: 100%;
+  max-width: 700px; /* Reduced max width */
+  margin: 0 auto;
+  padding: 30px; /* Slightly reduced padding */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 25px; /* Reduced margin below heading */
+  font-size: 2rem; /* Slightly reduced heading font size */
+  color: #222;
+}
+
+.book-ride-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Reduced gap between fields */
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 8px; /* Reduced spacing between label and input */
+  font-size: 1.3rem; /* Slightly smaller font size for labels */
+  color: #333;
+}
+
+select, input {
+  padding: 14px; /* Reduced padding for inputs */
+  border: 1px solid #ccc;
+  border-radius: 6px; /* Slightly smaller border radius */
+  font-size: 1.3rem; /* Slightly reduced font size for input text */
+  color: #333;
+  background-color: #fff;
+}
+
+button.submit-btn {
+  width: 100%;
+  padding: 18px; /* Reduced button padding */
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 8px; /* Slightly smaller border radius for button */
+  cursor: pointer;
+  font-size: 1.3rem; /* Slightly smaller button font size */
+  margin-top: 25px; /* Reduced spacing above button */
+}
+
+button.submit-btn:hover {
+  background-color: #45a049;
+}

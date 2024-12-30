@@ -11,9 +11,14 @@ import com.example.demo.repositories.UserRoleRepository;
 @Service
 public class UserRoleService {
 	@Autowired
-	UserRoleRepository urrepo;
+	UserRoleRepository urRepository;
 	
 	public List<UserRole> getAll(){
-		return urrepo.findAll();
+		return urRepository.findAll();
+	}
+
+	public List<String> getUserRoleByuid(int uid) {
+		// TODO Auto-generated method stub
+		return urRepository.getUserRoleByuid(uid);
 	}
 }
