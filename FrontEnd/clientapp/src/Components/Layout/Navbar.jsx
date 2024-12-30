@@ -7,10 +7,12 @@ import { useSelector } from 'react-redux';
 
 
 const Navbar = () => {
-  const [showComponent, setShowComponent] = useState(false);
+  const [showComponent, setShowComponent] = useState(true);
 
   const userInfo = useSelector((state) => state.user.userInfo);
-  const logged = useSelector((state) => state.user.logged);
+  const logged = useSelector((state) => state.user.logstate);
+  console.log(userInfo.name);
+  console.log(logged.login);
   const handleRedirect = () => {
 
   }
@@ -34,20 +36,23 @@ const Navbar = () => {
         {/* Login and Register Links */}
 
         <div>
-          {logged ? (
-            <div className="me-3">
-              <Link to="/login" className="text-decoration-none mx-2">
-                Login
-              </Link>
-              <Link to="/register" className="text-decoration-none mx-2">
-                Register
-              </Link>
-            </div>
-          ) : (
-            <div className="me-3">
-              {userInfo.name}
-            </div>
-          )
+          {logged.login ?
+            (
+              <div className="me-3" style={{color:'black',fontSize:'30px'}}>
+                {userInfo.name}
+              </div>
+            )
+            :
+            (
+              <div className="me-3">
+                <Link to="/login" className="text-decoration-none mx-2">
+                  Login
+                </Link>
+                <Link to="/register" className="text-decoration-none mx-2">
+                  Register
+                </Link>
+              </div>
+            )
           }
         </div>
 
@@ -75,29 +80,32 @@ const Navbar = () => {
     <div>
       {showComponent && logged && (
         <nav className="d-flex justify-content-center">
-          <a
-            href="#home"
+          <Link
+            to="/"
             className="btn text-decoration-none mx-3 text-dark link-hover"
           >
             Home
-          </a>
-          <a
-            href="#about"
+          </Link>
+          <Link
+            to="/profile"
             className="btn text-decoration-none mx-3 text-dark link-hover"
           >
-            About
-          </a>
-          <a
-            href="#services"
+            Profile
+          </Link>
+          <Link
+            to="/history"
             className="btn text-decoration-none mx-3 text-dark link-hover"
           >
-            Services
-          </a>
-          <a
-            href="#contact"
+            Trip Histroy
+          </Link>
+          <Link
+            href="/Noti"
             className="btn text-decoration-none mx-3 text-dark link-hover"
           >
-            Contact
+            Notification
+          </Link>
+          <a href='#'  className="btn text-decoration-none mx-3 text-dark link-hover">
+            Logout
           </a>
         </nav>
       )}

@@ -6,6 +6,8 @@ import Home from './Components/UserView/Home';
 import RegistrationForm from './Components/Signin-Signup/RegistrationForm';
 import { Route, Routes } from 'react-router-dom';
 
+
+
 function App() {
   return (<div>
 
@@ -34,12 +36,14 @@ function App() {
       <Route path="/register" element={<RegistrationForm />} />
       <Route path="/publishRide" element={''} />
       <Route path="/bookRide" element={''} />
+      <Route path='*'  element={<Home />}/>
     </Routes>
     <div>
       <h1 style={{textAlign:'center',padding:'100px'}}>
         this is about section
       </h1>
     </div>
+
   </div>
   );
 }
