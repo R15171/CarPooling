@@ -36,10 +36,10 @@ Date bookingdate;
 @JoinColumn(name="rideid")
 Ride rideid;
 
-@JsonIgnoreProperties("bookings")
+
 @ManyToOne(cascade = CascadeType.ALL)
-@JoinColumn(name="urid")
-UserRole urid;
+@JoinColumn(name="uid")
+User uid;
 
 @JsonIgnoreProperties("bookingid")
 @OneToMany(mappedBy = "bookingid",cascade = CascadeType.ALL)

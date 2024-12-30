@@ -30,6 +30,7 @@ int tripid;
 @ManyToOne(cascade = CascadeType.ALL)
 @JoinColumn(name="rideid")
 Ride rideid;
+
 int rating;
 String feedback;
 }
