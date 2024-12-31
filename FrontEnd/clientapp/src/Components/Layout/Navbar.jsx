@@ -1,21 +1,38 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from '../Images/Logo2.jpg';
 import register from '../Images/Register.jpg'
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../../ReduxStore/UserSlice';
 
 
 
 const Navbar = () => {
   const [showComponent, setShowComponent] = useState(true);
+  const dispatch = useDispatch();
+  const nav=useNavigate();
 
   const userInfo = useSelector((state) => state.user.userInfo);
   const logged = useSelector((state) => state.user.logstate);
+  const [role, setRole] = useState({ 'admin': false, 'driver': false, 'passenger': false });
+  console.log(userInfo.roles)
+
+  useEffect(() => {
+    const updatedRole = { admin: false, driver: false, passenger: false };
+    if (userInfo.roles != null) {
+      userInfo.roles.forEach(element => {
+        if (element.roleid === 'passenger') updatedRole.passenger = true;
+        if (element.roleid === 'driver') updatedRole.driver = true;
+        if (element.roleid === 'admin') updatedRole.admin = true;
+      });
+    }
+    setRole(updatedRole);
+  }, [userInfo.roles]); // Dependency array ensures this only runs when `userInfo.roles` changes.
+
   console.log(userInfo.name);
   console.log(logged.login);
-  const handleRedirect = () => {
+  console.log(role);
 
-  }
 
   return (<>
     <nav className="navbar bg-body-tertiary d-flex align-items-center justify-content-between px-3">
@@ -38,7 +55,7 @@ const Navbar = () => {
         <div>
           {logged.login ?
             (
-              <div className="me-3" style={{color:'black',fontSize:'30px'}}>
+              <div className="me-3" style={{ color: 'black', fontSize: '30px' }}>
                 {userInfo.name}
               </div>
             )
@@ -104,9 +121,19 @@ const Navbar = () => {
           >
             Notification
           </Link>
-          <a href='#'  className="btn text-decoration-none mx-3 text-dark link-hover">
+          <div
+            className="btn text-decoration-none mx-3 text-dark link-hover"
+            onClick={() => {dispatch(logout());nav('/')}}
+          >
             Logout
-          </a>
+          </div>
+
+          {role.admin ? (
+            <Link to="/admin" className="btn text-decoration-none mx-3 text-dark link-hover">
+              Admin
+            </Link>
+          ) : (<div></div>)
+          }
         </nav>
       )}
     </div>

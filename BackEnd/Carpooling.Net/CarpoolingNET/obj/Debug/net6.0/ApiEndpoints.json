@@ -61,26 +61,6 @@
   },
   {
     "ContainingType": "CarpoolingNET.Controllers.CarpoolingController",
-    "Method": "GetUserRole",
-    "RelativePath": "api/Carpooling/GetUserRole",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.List\u00601[[CarpoolingNET.Models.User, CarpoolingNET, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "CarpoolingNET.Controllers.CarpoolingController",
     "Method": "GetUsers",
     "RelativePath": "api/Carpooling/GetUsers",
     "HttpMethod": "GET",
@@ -168,6 +148,62 @@
     "ReturnTypes": [
       {
         "Type": "CarpoolingNET.Models.User",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "CarpoolingNET.Controllers.UserController",
+    "Method": "GetCities",
+    "RelativePath": "api/User/GetCities",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[CarpoolingNET.Models.City, CarpoolingNET, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "CarpoolingNET.Controllers.UserController",
+    "Method": "GetRides",
+    "RelativePath": "api/User/GetRides",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "source",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "desti",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "date",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[CarpoolingNET.Models.Ride, CarpoolingNET, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",

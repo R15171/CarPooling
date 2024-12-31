@@ -20,35 +20,11 @@ namespace CarpoolingNET.Controllers
             {
                 try
                 {
-                    users = con.Users.ToList();
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.ToString());
-                    throw;
-                }
-                finally
-                {
-                    con.Dispose();
-                }
-            }
-            return users;
-        }
-
-        [HttpGet]
-        public List<User> GetUserRole()
-        {
-            List<User> users = new List<User>();
-            using (carpoolingContext con = new carpoolingContext())
-            {
-                try
-                {
                     users = con.Users.Include(e=>e.Userroles).ToList();
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.ToString());
-                    throw;
                 }
                 finally
                 {
@@ -188,6 +164,7 @@ namespace CarpoolingNET.Controllers
             }
             return ride;
         }
+
 
     }
 }

@@ -5,6 +5,7 @@ import Navbar from './Components/Layout/Navbar';
 import Home from './Components/UserView/Home';
 import RegistrationForm from './Components/Signin-Signup/RegistrationForm';
 import { Route, Routes } from 'react-router-dom';
+import FindRide from './Components/UserView/FindRide';
 
 
 
@@ -35,7 +36,9 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<RegistrationForm />} />
       <Route path="/publishRide" element={''} />
-      <Route path="/bookRide" element={''} />
+      <Route path="/findRide" element={<FindRide/>} />
+      <Route path="/rides" element={''} />
+      <Route path="/profile" element={''} />
       <Route path='*'  element={<Home />}/>
     </Routes>
     <div>

@@ -20,7 +20,8 @@ VALUES
 ('driver', '3'),
 ('driver', '5'),
 ('driver', '9'),
-('driver', '11');
+('driver', '11'),
+('admin','1');
 
 INSERT INTO driver (`DrivingLicence`, `URID`, `VehicleInfo`) 
 VALUES 
@@ -39,7 +40,7 @@ UPDATE driver SET `status` = 'verified' WHERE (`DriverID` = '1');
 INSERT INTO ride (`DriverID`, `SourceCity`, `DestinationCity`, `Fare`, `noseat`, `ridedate`,`ridecomplete`) 
 VALUES 
 ('4', '2', '1', '2000', '2', '2024-12-12 10:45:00', '2024-12-13 15:45:00'),
-('1', '1', '4', '500', '4', '2025-01-02 09:30:00','2025-01-02 19:30:00'),
+('1', '2', '4', '500', '4', '2025-01-02 09:30:00','2025-01-02 19:30:00'),
 ('2', '4', '2', '1000', '5', '2025-01-10 16:30:00', '2025-01-11 06:30:00'),
 ('3', '2', '4', '700', '2', '2025-01-12 18:45:00', '2025-01-13 08:45:00');
 

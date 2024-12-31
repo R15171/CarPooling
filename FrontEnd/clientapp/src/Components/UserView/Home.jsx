@@ -28,8 +28,8 @@ const Home = () => {
     {/* Right Button */}
     <div className="col-md-6">
       <button className="btn custom-btn" style={{ width: "100%" }}>
-        <Link to="/bookRide" className="custom-link">
-          Book Ride
+        <Link to="/findRide" className="custom-link">
+          Find Ride
         </Link>
       </button>
     </div>

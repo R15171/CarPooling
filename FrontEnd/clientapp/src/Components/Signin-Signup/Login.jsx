@@ -49,7 +49,6 @@ const Login = () => {
         } else {
           console.log(data);
           dispatch(login(data));
-          console.log(data);
           nav("/");
         }
       })
