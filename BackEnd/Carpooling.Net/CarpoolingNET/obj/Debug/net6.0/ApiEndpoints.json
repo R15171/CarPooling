@@ -158,6 +158,22 @@
     ]
   },
   {
+    "ContainingType": "CarpoolingNET.Controllers.CarpoolingController",
+    "Method": "VerifyDriver",
+    "RelativePath": "api/Carpooling/VerifyDriver/{driverId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "driverId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "CarpoolingNET.Controllers.UserController",
     "Method": "GetCities",
     "RelativePath": "api/User/GetCities",

@@ -3,7 +3,7 @@ import '../Css/FindRide.css'; // Assuming you will create a separate CSS file fo
 import Navbar from '../Layout/Navbar';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { addride} from '../../ReduxStore/UserSlice';
+//import { addride} from '../../ReduxStore/UserSlice';
 
 const FindRide = () => {
   const [cities, setCities] = useState([]);
@@ -12,6 +12,13 @@ const FindRide = () => {
     destination: '',
     rideDate: ''
   });
+  const [rides, setRides] = useState([]);
+
+  const formatDate = (date) => {
+    if (!date) return ''; // Handle null or undefined dates
+    const formattedDate = new Date(date).toLocaleDateString() +" "+new Date(date).toLocaleTimeString(); // Format the date
+    return formattedDate;
+};
 
   // Handle form input changes dynamically
   const handleChange = (e) => {
@@ -39,7 +46,7 @@ const FindRide = () => {
 
     console.log('Booking Ride:', find);
 
-    fetch('https://localhost:7182/api/User/GetRides?source=' + find.source + '&desti=' + find.destination + '&date=' + find.rideDate)
+    fetch(`https://localhost:7182/api/User/GetRides?source=${find.source}&desti=${find.destination}&date=${ find.rideDate}`)
       .then((response) => {
         console.log(response);
         if (!response.ok) {
@@ -51,8 +58,9 @@ const FindRide = () => {
       })
       .then((data) => {
         console.log(data);
-        dispatch(addride(data));
-        nav("/rides");
+        //dispatch(addride(data));
+        setRides(data);
+        //nav("/rides");
       }
       )
       .catch((error) => {
@@ -71,7 +79,7 @@ const FindRide = () => {
         <form onSubmit={handleSubmit} className="book-ride-form">
           {/* Pickup Location */}
           <div className="form-group">
-            <label htmlFor="source">Pickup Location</label>
+            <label htmlFor="source">Source</label>
             <select
               id="source"
               name="source"  // Use the name attribute for dynamic handling
@@ -79,7 +87,7 @@ const FindRide = () => {
               onChange={handleChange}
               required
             >
-              <option value="">Select Pickup Location</option>
+              <option value="">Select Source</option>
               {cities.map((city) => (
                 <option key={city.cityId} value={city.cityId}>
                   {city.cityname}
@@ -128,6 +136,36 @@ const FindRide = () => {
       </div>
       {/* Display the current form values (for debugging purposes) */}
       <h1>{JSON.stringify(find)}</h1>
+
+
+      <div className="d-flex justify-content-center mt-5">  
+              {rides.map(r=>{
+                return (<div className='col'>
+                  <div className=" card">
+                    <h2 style={{textAlign:'left'}}>{r.driver.ur.uidNavigation.name}</h2>
+                    <table className="table table-striped">
+                      <tr >
+                        <td>From : {r.sourceCityNavigation.cityname}</td>
+                        <td>To : {r.destinationCityNavigation.cityname}</td>
+                      </tr>
+                      <tr >
+                        <td>Ride start : {formatDate(r.ridedate)}</td>
+                        <td>Expected Complition : {formatDate(r.rideComplete)}</td>
+                      </tr>
+                      <tr>
+                        <td>Gender : {r.driver.ur.uidNavigation.gender}</td>
+                        <td>Age : {r.driver.age}</td>
+                      </tr>
+                      <tr>
+                        <td colSpan={2}><button className='btn btn-primary' //</td>onClick={()=>{handleRide(r)}}
+                        >Book Ride</button></td>
+                      </tr>
+                    </table>
+                  </div>
+                  </div>
+                )
+              })}
+      </div>
     </>
   );
 };

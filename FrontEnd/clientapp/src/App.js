@@ -1,12 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
 import Login from './Components/Signin-Signup/Login';
-import Navbar from './Components/Layout/Navbar';
 import Home from './Components/UserView/Home';
 import RegistrationForm from './Components/Signin-Signup/RegistrationForm';
 import { Route, Routes } from 'react-router-dom';
 import FindRide from './Components/UserView/FindRide';
-
+import AdminHome from './Components/AdminView/AdminHome';
+import VerifyDriver from './Components/AdminView/VerifyDriver';
 
 
 function App() {
@@ -39,6 +39,8 @@ function App() {
       <Route path="/findRide" element={<FindRide/>} />
       <Route path="/rides" element={''} />
       <Route path="/profile" element={''} />
+      <Route path="/admin/*" element={<AdminHome />}/>
+      <Route path="/" element={<h1>Home Page</h1>} />
       <Route path='*'  element={<Home />}/>
     </Routes>
     <div>

@@ -1,6 +1,7 @@
 ﻿using CarpoolingNET.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CarpoolingNET.Controllers
 {
@@ -17,7 +18,7 @@ namespace CarpoolingNET.Controllers
             {
                 try
                 {
-                    ride = con.Rides.Where(r=>r.SourceCity == source && r.DestinationCity ==desti && r.Status=="active" && r.Ridedate>=date).ToList();
+                    ride = con.Rides.Include(r=>r.DestinationCityNavigation).Include(r=>r.SourceCityNavigation).Include(e=>e.Driver.Ur.UidNavigation).Where(r=>r.SourceCity == source && r.DestinationCity ==desti && r.Status=="active" && r.Ridedate>=date).ToList();
                 }
                 catch (Exception ex)
                 {

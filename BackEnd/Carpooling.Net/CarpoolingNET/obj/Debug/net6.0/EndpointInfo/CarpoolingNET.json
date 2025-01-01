@@ -81,6 +81,29 @@
         }
       }
     },
+    "/api/Carpooling/VerifyDriver/{driverId}": {
+      "put": {
+        "tags": [
+          "Carpooling"
+        ],
+        "parameters": [
+          {
+            "name": "driverId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/Carpooling/GetRides": {
       "get": {
         "tags": [

@@ -14,7 +14,7 @@ namespace CarpoolingNET.Models
         public int CityId { get; set; }
         public string? Cityname { get; set; }
 
-        public virtual ICollection<Ride> RideDestinationCityNavigations { get; set; }
-        public virtual ICollection<Ride> RideSourceCityNavigations { get; set; }
+        public virtual ICollection<Ride> RideDestinationCityNavigations { get; set; } = null;
+        public virtual ICollection<Ride> RideSourceCityNavigations { get; set; } = null;
     }
 }

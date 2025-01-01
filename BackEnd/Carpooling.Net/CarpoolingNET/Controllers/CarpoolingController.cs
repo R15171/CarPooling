@@ -6,11 +6,12 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace CarpoolingNET.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]/[action]/")]
     [ApiController]
     public class CarpoolingController : ControllerBase
     {
 
+        
         [HttpGet]
         public List<User> GetUsers()
         {
@@ -42,7 +43,7 @@ namespace CarpoolingNET.Controllers
             {
                 try
                 {
-                    drivers = con.Drivers.ToList();
+                    drivers = con.Drivers.Where(d=>d.Status=="notverified").Include(a=>a.Ur.UidNavigation).ToList();
                 }
                 catch (Exception ex)
                 {
@@ -56,6 +57,30 @@ namespace CarpoolingNET.Controllers
             }
             return drivers;
         }
+        [HttpPut("{driverId}")]
+        public StatusCodeResult VerifyDriver(int driverId)
+        {
+            using (carpoolingContext con = new carpoolingContext())
+            {
+                try
+                {
+                    Driver d = con.Drivers.Find(driverId);
+                    d.Status = "verified";
+                    con.SaveChanges();
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                    return StatusCode(500);
+                }
+            }
+            return StatusCode(200);
+
+
+        }
+
+
 
         [HttpGet]
         public List<Ride> GetRides()
@@ -104,6 +129,7 @@ namespace CarpoolingNET.Controllers
             return bookings;
         }
 
+       
         [HttpPost]
         public User Register(User user)
         {
