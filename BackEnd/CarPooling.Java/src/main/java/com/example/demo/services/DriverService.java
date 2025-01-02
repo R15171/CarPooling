@@ -12,9 +12,15 @@ import com.example.demo.repositories.DriverRepository;
 @Service
 public class DriverService {
 	@Autowired
-	DriverRepository drepo;
+	DriverRepository dRepository;
 	
 	public List<Driver> getAll(){
-		return drepo.findAll();
+		return dRepository.findAll();
+	}//getAll()
+
+
+	public Driver addDriver(Driver driver) {
+		return dRepository.save(driver);
 	}
-}
+	
+}//DriverService

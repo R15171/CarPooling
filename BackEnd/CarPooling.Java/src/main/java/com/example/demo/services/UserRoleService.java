@@ -15,10 +15,15 @@ public class UserRoleService {
 	
 	public List<UserRole> getAll(){
 		return urRepository.findAll();
-	}
+	}//getAll
 
 	public List<String> getUserRoleByuid(int uid) {
 		// TODO Auto-generated method stub
 		return urRepository.getUserRoleByuid(uid);
-	}
-}
+	}//getUserRoleById()
+	
+	
+	
+	
+	
+}//UserRoleService

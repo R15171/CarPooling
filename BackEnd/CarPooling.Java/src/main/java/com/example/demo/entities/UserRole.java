@@ -43,4 +43,12 @@ public class UserRole {
 	@OneToMany(mappedBy = "urid",cascade = CascadeType.ALL)
 	Set<Driver> drivers;
 	
-}
+	
+	 public UserRole(String rollid, User user ){
+		this.rollid= rollid;
+		this.uid = user;
+		this.drivers= null;
+		
+	 }//UserRole()
+	
+}//UserRole

@@ -30,4 +30,9 @@ public class UserService {
 	}//UserRegistration
 	
 	
+	public User userById(int id) {
+		return uRepository.findById(id).get();
+	}
+	
+	
 }//class
