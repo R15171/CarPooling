@@ -35,6 +35,10 @@ namespace CarpoolingNET.Controllers
             return users;
         }
 
+
+
+
+
         [HttpGet]
         public List<Driver> GetDrivers()
         {
@@ -57,6 +61,10 @@ namespace CarpoolingNET.Controllers
             }
             return drivers;
         }
+
+
+
+
         [HttpPut("{driverId}")]
         public StatusCodeResult VerifyDriver(int driverId)
         {
@@ -79,6 +87,7 @@ namespace CarpoolingNET.Controllers
 
 
         }
+
 
 
 
@@ -106,6 +115,9 @@ namespace CarpoolingNET.Controllers
             return rides;
         }
 
+
+
+
         [HttpGet]
         public List<Booking> GetBooking()
         {
@@ -130,6 +142,8 @@ namespace CarpoolingNET.Controllers
         }
 
        
+
+
         [HttpPost]
         public User Register(User user)
         {
@@ -152,6 +166,9 @@ namespace CarpoolingNET.Controllers
 
             return user;
         }
+
+
+
 
         [HttpPost]
         public Driver RegDriver(Driver driver)

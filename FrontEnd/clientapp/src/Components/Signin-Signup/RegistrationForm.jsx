@@ -32,7 +32,8 @@ const RegistrationForm = () => {
       },
       body: JSON.stringify(formData)
   }
-    fetch("https://localhost:7182/api/Carpooling/Register",reqInf)
+   // fetch("https://localhost:7182/api/Carpooling/Register",reqInf)
+   fetch("http://localhost:8080/api/Carpooling/Register",reqInf)
     .then(response => {console.log(response);
       if(!(response.ok)){setMsg("Registration Failed")}nav('/login')})
     .catch(msg=>setMsg("Error Occured"))

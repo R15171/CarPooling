@@ -22,5 +22,12 @@ public class UserService {
 	public User getUserByContact(String contact) {
 		System.out.println("ser");
 		return uRepository.findUserByContact(contact);
-	}
-}
+	}//getUserByContact()
+	
+	
+	public User userRegister(User user) {
+		return uRepository.save(user);
+	}//UserRegistration
+	
+	
+}//class

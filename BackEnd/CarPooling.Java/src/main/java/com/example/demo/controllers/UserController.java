@@ -54,4 +54,11 @@ public class UserController {
 			}
 		}//verifyUser()
 	
+	
+	
+		@PostMapping("api/Carpooling/Register")
+		public User userRegister(@RequestBody User user) {
+			return uService.userRegister(user);
+		}//UserRegister
+	
 }//Controller

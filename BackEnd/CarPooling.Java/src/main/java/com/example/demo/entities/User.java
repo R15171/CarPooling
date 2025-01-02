@@ -36,7 +36,7 @@ public class User {
 	
 	String name;
 	
-	@Column(name = "contactno", unique = true, nullable = false)
+	@Column(name = "contactno", unique = true)
 	String contact;
 	
 	String email;
