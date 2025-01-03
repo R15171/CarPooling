@@ -31,7 +31,8 @@ function App() {
         </a>
       </header>      
     </div> */}
-
+<AddDriver/>
+<PublishRide/>
     
 
     <Routes>

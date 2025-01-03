@@ -11,8 +11,6 @@ delete from ride  WHERE 1=1;
 ALTER TABLE ride AUTO_INCREMENT = 1;
 delete from driver where 1=1;
 ALTER TABLE driver AUTO_INCREMENT = 1;
-delete from userrole;
-ALTER TABLE userrole AUTO_INCREMENT = 1;
 delete from user  WHERE 1=1;
 ALTER TABLE user AUTO_INCREMENT = 1;
 SET SQL_SAFE_UPDATES = 1;
