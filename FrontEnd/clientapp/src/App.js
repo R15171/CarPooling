@@ -7,7 +7,9 @@ import { Route, Routes } from 'react-router-dom';
 import FindRide from './Components/UserView/FindRide';
 import AdminHome from './Components/AdminView/AdminHome';
 import VerifyDriver from './Components/AdminView/VerifyDriver';
-import RegistrationNew from './Components/Signin-Signup/RegistrationNew';
+import PublishRide from './Components/DriverView/PublishRide';
+import AddDriver from './Components/DriverView/AddDriver';
+
 
 
 function App() {
@@ -35,12 +37,13 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<RegistrationNew />} />
+      <Route path="/register" element={<RegistrationForm />} />
       <Route path="/publishRide" element={''} />
       <Route path="/findRide" element={<FindRide/>} />
       <Route path="/rides" element={''} />
       <Route path="/profile" element={''} />
       <Route path="/admin/*" element={<AdminHome />}/>
+      <Route path="/" element={<h1>Home Page</h1>} />
       <Route path='*'  element={<Home />}/>
     </Routes>
     <div>
@@ -48,6 +51,8 @@ function App() {
         this is about section
       </h1>
     </div>
+
+     
 
   </div>
   );

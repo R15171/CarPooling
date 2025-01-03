@@ -46,4 +46,4 @@ User uid;
 Set<Payment> payments;
 
 
-}
+}//class
