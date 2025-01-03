@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `carpooling2` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `carpooling2`;
+CREATE DATABASE  IF NOT EXISTS `carpooling` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `carpooling`;
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
--- Host: localhost    Database: carpooling2
+-- Host: localhost    Database: carpooling
 -- ------------------------------------------------------
 -- Server version	8.2.0
 
@@ -45,6 +45,41 @@ LOCK TABLES `booking` WRITE;
 /*!40000 ALTER TABLE `booking` DISABLE KEYS */;
 /*!40000 ALTER TABLE `booking` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `after_booking_insert_update_ride_status` AFTER INSERT ON `booking` FOR EACH ROW BEGIN
+    DECLARE total_bookings INT;
+    DECLARE total_seats INT;
+
+    -- Get the total number of bookings for the rideId
+    SELECT COUNT(*) INTO total_bookings
+    FROM `booking`
+    WHERE `rideId` = NEW.`rideId`;
+
+    -- Get the total number of seats available for the ride
+    SELECT `noseat` INTO total_seats
+    FROM `ride`
+    WHERE `rideId` = NEW.`rideId`;
+
+    -- If total bookings are equal to or exceed the total seats, update the ride status to 'full'
+    IF total_bookings >= total_seats THEN
+        UPDATE `ride`
+        SET `status` = 'full'
+        WHERE `rideId` = NEW.`rideId`;
+    END IF;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `city`
@@ -309,7 +344,10 @@ DELIMITER ;;
         -- RideComplete is in the future
         IF driver_status = 'notverified' THEN
             SET NEW.`status` = 'notverified';
-        ELSEIF driver_status = 'verified' THEN
+        ELSEIF driver_status = 'verified' and 
+			((SELECT COUNT(*) FROM booking WHERE rideid = NEW.rideid) >= NEW.noseat) THEN
+            SET NEW.`status` = 'full';
+		 ELSEIF driver_status = 'verified' THEN
             SET NEW.`status` = 'active';
         END IF;
     ELSE
@@ -451,11 +489,11 @@ LOCK TABLES `userrole` WRITE;
 UNLOCK TABLES;
 
 --
--- Dumping events for database 'carpooling2'
+-- Dumping events for database 'carpooling'
 --
 
 --
--- Dumping routines for database 'carpooling2'
+-- Dumping routines for database 'carpooling'
 --
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -467,4 +505,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-12-30 12:16:34
+-- Dump completed on 2025-01-03 10:44:44

@@ -58,7 +58,7 @@ const RegistrationForm = () => {
           type="text"
           className="form-control"
           name="name"
-          placeholder="Name"
+          placeholder="Full Name"
           value={formData.name}
           onChange={handleChange}
           required

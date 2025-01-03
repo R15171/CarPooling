@@ -30,7 +30,7 @@ const Navbar = () => {
   }, [userInfo.roles]); // Dependency array ensures this only runs when `userInfo.roles` changes.
 
   console.log(userInfo.name);
-  console.log(logged.login);
+  console.log("Is loged : "+logged.login);
   console.log(role);
 
 

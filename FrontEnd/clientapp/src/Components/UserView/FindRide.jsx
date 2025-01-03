@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../Css/FindRide.css'; // Assuming you will create a separate CSS file for styling
 import Navbar from '../Layout/Navbar';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 //import { addride} from '../../ReduxStore/UserSlice';
 
@@ -12,6 +12,9 @@ const FindRide = () => {
     destination: '',
     rideDate: ''
   });
+  const logged = useSelector((state) => state.user.logstate);
+  const userInfo = useSelector((state) => state.user.userInfo);
+
   const [rides, setRides] = useState([]);
 
   const formatDate = (date) => {
@@ -39,6 +42,38 @@ const FindRide = () => {
       .then(data => setCities(data))
       .catch(error => console.error('Something went wrong with the connection', error));
   }, []);
+
+  const handleRide = (ride) => {
+    if (!logged.login) {
+      nav('/login');
+    } else {
+      const reqInf = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          'bookingdate': new Date(),
+          'rideId': ride.rideId,
+          'uid': userInfo.uid
+        })
+      }
+      console.log(reqInf.body)
+      fetch(`https://localhost:7182/api/User/BookRide`,reqInf)
+      .then(res=>{
+        if(!res.ok){
+          throw new Error(res.statusText);
+        }
+        return res;
+      })
+      .then(res=>{
+        alert("Ride Booking Successful")
+        //nav('/')
+      })
+
+    }
+  }
+
 
   // Handle form submit
   const handleSubmit = (e) => {
@@ -154,11 +189,10 @@ const FindRide = () => {
                       </tr>
                       <tr>
                         <td>Gender : {r.driver.ur.uidNavigation.gender}</td>
-                        <td>Age : {r.driver.age}</td>
+                        <td>Age : {r.driver.age }</td>
                       </tr>
                       <tr>
-                        <td colSpan={2}><button className='btn btn-primary' //</td>onClick={()=>{handleRide(r)}}
-                        >Book Ride</button></td>
+                        <td colSpan={2}><button className='btn btn-primary' onClick={()=>{handleRide(r)}}>Book Ride</button></td>
                       </tr>
                     </table>
                   </div>

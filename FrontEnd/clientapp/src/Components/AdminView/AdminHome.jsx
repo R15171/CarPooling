@@ -24,7 +24,7 @@ const AdminHome = () => {
                         <td><Link to='/admin/Users'>Get Users</Link></td>
                     </tr>
                     <tr>
-                        <td><Link to='/admin/verify'>Upcomimng Rides</Link></td>
+                        <td><Link to='/admin/verify'>Rides</Link></td>
                     </tr>
                     
                 </table>

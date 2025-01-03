@@ -175,6 +175,22 @@
   },
   {
     "ContainingType": "CarpoolingNET.Controllers.UserController",
+    "Method": "BookRide",
+    "RelativePath": "api/User/BookRide",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "book",
+        "Type": "CarpoolingNET.Models.Booking",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "CarpoolingNET.Controllers.UserController",
     "Method": "GetCities",
     "RelativePath": "api/User/GetCities",
     "HttpMethod": "GET",

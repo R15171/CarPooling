@@ -45,5 +45,25 @@ namespace CarpoolingNET.Controllers
             }
             return cities;
         }
+
+        [HttpPost]
+        public StatusCodeResult BookRide(Booking book)
+        {
+            using (carpoolingContext con = new carpoolingContext())
+            {
+                try
+                {
+                    con.Bookings.Add(book);
+                    con.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                    return StatusCode(500);
+                }
+            }
+            return StatusCode(200);
+        }
+
     }
 }
