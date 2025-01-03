@@ -13,7 +13,7 @@ const VerifyDriver = () => {
     };
 
     useEffect(() => {
-        fetch('https://localhost:7182/api/Carpooling/GetDrivers')
+        fetch('https://localhost:7127/api/Carpooling/GetDrivers')
             .then(res => {
                 console.log(res);
                 if (!res.ok) {
@@ -34,7 +34,7 @@ const VerifyDriver = () => {
     }, [])
 
     const handleVerify = (driverId) => {
-        fetch(`https://localhost:7182/api/Carpooling/VerifyDriver/${driverId}`, {
+        fetch(`https://localhost:7127/api/Carpooling/VerifyDriver/${driverId}`, {
             method: 'PUT', // Assuming a PUT request for updating
             headers: {
                 'Content-Type': 'application/json',
@@ -52,7 +52,34 @@ const VerifyDriver = () => {
                 setdata(prevData =>
                     prevData.map(driver =>
                         driver.driverId === driverId
-                            ? { ...driver, status: 'verified' }
+                            ? { ...driver, status: 'v' }
+                            : driver
+                    )
+                );
+            })
+            .catch(error => console.error("Error:", error));
+    };
+
+    const handleReject = (driverId) => {
+        fetch(`https://localhost:7127/api/Carpooling/RejectDriver/${driverId}`, {
+            method: 'PUT', // Assuming a PUT request for updating
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(res => {
+                if (!res.ok) {
+                    console.error("Error Rejecting driver:", res.status);
+                    throw new Error("Failed to verify driver");
+                }
+                return res; // Parse response (optional if no data is returned)
+            })
+            .then(() => {
+                // Update the driver's status locally after successful verification
+                setdata(prevData =>
+                    prevData.map(driver =>
+                        driver.driverId === driverId
+                            ? { ...driver, status: 'r' }
                             : driver
                     )
                 );
@@ -64,7 +91,7 @@ const VerifyDriver = () => {
     return (<>
         <div>
 
-            <table className='table table-bordered'> 
+            <table className='table table-bordered'>
                 <thead className='table table-headers'>
                     <tr>
                         <th>Driver ID</th>
@@ -76,6 +103,7 @@ const VerifyDriver = () => {
                         <th>Driving Licence</th>
                         <th>Vehicle Info</th>
                         <th>Verify</th>
+                        <th>Reject</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -83,26 +111,22 @@ const VerifyDriver = () => {
                         return (
                             <tr>
                                 <td>{e.driverId}</td>
-                                <td>{e.ur.uidNavigation.name}</td>
-                                <td>{e.ur.uidNavigation.contactno}</td>
-                                <td>{e.ur.uidNavigation.email}</td>
-                                <td>{formatDate(e.ur.uidNavigation.dob)}</td>
-                                <td>{e.ur.uidNavigation.address}</td>
+                                <td>{e.uidNavigation.name}</td>
+                                <td>{e.uidNavigation.contactno}</td>
+                                <td>{e.uidNavigation.email}</td>
+                                <td>{formatDate(e.uidNavigation.dob)}</td>
+                                <td>{e.uidNavigation.address}</td>
                                 <td>{e.drivingLicence}</td>
                                 <td>{e.vehicleInfo}</td>
-                                <td><button className='btn btn-secondary' 
-                                onClick={() => handleVerify(e.driverId)}>{e.status}</button></td>
-                            </tr>
-                        )
+                                <td><button className='btn btn-secondary'
+                                    onClick={() => handleVerify(e.driverId)}>O</button></td>
+                                <td><button className='btn btn-secondary'
+                                onClick={()=>{handleReject(e.driverId)}}
+                                >X</button></td>
+                            </tr>)
                     })}
                 </tbody>
-
-
-
             </table>
-
-
-
         </div>
 
     </>)

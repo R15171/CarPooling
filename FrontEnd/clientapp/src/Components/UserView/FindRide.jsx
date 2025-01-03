@@ -3,7 +3,6 @@ import '../Css/FindRide.css'; // Assuming you will create a separate CSS file fo
 import Navbar from '../Layout/Navbar';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-//import { addride} from '../../ReduxStore/UserSlice';
 
 const FindRide = () => {
   const [cities, setCities] = useState([]);
@@ -37,7 +36,7 @@ const FindRide = () => {
 
   // Fetch cities data
   useEffect(() => {
-    fetch('https://localhost:7182/api/User/GetCities')
+    fetch('https://localhost:7127/api/Carpooling/GetCities')
       .then(response => response.json())
       .then(data => setCities(data))
       .catch(error => console.error('Something went wrong with the connection', error));
@@ -59,7 +58,7 @@ const FindRide = () => {
         })
       }
       console.log(reqInf.body)
-      fetch(`https://localhost:7182/api/User/BookRide`,reqInf)
+      fetch(`https://localhost:7127/api/User/BookRide`,reqInf)
       .then(res=>{
         if(!res.ok){
           throw new Error(res.statusText);
@@ -81,7 +80,7 @@ const FindRide = () => {
 
     console.log('Booking Ride:', find);
 
-    fetch(`https://localhost:7182/api/User/GetRides?source=${find.source}&desti=${find.destination}&date=${ find.rideDate}`)
+    fetch(`https://localhost:7127/api/User/GetRides?source=${find.source}&desti=${find.destination}&date=${ find.rideDate}`)
       .then((response) => {
         console.log(response);
         if (!response.ok) {
@@ -164,9 +163,7 @@ const FindRide = () => {
           </div>
 
           {/* Submit Button */}
-          <div className="form-group">
-            <button type="submit" className="submit-btn">Find Ride</button>
-          </div>
+          <button type="submit" className="submit-btn">Find Ride</button>
         </form>
       </div>
       {/* Display the current form values (for debugging purposes) */}
@@ -177,7 +174,7 @@ const FindRide = () => {
               {rides.map(r=>{
                 return (<div className='col'>
                   <div className=" card">
-                    <h2 style={{textAlign:'left'}}>{r.driver.ur.uidNavigation.name}</h2>
+                    <h2 style={{textAlign:'left'}}>{r.driver.uidNavigation.name}</h2>
                     <table className="table table-striped">
                       <tr >
                         <td>From : {r.sourceCityNavigation.cityname}</td>
@@ -188,7 +185,7 @@ const FindRide = () => {
                         <td>Expected Complition : {formatDate(r.rideComplete)}</td>
                       </tr>
                       <tr>
-                        <td>Gender : {r.driver.ur.uidNavigation.gender}</td>
+                        <td>Gender : {r.driver.uidNavigation.gender}</td>
                         <td>Age : {r.driver.age }</td>
                       </tr>
                       <tr>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../Css/PublishRide.css'; // Assuming you will create a separate CSS file for styling
+import Navbar from '../Layout/Navbar';
 
 const PublishRide = () => {
   const [source, setSource] = useState('');
@@ -32,8 +33,9 @@ const PublishRide = () => {
     // Logic for navigation (if required) can be added here.
   };
 
-  return (
-    <div className="publish-ride-container">
+  return (<><Navbar/>
+    <div className="publish-ride-container" style={{marginTop:'20px'}}>
+      
       <h2>Publish a Ride</h2>
       <form className="publish-ride-form" onSubmit={handlePublish}>
         <div className="form-group">
@@ -94,6 +96,7 @@ const PublishRide = () => {
         </div>
       </form>
     </div>
+    </>
   );
 };
 

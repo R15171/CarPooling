@@ -3,17 +3,18 @@ import './App.css';
 import Login from './Components/Signin-Signup/Login';
 import Home from './Components/UserView/Home';
 import RegistrationForm from './Components/Signin-Signup/RegistrationForm';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Link } from 'react-router-dom';
 import FindRide from './Components/UserView/FindRide';
 import AdminHome from './Components/AdminView/AdminHome';
 import VerifyDriver from './Components/AdminView/VerifyDriver';
 import PublishRide from './Components/DriverView/PublishRide';
 import AddDriver from './Components/DriverView/AddDriver';
+import Footer from './Components/Layout/Footer';
 
 
 
 function App() {
-  return (<div>
+  return (<div className="App" style={{ background: "linear-gradient(135deg,rgb(122, 255, 122),rgb(137, 121, 255))", }}>
 
     {/* <div className="App">
       <header className="App-header">
@@ -31,30 +32,22 @@ function App() {
         </a>
       </header>      
     </div> */}
-<AddDriver/>
-<PublishRide/>
-    
 
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<RegistrationForm />} />
-      <Route path="/publishRide" element={''} />
-      <Route path="/findRide" element={<FindRide/>} />
+      <Route path="/publishRide" element={<PublishRide />} />
+      <Route path='/regDriver' element={<AddDriver />} />
+      <Route path="/findRide" element={<FindRide />} />
       <Route path="/rides" element={''} />
       <Route path="/profile" element={''} />
-      <Route path="/admin/*" element={<AdminHome />}/>
-      <Route path="/" element={<h1>Home Page</h1>} />
-      <Route path='*'  element={<Home />}/>
+      <Route path="/admin/*" element={<AdminHome />} />
+      <Route path='*' element={<Home />} />
     </Routes>
     <div>
-      <h1 style={{textAlign:'center',padding:'100px'}}>
-        this is about section
-      </h1>
-    </div>
-
-     
-
+<Footer/>
+</div>
   </div>
   );
 }

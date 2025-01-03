@@ -15,9 +15,9 @@ namespace Carpooling.Models
         public int Age { get; set; }
         public int Uid { get; set; }
         public string VehicleInfo { get; set; } = null!;
-        public string Status { get; set; } = null!;
+        public string? Status { get; set; } = null!;
 
-        public virtual User UidNavigation { get; set; } = null!;
+        public virtual User? UidNavigation { get; set; } = null!;
         public virtual ICollection<Ride> Rides { get; set; }
     }
 }

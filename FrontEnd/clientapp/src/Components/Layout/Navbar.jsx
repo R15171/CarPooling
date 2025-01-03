@@ -4,40 +4,27 @@ import register from '../Images/Register.jpg'
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../ReduxStore/UserSlice';
-
+import '../Css/navbar.css';
 
 
 const Navbar = () => {
   const [showComponent, setShowComponent] = useState(true);
   const dispatch = useDispatch();
-  const nav=useNavigate();
+  const nav = useNavigate();
 
   const userInfo = useSelector((state) => state.user.userInfo);
   const logged = useSelector((state) => state.user.logstate);
-  const [role, setRole] = useState({ 'admin': false, 'driver': false, 'passenger': false });
-  console.log(userInfo.roles)
-
-  useEffect(() => {
-    const updatedRole = { admin: false, driver: false, passenger: false };
-    if (userInfo.roles != null) {
-      userInfo.roles.forEach(element => {
-        if (element.roleid === 'passenger') updatedRole.passenger = true;
-        if (element.roleid === 'driver') updatedRole.driver = true;
-        if (element.roleid === 'admin') updatedRole.admin = true;
-      });
-    }
-    setRole(updatedRole);
-  }, [userInfo.roles]); // Dependency array ensures this only runs when `userInfo.roles` changes.
+  const role = userInfo.rid;
 
   console.log(userInfo.name);
-  console.log("Is loged : "+logged.login);
+  console.log("Is loged : " + logged.login);
   console.log(role);
 
 
   return (<>
-    <nav className="navbar bg-body-tertiary d-flex align-items-center justify-content-between px-3">
+    <nav className="navbar bg-body-tertiary d-flex align-items-center justify-content-between px-3" style={{background: "linear-gradient(90deg,rgb(255, 205, 96),rgb(0, 156, 60))",}}>
       {/* Logo and Title */}
-      <div className="d-flex align-items-center">
+      <div className="d-flex align-items-center" >
         <img
           src={logo}
           alt="Carpooling Logo"
@@ -62,10 +49,10 @@ const Navbar = () => {
             :
             (
               <div className="me-3">
-                <Link to="/login" className="text-decoration-none mx-2">
+                <Link to="/login" className="text-decoration-none mx-1 btnlink">
                   Login
                 </Link>
-                <Link to="/register" className="text-decoration-none mx-2">
+                <Link to="/register" className="text-decoration-none mx-2 btnlink">
                   Register
                 </Link>
               </div>
@@ -99,41 +86,41 @@ const Navbar = () => {
         <nav className="d-flex justify-content-center">
           <Link
             to="/"
-            className="btn text-decoration-none mx-3 text-dark link-hover"
+            className="btn text-decoration-none mx-1 text-dark link-hover btnlink"
           >
             Home
           </Link>
           <Link
             to="/profile"
-            className="btn text-decoration-none mx-3 text-dark link-hover"
+            className="btn text-decoration-none mx-1 text-dark link-hover btnlink"
           >
             Profile
           </Link>
           <Link
             to="/history"
-            className="btn text-decoration-none mx-3 text-dark link-hover"
+            className="btn text-decoration-none mx-1 text-dark link-hover btnlink"
           >
             Trip Histroy
           </Link>
           <Link
             href="/Noti"
-            className="btn text-decoration-none mx-3 text-dark link-hover"
+            className="btn text-decoration-none mx-1 text-dark link-hover btnlink"
           >
             Notification
           </Link>
           <div
-            className="btn text-decoration-none mx-3 text-dark link-hover"
-            onClick={() => {dispatch(logout());nav('/')}}
+            className="btn text-decoration-none mx-1 text-dark link-hover btnlink"
+            onClick={() => { dispatch(logout()); nav('/') }}
           >
             Logout
           </div>
 
-          {role.admin ? (
-            <Link to="/admin" className="btn text-decoration-none mx-3 text-dark link-hover">
+          {role == '1' && (
+            <Link to="/admin" className="btn text-decoration-none mx-1 text-dark link-hover btnlink">
               Admin
             </Link>
-          ) : (<div></div>)
-          }
+          )}
+
         </nav>
       )}
     </div>

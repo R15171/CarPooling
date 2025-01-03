@@ -1,0 +1,15 @@
+.btnlink {
+    color: white;
+    border: 2px solid white;
+    padding: 5px;
+    border-radius: 4px;
+    margin-top: 5px;
+    text-decoration: none; /* Ensures no underline */
+  }
+  
+  .btnlink:hover {
+    background-color: white; /* Optional: Add a hover effect */
+    color: black; /* Optional: Change text color on hover */
+    transition: all 0.3s ease; /* Smooth transition */
+  }
+  

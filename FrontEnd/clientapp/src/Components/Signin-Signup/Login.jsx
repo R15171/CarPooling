@@ -24,7 +24,7 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  
+
     const reqInf = {
       method: "POST",
       headers: {
@@ -32,16 +32,17 @@ const Login = () => {
       },
       body: JSON.stringify(loginData),
     };
-  
-    fetch("http://localhost:8080/login", reqInf)
+
+    //fetch("http://localhost:8080/login", reqInf)
+    fetch("https://localhost:7127/api/User/Login", reqInf)
       .then((response) => {
         console.log(response);
         if (!response.ok) {
-          // Log if the response was not OK (e.g., 404, 500)
+
           console.error("Error: Network response was not ok", response.status);
           throw new Error("Network response was not ok");
         }
-        return response.json(); // Parse the response to JSON
+        return response.json();
       })
       .then((data) => {
         if (data === null) {
@@ -60,7 +61,7 @@ const Login = () => {
   };
 
 
-    return (<>
+  return (<>
     <div className="d-flex justify-content-center align-items-center mt-5">
 
       <div className="container border rounded p-4 shadow"

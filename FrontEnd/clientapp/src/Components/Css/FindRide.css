@@ -1,6 +1,6 @@
 .book-ride-container {
   width: 100%;
-  max-width: 700px; /* Reduced max width */
+  max-width: 900px; /* Reduced max width */
   margin: 0 auto;
   padding: 30px; /* Slightly reduced padding */
   border: 2px solid #0e0404;
@@ -48,7 +48,7 @@ select, input {
 
 button.submit-btn {
   width: 100%;
-  padding: 18px; /* Reduced button padding */
+  padding: 10px; /* Reduced button padding */
   background-color: #4CAF50;
   color: rgb(255, 255, 255);
   border: none;

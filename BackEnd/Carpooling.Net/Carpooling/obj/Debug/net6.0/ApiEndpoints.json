@@ -21,6 +21,26 @@
   },
   {
     "ContainingType": "Carpooling.Controllers.CarpoolingController",
+    "Method": "GetCities",
+    "RelativePath": "api/Carpooling/GetCities",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[Carpooling.Models.City, Carpooling, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Carpooling.Controllers.CarpoolingController",
     "Method": "GetDrivers",
     "RelativePath": "api/Carpooling/GetDrivers",
     "HttpMethod": "GET",
@@ -81,6 +101,22 @@
   },
   {
     "ContainingType": "Carpooling.Controllers.CarpoolingController",
+    "Method": "RejectDriver",
+    "RelativePath": "api/Carpooling/RejectDriver/{driverId}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "driverId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Carpooling.Controllers.CarpoolingController",
     "Method": "VerifyDriver",
     "RelativePath": "api/Carpooling/VerifyDriver/{driverId}",
     "HttpMethod": "PUT",
@@ -97,21 +133,52 @@
   },
   {
     "ContainingType": "Carpooling.Controllers.UserController",
-    "Method": "Login",
-    "RelativePath": "api/User/Login",
+    "Method": "GetRides",
+    "RelativePath": "api/User/GetRides",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "contactno",
-        "Type": "System.String",
+        "Name": "source",
+        "Type": "System.Int32",
         "IsRequired": false
       },
       {
-        "Name": "password",
-        "Type": "System.String",
+        "Name": "desti",
+        "Type": "System.Int32",
         "IsRequired": false
+      },
+      {
+        "Name": "date",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[Carpooling.Models.Ride, Carpooling, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Carpooling.Controllers.UserController",
+    "Method": "Login",
+    "RelativePath": "api/User/Login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loginData",
+        "Type": "System.Collections.Generic.Dictionary\u00602[[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": [

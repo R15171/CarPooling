@@ -6,8 +6,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'; // Importing Bootstrap CSS
 
 const AddDriver = () => {
   const [driverData, setDriverData] = useState({
-    drivingLicense: '',
-    vehicleInfo: ''
+    DrivingLicense: '',
+    VehicleInfo: ''
   });
   const [isDriverRegistered, setIsDriverRegistered] = useState(false);
   const userInfo = useSelector((state) => state.user.userInfo);
@@ -17,11 +17,13 @@ const AddDriver = () => {
   // Check if the user is a registered driver
   useEffect(() => {
     if (logged.login && userInfo.uid) {
-      fetch(`https://localhost:7182/api/Driver/GetDriverInfo?uid=${userInfo.uid}`)
+      fetch(//`https://localhost:7127/api/User/GetDriverInfo?uid=${userInfo.uid}`
+        )
         .then((response) => response.json())
         .then((data) => {
           if (data) {
             setIsDriverRegistered(true);  // Driver is already registered
+            nav('/publishRide');
           } else {
             setIsDriverRegistered(false);  // Driver is not registered
           }
@@ -42,19 +44,19 @@ const AddDriver = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { drivingLicense, vehicleInfo } = driverData;
+    const { DrivingLicense, VehicleInfo } = driverData;
 
-    if (drivingLicense && vehicleInfo) {
-      // Send data to the server to register the driver
-      fetch('https://localhost:7182/api/Driver/RegisterDriver', {
+    if (DrivingLicense && VehicleInfo) {
+     
+      fetch('https://localhost:7127/api/User/RegDriver', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           uid: userInfo.uid,
-          drivingLicense,
-          vehicleInfo,
+          DrivingLicense,
+          VehicleInfo,
         }),
       })
         .then((response) => response.json())
@@ -86,7 +88,7 @@ const AddDriver = () => {
                 id="drivingLicense"
                 name="drivingLicense"
                 className="form-control"
-                value={driverData.drivingLicense}
+                value={driverData.DrivingLicense}
                 onChange={handleInputChange}
                 required
               />
@@ -100,7 +102,7 @@ const AddDriver = () => {
                 id="vehicleInfo"
                 name="vehicleInfo"
                 className="form-control"
-                value={driverData.vehicleInfo}
+                value={driverData.VehicleInfo}
                 onChange={handleInputChange}
                 required
               />

@@ -1,6 +1,7 @@
 ﻿using Carpooling.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Carpooling.Controllers
@@ -9,9 +10,11 @@ namespace Carpooling.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        [HttpGet]
-        public User Login(string contactno, string password)
+        [HttpPost]
+        public User Login([FromBody] Dictionary<string, string> loginData)
         {
+            string contactno = loginData["contactno"];
+            string password = loginData["password"];
             using (carpoolingContext con = new carpoolingContext())
             {
                 try
@@ -34,7 +37,7 @@ namespace Carpooling.Controllers
                 {
                     Console.WriteLine(ex.ToString());
                     return null; 
-                }
+                }   
             }
         }
 
@@ -62,6 +65,23 @@ namespace Carpooling.Controllers
             return user;
         }
 
+        [HttpGet]
+        public List<Ride> GetRides(int source, int desti, DateTime date)
+        {
+            List<Ride> ride = new List<Ride>();
+            using (carpoolingContext con = new carpoolingContext())
+            {
+                try
+                {
+                    ride = con.Rides.Include(r => r.DestinationCityNavigation).Include(r => r.SourceCityNavigation).Include(e => e.Driver.UidNavigation).Where(r => r.SourceCity == source && r.DestinationCity == desti && r.Status == "a" && r.Ridedate >= date).ToList();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                }
+            }
+            return ride;
+        }
 
         [HttpPost]
         public Driver RegDriver(Driver driver)
@@ -101,6 +121,9 @@ namespace Carpooling.Controllers
             }
             return ride;
         }
+
+        //[HttpPost]
+        //public 
 
     }
 }

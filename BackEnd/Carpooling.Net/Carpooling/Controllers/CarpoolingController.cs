@@ -42,7 +42,7 @@ namespace Carpooling.Controllers
             {
                 try
                 {
-                    drivers = con.Drivers.Where(d => d.Status == "n").ToList();
+                    drivers = con.Drivers.Where(d => d.Status == "n").Include(d=>d.UidNavigation).ToList();
                 }
                 catch (Exception ex)
                 {
@@ -78,6 +78,29 @@ namespace Carpooling.Controllers
             }
             return StatusCode(200);
         }
+
+
+        [HttpPut("{driverId}")]
+        public StatusCodeResult RejectDriver(int driverId)
+        {
+            using (carpoolingContext con = new carpoolingContext())
+            {
+                try
+                {
+                    Driver d = con.Drivers.Find(driverId);
+                    d.Status = "r";
+                    con.SaveChanges();
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                    return StatusCode(500);
+                }
+            }
+            return StatusCode(200);
+        }
+
 
 
         [HttpGet]
@@ -128,7 +151,22 @@ namespace Carpooling.Controllers
             return bookings;
         }
 
-
+        [HttpGet]
+        public List<City> GetCities() { 
+            List<City> cities = new List<City>();
+            using(carpoolingContext con = new carpoolingContext())
+            {
+                try
+                {
+                    cities = con.Cities.ToList();
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
+            }
+            return cities;
+        }
 
 
     }
