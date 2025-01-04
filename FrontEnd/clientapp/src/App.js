@@ -10,11 +10,12 @@ import VerifyDriver from './Components/AdminView/VerifyDriver';
 import PublishRide from './Components/DriverView/PublishRide';
 import AddDriver from './Components/DriverView/AddDriver';
 import Footer from './Components/Layout/Footer';
+import RegistrationNew from './Components/Signin-Signup/RegistrationNew';
 
 
 
 function App() {
-  return (<div className="App" style={{ background: "linear-gradient(135deg,rgb(122, 255, 122),rgb(137, 121, 255))", }}>
+  return (<div className="App" style={{ background: 'rgb(238, 229, 229)' }}>
 
     {/* <div className="App">
       <header className="App-header">
@@ -36,7 +37,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<RegistrationForm />} />
+      <Route path="/register" element={<RegistrationNew />} />
       <Route path="/publishRide" element={<PublishRide />} />
       <Route path='/regDriver' element={<AddDriver />} />
       <Route path="/findRide" element={<FindRide />} />

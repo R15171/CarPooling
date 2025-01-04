@@ -93,7 +93,7 @@ const Login = () => {
               className="form-control"
               name="password"
               id='password'
-              placeholder="Set Password"
+              placeholder="Password"
               value={loginData.password}
               onChange={handleChange}
               required

@@ -22,7 +22,10 @@ const Navbar = () => {
 
 
   return (<>
-    <nav className="navbar bg-body-tertiary d-flex align-items-center justify-content-between px-3" style={{background: "linear-gradient(90deg,rgb(255, 205, 96),rgb(0, 156, 60))",}}>
+    <nav className="navbar  d-flex align-items-center justify-content-between px-3"
+
+      style={{ background: 'slateblue' }}
+    >
       {/* Logo and Title */}
       <div className="d-flex align-items-center" >
         <img
@@ -32,7 +35,7 @@ const Navbar = () => {
           width="70"
           height="70"
         />
-        <h1 className="text-primary mx-3">Carpooling</h1>
+        <h1 className="text-primary mx-3"><span style={{ color: 'white' }}>Carpooling</span></h1>
       </div>
 
       {/* Login/Register and Profile Section */}
@@ -42,17 +45,17 @@ const Navbar = () => {
         <div>
           {logged.login ?
             (
-              <div className="me-3" style={{ color: 'black', fontSize: '30px' }}>
+              <div className="me-3" style={{ color: 'white', fontSize: '30px' }}>
                 {userInfo.name}
               </div>
             )
             :
             (
               <div className="me-3">
-                <Link to="/login" className="text-decoration-none mx-1 btnlink">
+                <Link to="/login" className="btn text-light mx-1 btnlink">
                   Login
                 </Link>
-                <Link to="/register" className="text-decoration-none mx-2 btnlink">
+                <Link to="/register" className="btn text-light mx-2 btnlink">
                   Register
                 </Link>
               </div>
@@ -86,41 +89,43 @@ const Navbar = () => {
         <nav className="d-flex justify-content-center">
           <Link
             to="/"
-            className="btn text-decoration-none mx-1 text-dark link-hover btnlink"
+            className="btn mx-1 btnlink"
           >
             Home
           </Link>
           <Link
             to="/profile"
-            className="btn text-decoration-none mx-1 text-dark link-hover btnlink"
+            className="btn mx-1 text-dark link-hover btnlink"
           >
             Profile
           </Link>
           <Link
             to="/history"
-            className="btn text-decoration-none mx-1 text-dark link-hover btnlink"
+            className="btn mx-1 text-dark link-hover btnlink"
           >
             Trip Histroy
           </Link>
+
           <Link
-            href="/Noti"
-            className="btn text-decoration-none mx-1 text-dark link-hover btnlink"
+            to="/Noti"
+            className="btn mx-1 text-dark link-hover btnlink"
           >
             Notification
           </Link>
+          {role == '1' && (
+            <Link to="/admin" className="btn mx-1 text-dark link-hover btnlink">
+              Admin
+            </Link>
+          )}
+
           <div
-            className="btn text-decoration-none mx-1 text-dark link-hover btnlink"
+            className="btn mx-1 text-dark link-hover btnlink"
             onClick={() => { dispatch(logout()); nav('/') }}
           >
             Logout
           </div>
 
-          {role == '1' && (
-            <Link to="/admin" className="btn text-decoration-none mx-1 text-dark link-hover btnlink">
-              Admin
-            </Link>
-          )}
-
+          
         </nav>
       )}
     </div>

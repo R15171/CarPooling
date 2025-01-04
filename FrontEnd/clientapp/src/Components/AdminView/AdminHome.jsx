@@ -1,51 +1,65 @@
 import { Link, Route, Routes } from "react-router-dom";
-import Navbar from "../Layout/Navbar"
+import Navbar from "../Layout/Navbar";
 import VerifyDriver from "./VerifyDriver";
-import GetDriver from "./GetDriver"; 
+import GetDriver from "./GetDriver";
+import '../Css/AdminHome.css'
 
 const AdminHome = () => {
+    return (
+        <div
+            style={{
+                background: 'rgb(238, 229, 229)', // Set background color for the entire page
+                minHeight: "100vh", // Ensure it covers the full viewport height
+                padding: "20px", // Optional: Add padding for spacing
+            }}
+        >
+            <Navbar />
+            <div className="d-flex justify-content-center mt-3">
+                <div
+                    className="container border rounded p-4 shadow"
+                    style={{
+                        width: "18%", 
+                    }}
+                >
+                    <table   >
+                        <tbody style={{backgroundColor:'rgb(238, 229, 229)'}}>
+                            <tr    className="  ">
+                                <td class ="">
+                                    <Link to="/admin/verify">Verify Requests</Link>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style={{backgroundColor:'rgb(238, 229, 229)'}}>
+                                    <Link to="/admin/drivers" >Get Total Drivers</Link>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td  > 
+                                    <Link to="/admin/Users">Get Users</Link>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style={{backgroundColor:'rgb(238, 229, 229)'}}>
+                                    <Link to="/admin/verify">Rides</Link>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-
-    return (<>
-        <Navbar />
-        <div className="d-flex justify-content-center mt-3">
-
-            <div className="container border rounded p-4 shadow" style={{
-                width: "18%", //height: "80vh"
-            }}>
-                <table className="table btn">
-                    <tr className="table-row hover">
-                        <td><Link to='/admin/verify'>Verify requestes</Link></td>
-                    </tr>
-                    <tr>
-                        <td><Link to='/admin/drivers'>Get Total Drivers</Link></td>
-                    </tr>
-                    <tr>
-                        <td><Link to='/admin/Users'>Get Users</Link></td>
-                    </tr>
-                    <tr>
-                        <td><Link to='/admin/verify'>Rides</Link></td>
-                    </tr>
-                    
-                </table>
+                <div
+                    className="container border rounded p-4 shadow"
+                    style={{ width: "100%", margin: "30px" }}
+                >
+                    <h1 className="text-center mb-4">Admin Home</h1>
+                    <Routes>
+                        <Route path="/verify" element={<VerifyDriver />} />
+                        <Route path="/drivers" element={<GetDriver />} />
+                    </Routes>
+                </div>
             </div>
-
-            <div
-                className="container border rounded p-4 shadow"
-                style={{ width: "100%",margin:"30px" }}
-            >
-                <h1 className="text-center mb-4">Admin Home</h1>
-                <Routes>
-                    <Route  path="/verify" element={<VerifyDriver/>} />
-                    <Route path="/drivers" element={<GetDriver/>}/>
-                </Routes>
-            </div>
-
-
-
-
         </div>
-    </>)
-}
+    );
+};
 
 export default AdminHome;

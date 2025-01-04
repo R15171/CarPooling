@@ -7,12 +7,12 @@ const Home = () => {
     <Navbar/>
     <div className="d-flex justify-content-center align-items-center mt-3" style={{paddingTop:'100px'}}>
 
-      <div className="card mx-5">
+      <div className="row card mx-5">
         ***************
       </div>
 
       <div
-  className="container border rounded p-4 shadow"
+  className="row container border rounded p-4 shadow"
   style={{ maxWidth: "800px", width: "100%" }}
 >
   <div className="row">
@@ -71,7 +71,7 @@ const Home = () => {
 </style>
 
 
-      <div className="card mx-5">
+      <div className="row card mx-5">
         <div>
           ***********
         </div>

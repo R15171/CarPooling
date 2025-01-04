@@ -189,6 +189,10 @@ const FindRide = () => {
                         <td>Age : {r.driver.age }</td>
                       </tr>
                       <tr>
+                        <td colSpan={2}>Fare : {r.fare}</td>
+                        
+                      </tr>
+                      <tr>
                         <td colSpan={2}><button className='btn btn-primary' onClick={()=>{handleRide(r)}}>Book Ride</button></td>
                       </tr>
                     </table>

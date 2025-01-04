@@ -12,6 +12,7 @@ const RegistrationNew = () => {
   } = useForm();
 
   const onSubmit = (data) => {
+    console.log(data);
     const reqInf = {
       method: "POST",
       headers: {
@@ -20,7 +21,7 @@ const RegistrationNew = () => {
       body: JSON.stringify(data),
     };
 
-    fetch("https://localhost:7182/api/Carpooling/Register", reqInf)
+    fetch("https://localhost:7127/api/User/Register", reqInf)
       .then((response) => {
         if (!response.ok) {
           alert("Registration Failed");

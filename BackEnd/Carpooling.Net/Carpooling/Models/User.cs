@@ -21,7 +21,7 @@ namespace Carpooling.Models
         public string Address { get; set; } = null!;
         public int Rid { get; set; }
 
-        public virtual Role RidNavigation { get; set; } = null!;
+        public virtual Role? RidNavigation { get; set; } = null!;
         public virtual ICollection<Booking> Bookings { get; set; }
         public virtual ICollection<Driver> Drivers { get; set; }
     }
