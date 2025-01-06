@@ -3,7 +3,12 @@ import '../Css/GetUsers.css';
 
 const GetUser = () => {
   const [users, setUsers] = useState([]);
-
+ // Define the formatDate function
+ const formatDate = (date) => {
+  if (!date) return ''; // Handle null or undefined dates
+  const formattedDate = new Date(date).toLocaleDateString(); // Format the date
+  return formattedDate;
+};
 
   useEffect(() => {
     fetch(`https://localhost:7127/api/Carpooling/GetUsers`)
@@ -34,7 +39,7 @@ const GetUser = () => {
               <td>{user.name}</td>
               <td>{user.email}</td>
               <td>{user.contactno}</td>
-              <td>{user.dob}</td>
+              <td>{formatDate(user.dob)}</td>
               <td>{user.gender}</td>
               <td>{user.address}</td>
             </tr>

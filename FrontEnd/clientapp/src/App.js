@@ -15,7 +15,7 @@ import RegistrationNew from './Components/Signin-Signup/RegistrationNew';
 
 
 function App() {
-  return (<div className="App" style={{ background: 'rgb(238, 229, 229)' }}>
+  return (<div className="App" >
 
     {/* <div className="App">
       <header className="App-header">

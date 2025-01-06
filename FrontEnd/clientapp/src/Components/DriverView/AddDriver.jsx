@@ -6,33 +6,13 @@ import 'bootstrap/dist/css/bootstrap.min.css'; // Importing Bootstrap CSS
 
 const AddDriver = () => {
   const [driverData, setDriverData] = useState({
-    DrivingLicense: '',
-    VehicleInfo: ''
+    drivingLicence: '',
+    vehicleInfo: ''
   });
   const [isDriverRegistered, setIsDriverRegistered] = useState(false);
   const userInfo = useSelector((state) => state.user.userInfo);
   const logged = useSelector((state) => state.user.logstate);
   const nav = useNavigate();
-
-  // Check if the user is a registered driver
-  useEffect(() => {
-    if (logged.login && userInfo.uid) {
-      fetch(`https://localhost:7127/api/User/GetDriverInfo?uid=${userInfo.uid}`
-        )
-        .then((response) => response.json())
-        .then((data) => {
-          if (data) {
-            setIsDriverRegistered(true);  // Driver is already registered
-            nav('/publishRide');
-          } else {
-            setIsDriverRegistered(false);  // Driver is not registered
-          }
-        })
-        .catch((error) => console.error("Error fetching driver data:", error));
-    } else {
-      nav('/login');  // Redirect to login if user is not logged in
-    }
-  },[]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -44,9 +24,9 @@ const AddDriver = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { DrivingLicense, VehicleInfo } = driverData;
+    const { drivingLicence, vehicleInfo } = driverData;
 
-    if (DrivingLicense && VehicleInfo) {
+    if (drivingLicence && vehicleInfo) {
      
       fetch('https://localhost:7127/api/User/RegDriver', {
         method: 'POST',
@@ -55,14 +35,14 @@ const AddDriver = () => {
         },
         body: JSON.stringify({
           uid: userInfo.uid,
-          DrivingLicense,
-          VehicleInfo,
+          drivingLicence,
+          vehicleInfo,
         }),
       })
         .then((response) => response.json())
         .then(() => {
           alert('Driver registration successful!');
-          nav('/');  // Redirect to Home page after successful registration
+          nav('/publishRide');  // Redirect to Home page after successful registration
         })
         .catch((error) => {
           console.error("Error registering driver:", error);

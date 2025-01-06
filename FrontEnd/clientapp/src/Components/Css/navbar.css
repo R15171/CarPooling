@@ -1,16 +1,139 @@
-.btnlink {
+/* Navbar Container */
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, #ff7e5f, #feb47b); /* Vibrant gradient */
+  padding: 10px 20px;
   color: white;
-  padding: 5px;
-  border-radius: 4px; 
-  border: 2px solid white;
-  margin-top: 5px; /* Ensures proper spacing */
-  text-decoration: none;
- 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: fixed; /* Fix navbar at the top */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Ensure navbar is above all other content */
 }
-  .btnlink:hover {
-    background-color: white; /* Optional: Add a hover effect */
-    color: black; /* Optional: Change text color on hover */
-    transition: all 0.3s ease; /* Smooth transition */
-    text-decoration: underline; /* Ensures underline is applied */
-  }
-  
+
+/* Body Padding to Avoid Overlap */
+body {
+  padding-top: 150px; /* Matches the height of the navbar */
+}
+
+/* Logo and Title */
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar-logo:hover {
+  transform: scale(1.1); /* Slightly enlarge on hover */
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4); /* Enhance shadow on hover */
+}
+
+.navbar-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-left: 15px;
+  color: white;
+}
+
+/* User Actions */
+.navbar-actions {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-username {
+  margin-right: 15px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* Profile Image Button */
+.navbar-profile-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.navbar-profile-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar-profile-img:hover {
+  transform: scale(1.1); /* Slightly enlarge on hover */
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4); /* Enhance shadow on hover */
+}
+
+/* Auth Buttons */
+.navbar-auth .navbar-btn {
+  background-color: white;
+  color: #ff7e5f; /* Complementary color from the gradient */
+  border: 1px solid white;
+  border-radius: 20px;
+  padding: 5px 15px;
+  margin-left: 10px;
+  transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar-auth .navbar-btn:hover {
+  background-color: #feb47b; /* Second color from the gradient */
+  color: white;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Dropdown Menu */
+.navbar-dropdown {
+  background-color: #fff;
+  color: #ff7e5f; /* Complementary color */
+  position: absolute;
+  top: 100%; /* Aligns dropdown below navbar */
+  left: 0;
+  width: 100%; /* Full width of the navbar */
+  display: flex;
+  justify-content: center;
+  gap: 15px; /* Adds spacing between dropdown items */
+  padding: 10px 0;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 999; /* Below navbar */
+}
+
+.dropdown-link {
+  padding: 10px 20px;
+  color: #ff7e5f; /* Complementary color */
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: background 0.3s ease, color 0.3s ease;
+  text-align: center;
+}
+
+.dropdown-link:hover {
+  background-color: #ff7e5f;
+  color: white;
+}
+
+.logout-btn {
+  background: none;
+  border: none;
+  color: #ff7e5f;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.logout-btn:hover {
+  color: red;
+}

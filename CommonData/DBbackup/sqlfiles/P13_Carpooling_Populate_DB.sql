@@ -1,4 +1,4 @@
-use P13_Carpooling_create_Schema;
+use P13_Carpooling;
 
 INSERT INTO `user` (`Name`, `Contactno`, `Email`, `gender`, `dob`, `Password`, `Address`) 
 VALUES 

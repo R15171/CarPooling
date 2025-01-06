@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../../ReduxStore/UserSlice';
+import Navbar from '../Layout/Navbar';
 
 
 const Login = () => {
@@ -36,7 +37,7 @@ const Login = () => {
     //fetch("http://localhost:8080/login", reqInf)
     fetch("https://localhost:7127/api/User/Login", reqInf)
       .then((response) => {
-        console.log(response);
+        console.log("Response Login"+response);
         if (!response.ok) {
 
           console.error("Error: Network response was not ok", response.status);
@@ -48,7 +49,7 @@ const Login = () => {
         if (data === null) {
           setMsg("Invalid contact number or password");
         } else {
-          console.log(data);
+          console.log("success "+data);
           dispatch(login(data));
           nav("/");
         }
@@ -62,6 +63,7 @@ const Login = () => {
 
 
   return (<>
+  
     <div className="d-flex justify-content-center align-items-center mt-5">
 
       <div className="container border rounded p-4 shadow"

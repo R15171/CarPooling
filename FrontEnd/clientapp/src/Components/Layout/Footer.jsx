@@ -1,119 +1,160 @@
 import { Link } from "react-router-dom";
+import '../Css/Footer.css';
 
 const Footer=()=>{
-    return(  <div>
-            <footer style={{ backgroundColor: 'slateblue', color: "#fff", padding: "2rem", marginTop: '300px' }}>
-        Admin Info
+    return(
+      <div>
+      <footer
+        style={{
+          background: "linear-gradient(to right, #ff7e5f, #feb47b)",
+          color: "#fff",
+          padding: "3rem",
+          marginTop: "50px",
+        }}
+      >
         <div className="container">
-          <div className="row">
+          <div className="row text-center text-md-start">
             {/* Left Section */}
-            <div className="col-md-4">
+            <div className="col-md-4 mb-4">
               <h4>RUSHIKESH PATIL</h4>
               <div className="mt-3">
                 <h5>SURAT</h5>
-                <p>Email: <a href="rishispatil2002@gmail.com" className="text-white">rishispatil2002@gmail.com</a></p>
+                <p>
+                  Email:{" "}
+                  <a href="mailto:rishispatil2002@gmail.com" className="text-light">
+                    rishispatil2002@gmail.com
+                  </a>
+                </p>
                 <p>Phone: +91 9313350998</p>
               </div>
               <div className="social-links">
-                  <a href="#" className="text-white me-3">LinkedIn</a>
-                  <a href="#" className="text-white me-3">FaceBook</a>
-                  <a href="#" className="text-white me-3">Instagram</a>
-                </div>
+                <a href="#" className="text-light me-3 hover-link">
+                  LinkedIn
+                </a>
+                <a href="#" className="text-light me-3 hover-link">
+                  Facebook
+                </a>
+                <a href="#" className="text-light hover-link">
+                  Instagram
+                </a>
+              </div>
             </div>
-
+    
             {/* Middle Section */}
-
-            <div className="col-md-4">
-              <div>
-                <h5>Wants to find travel buddy?</h5>
-                <p>then you are at Right Place</p>
-                <p><Link to='/AddDriver' className="text-warning">Click here to Publish Ride →</Link></p>
-              </div>
-              <p style={{fontStyle:'italic'}}>
-              "Publish a ride and connect with passengers for a seamless traveling experience!"
+            <div className="col-md-4 mb-4">
+              <h5>Wants to find a travel buddy?</h5>
+              <p>You are at the right place!</p>
+              <p>
+                <Link to="/AddDriver" className="text-warning">
+                  Click here to Publish Ride →
+                </Link>
               </p>
-              <div>
-                
-              </div>
+              <p style={{ fontStyle: "italic" }}>
+                "Publish a ride and connect with passengers for a seamless traveling
+                experience!"
+              </p>
             </div>
-
+    
             {/* Right Section */}
-            
-
-            <div className="col-md-4">
+            <div className="col-md-4 mb-4">
               <h4>OMKAR PATIL</h4>
               <div className="mt-3">
                 <h5>PUNE</h5>
-                <p>Email: <a href="rishispatil2002@gmail.com" className="text-white">rishispatil2002@gmail.com</a></p>
+                <p>
+                  Email:{" "}
+                  <a href="mailto:rishispatil2002@gmail.com" className="text-light">
+                    rishispatil2002@gmail.com
+                  </a>
+                </p>
                 <p>Phone: +91 9313350998</p>
               </div>
               <div className="social-links">
-                  <a href="#" className="text-white me-3">LinkedIn</a>
-                  <a href="#" className="text-white me-3">FaceBook</a>
-                  <a href="#" className="text-white me-3">Instagram</a>
-                </div>
+                <a href="#" className="text-light me-3 hover-link">
+                  LinkedIn
+                </a>
+                <a href="#" className="text-light me-3 hover-link">
+                  Facebook
+                </a>
+                <a href="#" className="text-light hover-link">
+                  Instagram
+                </a>
+              </div>
             </div>
-
           </div>
-        </div>
-<br/>
-
-
-        <div className="container">
-          <div className="row">
+    
+          <hr style={{ borderColor: "#fff", opacity: 0.7 }} />
+    
+          <div className="row text-center text-md-start">
             {/* Left Section */}
-            <div className="col-md-4">
+            <div className="col-md-4 mb-4">
               <h4>RINKESH MAILAPUR</h4>
               <div className="mt-3">
                 <h5>PUNE</h5>
-                <p>Email: <a href="rishispatil2002@gmail.com" className="text-white">rishispatil2002@gmail.com</a></p>
+                <p>
+                  Email:{" "}
+                  <a href="mailto:rishispatil2002@gmail.com" className="text-light">
+                    rishispatil2002@gmail.com
+                  </a>
+                </p>
                 <p>Phone: +91 9313350998</p>
               </div>
               <div className="social-links">
-                  <a href="#" className="text-white me-3">LinkedIn</a>
-                  <a href="#" className="text-white me-3">FaceBook</a>
-                  <a href="#" className="text-white me-3">Instagram</a>
-                </div>
+                <a href="#" className="text-light me-3 hover-link">
+                  LinkedIn
+                </a>
+                <a href="#" className="text-light me-3 hover-link">
+                  Facebook
+                </a>
+                <a href="#" className="text-light hover-link">
+                  Instagram
+                </a>
+              </div>
             </div>
-
+    
             {/* Middle Section */}
-
-            <div className="col-md-4">
-              <div>
-                <h5>Find your perfect Ride here</h5>
-                <p><a href="/findRide" className="text-warning">Click to Get a Ride →</a></p>
-              </div>
-              <div>
-                <p style={{fontStyle:'italic'}}>"Just enter source and destination and we will find the best ride for you"</p>
-              </div>
+            <div className="col-md-4 mb-4">
+              <h5>Find your perfect ride here</h5>
+              <p>
+                <a href="/findRide" className="text-warning">
+                  Click to Get a Ride →
+                </a>
+              </p>
+              <p style={{ fontStyle: "italic" }}>
+                "Just enter the source and destination, and we’ll find the best ride
+                for you."
+              </p>
             </div>
-
+    
             {/* Right Section */}
-            
-
-            <div className="col-md-4">
+            <div className="col-md-4 mb-4">
               <h4>SIDDHARTH PATIL</h4>
               <div className="mt-3">
-                <h5>Dhule</h5>
-                <p>Email: <a href="sidpatil851@gmail.com" className="text-white">sidpatil851@gmail.com</a></p>
+                <h5>DHULE</h5>
+                <p>
+                  Email:{" "}
+                  <a href="mailto:sidpatil851@gmail.com" className="text-light">
+                    sidpatil851@gmail.com
+                  </a>
+                </p>
                 <p>Phone: +91 8830150091</p>
               </div>
               <div className="social-links">
-                  <a href="#" className="text-white me-3">LinkedIn</a>
-                  <a href="#" className="text-white me-3">FaceBook</a>
-                  <a href="#" className="text-white me-3">Instagram</a>
-                </div>
+                <a href="#" className="text-light me-3 hover-link">
+                  LinkedIn
+                </a>
+                <a href="#" className="text-light me-3 hover-link">
+                  Facebook
+                </a>
+                <a href="#" className="text-light hover-link">
+                  Instagram
+                </a>
+              </div>
             </div>
-
           </div>
         </div>
-
-
-
       </footer>
     </div>
-
-
+    
 )
 }
 

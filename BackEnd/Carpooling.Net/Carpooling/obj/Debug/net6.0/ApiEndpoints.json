@@ -169,6 +169,22 @@
   },
   {
     "ContainingType": "Carpooling.Controllers.UserController",
+    "Method": "GetDriverInfo",
+    "RelativePath": "api/User/GetDriverInfo",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "uid",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Carpooling.Controllers.UserController",
     "Method": "GetRides",
     "RelativePath": "api/User/GetRides",
     "HttpMethod": "GET",

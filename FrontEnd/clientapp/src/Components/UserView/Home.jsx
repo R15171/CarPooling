@@ -1,86 +1,47 @@
 import React from 'react';
 import Navbar from '../Layout/Navbar';
 import { Link } from 'react-router-dom';
+import gif1 from '../Images/carpool.gif';
+import gif2 from '../Images/carpool2.gif';
+import '../Css/Home.css'; // Import the CSS file
 
 const Home = () => {
-  return (<>
-    <Navbar/>
-    <div className="d-flex justify-content-center align-items-center mt-3" style={{paddingTop:'100px'}}>
+  return (
+    <>
+      <Navbar />
+      <div className="home-container">
+        {/* Content Row */}
+        <div className="row content-row">
+          {/* Left Section with GIF */}
+          <div className="col-md-5 gif-section animate-slide-left">
+            <img src={gif1} alt="Carpool GIF" className="gif-image" />
+          </div>
 
-      <div className="row card mx-5">
-        ***************
-      </div>
+          {/* Center Section with Buttons */}
+          <div className="col-md-6 button-container animate-zoom-in">
+            <h2 className="title">Plan Your Ride</h2>
+            <div className="button-group">
+              <button className="custom-btn">
+                <Link to="/publishRide" className="custom-link">
+                  Publish Ride
+                </Link>
+              </button>
+              <button className="custom-btn">
+                <Link to="/findRide" className="custom-link">
+                  Find Ride
+                </Link>
+              </button>
+            </div>
+          </div>
 
-      <div
-  className="row container border rounded p-4 shadow"
-  style={{ maxWidth: "800px", width: "100%" }}
->
-  <div className="row">
-    {/* Left Button */}
-    <div className="col-md-6">
-      <button className="btn custom-btn" style={{ width: "100%" }}>
-        <Link to="/publishRide" className="custom-link">
-          Publish Ride
-        </Link>
-      </button>
-    </div>
-
-    {/* Right Button */}
-    <div className="col-md-6">
-      <button className="btn custom-btn" style={{ width: "100%" }}>
-        <Link to="/findRide" className="custom-link">
-          Find Ride
-        </Link>
-      </button>
-    </div>
-  </div>
-</div>
-
-<style>
-  {`
-    /* Button Container */
-    .custom-btn {
-      background: linear-gradient(90deg, #ff7e5f, #feb47b); /* Gradient background */
-      border: none; /* Remove borders */
-      padding: 10px 20px; /* Button size */
-      border-radius: 30px; /* Fully rounded corners */
-      color: white;
-      font-size: 1.2rem; /* Larger text size */
-      font-weight: bold; /* Bold text */
-      transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth animation */
-      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Shadow for depth */
-    }
-
-    /* Hover Effect */
-    .custom-btn:hover {
-      transform: scale(1.05); /* Slightly enlarge on hover */
-      box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3); /* Enhance shadow on hover */
-    }
-
-    /* Link Styling */
-    .custom-link {
-      color: white; /* White text */
-      text-decoration: none; /* Remove underline */
-    }
-
-    /* Link Hover Effect */
-    .custom-link:hover {
-      text-decoration: underline; /* Add underline on hover */
-    }
-  `}
-</style>
-
-
-      <div className="row card mx-5">
-        <div>
-          ***********
+          {/* Right Section with GIF */}
+          {/* <div className="col-md-5 gif-section animate-slide-right">
+            <img src={gif2} alt="Carpool GIF" className="gif-image" />
+          </div> */}
         </div>
       </div>
-    </div>
-
-  </>
+    </>
   );
 };
-
 
 export default Home;

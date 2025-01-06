@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Carpooling")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f70846d0971b49825ff38e92478f5df5b7b04ac2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7507b1db9d23717e197bf56581b79b18d3c54c68")]
 [assembly: System.Reflection.AssemblyProductAttribute("Carpooling")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Carpooling")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

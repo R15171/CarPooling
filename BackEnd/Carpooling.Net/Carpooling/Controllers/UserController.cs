@@ -90,7 +90,7 @@ namespace Carpooling.Controllers
             {
                 try
                 {
-                    con.Add(driver);
+                    con.Drivers.Add(driver);
                     con.SaveChanges();
                 }
                 catch (Exception ex)
@@ -110,7 +110,7 @@ namespace Carpooling.Controllers
             {
                 try
                 {
-                    con.Add(ride);
+                    con.Rides.Add(ride);
                     con.SaveChanges();
                 }
                 catch (Exception ex)
@@ -135,12 +135,39 @@ namespace Carpooling.Controllers
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.ToString());
-                    throw;
                     return StatusCode(500);
                 }
             }
             return StatusCode(200);
         }
+        [HttpGet]
+        public IActionResult GetDriverInfo(int uid)
+        {
+            using (carpoolingContext con = new carpoolingContext())
+            {
+                try
+                {
+                    var driver = con.Drivers.FirstOrDefault(x => x.Uid == uid);
+                    if (driver != null)
+                    {
+                     
+                        return Ok(new { Message = "Driver found", Driver = driver });
+                    }
+                    else
+                    {
+                       
+                        return NotFound(new { Message = "Driver not found" });
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                    return StatusCode(500, new { Message = "Internal server error", Error = ex.Message });
+                }
+            }
+        }
+
+
 
     }
 }

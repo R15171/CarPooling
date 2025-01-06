@@ -1,4 +1,4 @@
-use P13_Carpooling_Create_Schema;
+use P13_Carpooling;
 
 SET SQL_SAFE_UPDATES = 0;
 delete from payment  WHERE 1=1;

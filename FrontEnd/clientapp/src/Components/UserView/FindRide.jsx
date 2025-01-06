@@ -18,9 +18,9 @@ const FindRide = () => {
 
   const formatDate = (date) => {
     if (!date) return ''; // Handle null or undefined dates
-    const formattedDate = new Date(date).toLocaleDateString() +" "+new Date(date).toLocaleTimeString(); // Format the date
+    const formattedDate = new Date(date).toLocaleDateString() + " " + new Date(date).toLocaleTimeString(); // Format the date
     return formattedDate;
-};
+  };
 
   // Handle form input changes dynamically
   const handleChange = (e) => {
@@ -58,17 +58,17 @@ const FindRide = () => {
         })
       }
       console.log(reqInf.body)
-      fetch(`https://localhost:7127/api/User/BookRide`,reqInf)
-      .then(res=>{
-        if(!res.ok){
-          throw new Error(res.statusText);
-        }
-        return res;
-      })
-      .then(res=>{
-        alert("Ride Booking Successful")
-        nav('/')
-      })
+      fetch(`https://localhost:7127/api/User/BookRide`, reqInf)
+        .then(res => {
+          if (!res.ok) {
+            throw new Error(res.statusText);
+          }
+          return res;
+        })
+        .then(res => {
+          alert("Ride Booking Successful")
+          nav('/')
+        })
 
     }
   }
@@ -80,7 +80,7 @@ const FindRide = () => {
 
     console.log('Booking Ride:', find);
 
-    fetch(`https://localhost:7127/api/User/GetRides?source=${find.source}&desti=${find.destination}&date=${ find.rideDate}`)
+    fetch(`https://localhost:7127/api/User/GetRides?source=${find.source}&desti=${find.destination}&date=${find.rideDate}`)
       .then((response) => {
         console.log(response);
         if (!response.ok) {
@@ -108,6 +108,8 @@ const FindRide = () => {
   return (
     <>
       <Navbar />
+
+      {/* Book a Ride Section */}
       <div className="book-ride-container">
         <h2>Find a Ride</h2>
         <form onSubmit={handleSubmit} className="book-ride-form">
@@ -116,7 +118,7 @@ const FindRide = () => {
             <label htmlFor="source">Source</label>
             <select
               id="source"
-              name="source"  // Use the name attribute for dynamic handling
+              name="source"
               value={find.source}
               onChange={handleChange}
               required
@@ -135,7 +137,7 @@ const FindRide = () => {
             <label htmlFor="destination">Destination</label>
             <select
               id="destination"
-              name="destination"  // Use the name attribute for dynamic handling
+              name="destination"
               value={find.destination}
               onChange={handleChange}
               required
@@ -155,7 +157,7 @@ const FindRide = () => {
             <input
               type="date"
               id="rideDate"
-              name="rideDate"  // Use the name attribute for dynamic handling
+              name="rideDate"
               value={find.rideDate}
               onChange={handleChange}
               required
@@ -165,43 +167,52 @@ const FindRide = () => {
           {/* Submit Button */}
           <button type="submit" className="submit-btn">Find Ride</button>
         </form>
+
+        {/* Display the current form values (for debugging purposes) */}
+        <h1>{JSON.stringify(find)}</h1>
       </div>
-      {/* Display the current form values (for debugging purposes) */}
-      <h1>{JSON.stringify(find)}</h1>
 
-
-      <div className="d-flex justify-content-center mt-5">  
-              {rides.map(r=>{
-                return (<div className='col'>
-                  <div className=" card">
-                    <h2 style={{textAlign:'left'}}>{r.driver.uidNavigation.name}</h2>
-                    <table className="table table-striped">
-                      <tr >
-                        <td>From : {r.sourceCityNavigation.cityname}</td>
-                        <td>To : {r.destinationCityNavigation.cityname}</td>
-                      </tr>
-                      <tr >
-                        <td>Ride start : {formatDate(r.ridedate)}</td>
-                        <td>Expected Complition : {formatDate(r.rideComplete)}</td>
+      {/* Available Rides Section */}
+      <div className="available-rides container mt-5">
+        <h2>Available Rides</h2>
+        <div className="row justify-content-center">
+          {rides.map(r => (
+            <div className="col-md-6 mb-4" key={r.id}> {/* Use col-md-6 for two boxes per row */}
+              <div className="card custom-card">
+                <div className="card-body">
+                  <h4>{r.driver.uidNavigation.name}</h4>
+                  <table className="table table-borderless">
+                    <tbody>
+                      <tr>
+                        <td><strong>From:</strong> {r.sourceCityNavigation.cityname}</td>
+                        <td><strong>To:</strong> {r.destinationCityNavigation.cityname}</td>
                       </tr>
                       <tr>
-                        <td>Gender : {r.driver.uidNavigation.gender}</td>
-                        <td>Age : {r.driver.age }</td>
+                        <td><strong>Ride Start:</strong> {formatDate(r.ridedate)}</td>
+                        <td><strong>Expected Completion:</strong> {formatDate(r.rideComplete)}</td>
                       </tr>
                       <tr>
-                        <td colSpan={2}>Fare : {r.fare}</td>
-                        
+                        <td><strong>Gender:</strong> {r.driver.uidNavigation.gender}</td>
+                        <td><strong>Age:</strong> {r.driver.age}</td>
                       </tr>
                       <tr>
-                        <td colSpan={2}><button className='btn btn-primary' onClick={()=>{handleRide(r)}}>Book Ride</button></td>
+                        <td colSpan={2}><strong>Fare:</strong> {r.fare}</td>
                       </tr>
-                    </table>
-                  </div>
-                  </div>
-                )
-              })}
+                      <tr>
+                        <td colSpan={2}>
+                          <button className="btn btn-primary" onClick={() => handleRide(r)}>Book Ride</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </>
+
   );
 };
 

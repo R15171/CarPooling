@@ -1,136 +1,90 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import logo from '../Images/Logo2.jpg';
-import register from '../Images/Register.jpg'
+import register from '../Images/Register.jpg';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../ReduxStore/UserSlice';
 import '../Css/navbar.css';
 
-
 const Navbar = () => {
-  const [showComponent, setShowComponent] = useState(true);
+  const [showDropdown, setShowDropdown] = useState(true);
   const dispatch = useDispatch();
-  const nav = useNavigate();
+  const navigate = useNavigate();
 
   const userInfo = useSelector((state) => state.user.userInfo);
   const logged = useSelector((state) => state.user.logstate);
-  const role = userInfo.rid;
+  const role = userInfo?.rid;
 
-  console.log(userInfo.name);
-  console.log("Is loged : " + logged.login);
-  console.log(role);
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate('/');
+  };
 
-
-  return (<>
-    <nav className="navbar  d-flex align-items-center justify-content-between px-3"
-
-      style={{ background: 'slateblue' }}
-    >
-      {/* Logo and Title */}
-      <div className="d-flex align-items-center" >
-        <img
-          src={logo}
-          alt="Carpooling Logo"
-          className="d-inline-block align-text-top rounded-circle"
-          width="70"
-          height="70"
-        />
-        <h1 className="text-primary mx-3"><span style={{ color: 'white' }}>Carpooling</span></h1>
-      </div>
-
-      {/* Login/Register and Profile Section */}
-      <div className="d-flex align-items-center">
-        {/* Login and Register Links */}
-
-        <div>
-          {logged.login ?
-            (
-              <div className="me-3" style={{ color: 'white', fontSize: '30px' }}>
-                {userInfo.name}
-              </div>
-            )
-            :
-            (
-              <div className="me-3">
-                <Link to="/login" className="btn text-light mx-1 btnlink">
-                  Login
-                </Link>
-                <Link to="/register" className="btn text-light mx-2 btnlink">
-                  Register
-                </Link>
-              </div>
-            )
-          }
+  return (
+    <>
+      <nav className="navbar-container">
+        {/* Logo and Title */}
+        <div className="navbar-brand">
+          <img src={logo} alt="Carpooling Logo" className="navbar-logo" />
+          <h1 className="navbar-title">Carpooling</h1>
         </div>
 
+        {/* User Actions */}
+        <div className="navbar-actions">
+          {logged.login ? (
+            <>
+              <span className="navbar-username">{userInfo.name}</span>
+              <button
+                className="navbar-profile-btn"
+                onClick={() => setShowDropdown(!showDropdown)}
+              >
+                <img
+                  src={register}
+                  alt="Profile"
+                  className="navbar-profile-img"
+                />
+              </button>
+            </>
+          ) : (
+            <div className="navbar-auth">
+              <Link to="/login" className="btn navbar-btn">
+                Login
+              </Link>
+              <Link to="/register" className="btn navbar-btn">
+                Register
+              </Link>
+            </div>
+          )}
+        </div>
+      
 
-        {/* Profile Image */}
-        <button
-          className="btn btn-light p-1"
-          onClick={(e) => {
-            e.preventDefault(); // Prevent default anchor behavior
-            setShowComponent(!showComponent);
-          }}
-        >
-          <img
-            src={register}
-            alt="Profile"
-            className="d-inline-block align-text-top rounded-circle"
-            width="50"
-            height="50"
-          />
-        </button>
-      </div>
-    </nav>
-
-    {/* Dropdown Navigation */}
-    <div>
-      {showComponent && logged && (
-        <nav className="d-flex justify-content-center">
-          <Link
-            to="/"
-            className="btn mx-1 btnlink"
-          >
+      {/* Dropdown Menu */}
+      {showDropdown && (
+        <div className="navbar-dropdown">
+          <Link to="/" className="dropdown-link">
             Home
           </Link>
-          <Link
-            to="/profile"
-            className="btn mx-1 text-dark link-hover btnlink"
-          >
+          <Link to="/profile" className="dropdown-link">
             Profile
           </Link>
-          <Link
-            to="/history"
-            className="btn mx-1 text-dark link-hover btnlink"
-          >
-            Trip Histroy
+          <Link to="/history" className="dropdown-link">
+            Trip History
           </Link>
-
-          <Link
-            to="/Noti"
-            className="btn mx-1 text-dark link-hover btnlink"
-          >
+          <Link to="/Noti" className="dropdown-link">
             Notification
           </Link>
           {role == '1' && (
-            <Link to="/admin" className="btn mx-1 text-dark link-hover btnlink">
+            <Link to="/admin" className="dropdown-link">
               Admin
             </Link>
           )}
-
-          <div
-            className="btn mx-1 text-dark link-hover btnlink"
-            onClick={() => { dispatch(logout()); nav('/') }}
-          >
+          <button className="dropdown-link logout-btn" onClick={handleLogout}>
             Logout
-          </div>
-
-          
-        </nav>
+          </button>
+        </div>
       )}
-    </div>
-
-  </>
+      </nav>
+    </>
   );
 };
 

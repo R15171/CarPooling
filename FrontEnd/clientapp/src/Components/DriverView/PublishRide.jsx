@@ -1,8 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../Css/PublishRide.css'; // Assuming you will create a separate CSS file for styling
 import Navbar from '../Layout/Navbar';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
-const PublishRide = () => {
+const PublishRide = () => { 
+
+  const [isDriverRegistered, setIsDriverRegistered] = useState([]);
+  const nav = useNavigate();
+  const userInfo = useSelector((state) => state.user.userInfo);
+  const logged = useSelector((state) => state.user.logstate);
+
   const [source, setSource] = useState('');
   const [destination, setDestination] = useState('');
   const [rideDate, setRideDate] = useState('');
@@ -19,6 +27,39 @@ const PublishRide = () => {
       numberOfSeats,
     });
   };
+
+
+ // Check if the user is a registered driver
+ useEffect(() => {
+  if (logged.login && userInfo.uid) {
+    console.log("UID: " + userInfo.uid);
+    fetch(`https://localhost:7127/api/User/GetDriverInfo?uid=${userInfo.uid}`)
+      .then((response) => {
+        console.log("Response Status:", response.status);
+        if (response.status === 204) {
+          console.warn("No driver found (204 No Content)");
+          nav('/regDriver'); // Redirect to register driver
+          return null; // Stop further processing
+        }
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json(); // Parse JSON if the response is not empty
+      })
+      .then((data) => {
+        if (data) {
+          console.log("Driver Data:", data);
+          setIsDriverRegistered(data.Driver); // Set driver data if found
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching driver data:", error);
+      });
+  } else {
+    nav('/login'); // Redirect to login if user is not logged in
+  }
+}, []);
+
 
   const handleReset = () => {
     setSource('');
