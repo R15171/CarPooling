@@ -4,28 +4,19 @@ import '../Css/GetDrivers.css'; // Import the CSS file
 const GetDriver = () => {
   const [drivers, setDrivers] = useState([]);
 
-  useEffect(() => {
-    const generateRandomDrivers = () => {
-      const randomDrivers = [];
-      for (let i = 0; i < 10; i++) {
-        randomDrivers.push({
-          driverId: i + 1,
-          name: `Driver ${i + 1}`,
-          email: `driver${i + 1}@example.com`,
-          contact: `987-654-3${i + 1}`,
-          drivingLicense: `DL${i + 1}123456789`,
-          vehicleInfo: `Car - Model ${i + 1}`,
-          userId: `user${i + 1}`,
-          address: `Driver Address ${i + 1}`,
-          dob: `1985-05-${Math.floor(Math.random() * 28) + 1}`, 
-          gender: ['Male', 'Female'][Math.floor(Math.random() * 2)]
-        });
-      }
-      setDrivers(randomDrivers);
-    };
+  // Define the formatDate function
+  const formatDate = (date) => {
+    if (!date) return ''; // Handle null or undefined dates
+    const formattedDate = new Date(date).toLocaleDateString(); // Format the date
+    return formattedDate;
+  };
 
-    generateRandomDrivers();
-  }, []);
+  useEffect(() => {
+    fetch(`https://localhost:7127/api/Carpooling/GetAllDrivers`)
+      .then(response => response.json())
+      .then(data => setDrivers(data))
+      .catch(error => console.error("Error:", error));
+  }, [])
 
   return (
     <div className="container">
@@ -49,15 +40,15 @@ const GetDriver = () => {
           {drivers.map((driver) => (
             <tr key={driver.driverId}>
               <td>{driver.driverId}</td>
-              <td>{driver.name}</td>
-              <td>{driver.email}</td>
-              <td>{driver.contact}</td>
-              <td>{driver.drivingLicense}</td>
+              <td>{driver.uidNavigation.name}</td>
+              <td>{driver.uidNavigation.email}</td>
+              <td>{driver.uidNavigation.contactno}</td>
+              <td>{driver.drivingLicence}</td>
               <td>{driver.vehicleInfo}</td>
-              <td>{driver.userId}</td>
-              <td>{driver.address}</td>
-              <td>{driver.dob}</td>
-              <td>{driver.gender}</td>
+              <td>{driver.uid}</td>
+              <td>{driver.uidNavigation.address}</td>
+              <td>{formatDate(driver.uidNavigation.dob)}</td>
+              <td>{driver.uidNavigation.gender}</td>
             </tr>
           ))}
         </tbody>

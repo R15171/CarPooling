@@ -15,8 +15,8 @@ namespace Carpooling.Models
         public int RideId { get; set; }
         public int Uid { get; set; }
 
-        public virtual Ride Ride { get; set; } = null!;
-        public virtual User UidNavigation { get; set; } = null!;
+        public virtual Ride? Ride { get; set; } = null!;
+        public virtual User? UidNavigation { get; set; } = null!;
         public virtual ICollection<Payment> Payments { get; set; }
     }
 }

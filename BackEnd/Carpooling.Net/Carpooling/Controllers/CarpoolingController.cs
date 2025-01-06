@@ -58,6 +58,30 @@ namespace Carpooling.Controllers
         }
 
 
+        [HttpGet]
+        public List<Driver> GetAllDrivers()
+        {
+            List<Driver> drivers = new List<Driver>();
+            using (carpoolingContext con = new carpoolingContext())
+            {
+                try
+                {
+                    drivers = con.Drivers.Include(d => d.UidNavigation).ToList();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                    throw;
+                }
+                finally
+                {
+                    con.Dispose();
+                }
+            }
+            return drivers;
+        }
+
+
         [HttpPut("{driverId}")]
         public StatusCodeResult VerifyDriver(int driverId)
         {
@@ -112,7 +136,7 @@ namespace Carpooling.Controllers
 
                 try
                 {
-                    rides = con.Rides.ToList();
+                    rides = con.Rides.Include(d=>d.Driver.UidNavigation).Include(s=>s.SourceCityNavigation).Include(d=>d.DestinationCityNavigation).ToList();
                 }
                 catch (Exception ex)
                 {

@@ -67,7 +67,7 @@ const FindRide = () => {
       })
       .then(res=>{
         alert("Ride Booking Successful")
-        //nav('/')
+        nav('/')
       })
 
     }

@@ -3,6 +3,8 @@ import Navbar from "../Layout/Navbar";
 import VerifyDriver from "./VerifyDriver";
 import GetDriver from "./GetDriver";
 import '../Css/AdminHome.css'
+import GetUser from "./GetUser";
+import GetRides from "./GetRides";
 
 const AdminHome = () => {
     return (
@@ -40,7 +42,7 @@ const AdminHome = () => {
                             </tr>
                             <tr>
                                 <td style={{backgroundColor:'rgb(238, 229, 229)'}}>
-                                    <Link to="/admin/verify">Rides</Link>
+                                    <Link to="/admin/Rides">Rides</Link>
                                 </td>
                             </tr>
                         </tbody>
@@ -55,6 +57,8 @@ const AdminHome = () => {
                     <Routes>
                         <Route path="/verify" element={<VerifyDriver />} />
                         <Route path="/drivers" element={<GetDriver />} />
+                        <Route path="/Users" element={<GetUser />} />
+                        <Route path="/Rides" element={<GetRides />} />
                     </Routes>
                 </div>
             </div>

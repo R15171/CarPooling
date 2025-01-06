@@ -122,8 +122,25 @@ namespace Carpooling.Controllers
             return ride;
         }
 
-        //[HttpPost]
-        //public 
+        [HttpPost]
+        public StatusCodeResult BookRide(Booking book)
+        {
+            using (carpoolingContext con = new carpoolingContext())
+            {
+                try
+                {
+                    con.Bookings.Add(book);
+                    con.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                    throw;
+                    return StatusCode(500);
+                }
+            }
+            return StatusCode(200);
+        }
 
     }
 }

@@ -1,6 +1,26 @@
 [
   {
     "ContainingType": "Carpooling.Controllers.CarpoolingController",
+    "Method": "GetAllDrivers",
+    "RelativePath": "api/Carpooling/GetAllDrivers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[Carpooling.Models.Driver, Carpooling, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Carpooling.Controllers.CarpoolingController",
     "Method": "GetBooking",
     "RelativePath": "api/Carpooling/GetBooking",
     "HttpMethod": "GET",
@@ -126,6 +146,22 @@
       {
         "Name": "driverId",
         "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Carpooling.Controllers.UserController",
+    "Method": "BookRide",
+    "RelativePath": "api/User/BookRide",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "book",
+        "Type": "Carpooling.Models.Booking",
         "IsRequired": true
       }
     ],

@@ -17,7 +17,7 @@ const AddDriver = () => {
   // Check if the user is a registered driver
   useEffect(() => {
     if (logged.login && userInfo.uid) {
-      fetch(//`https://localhost:7127/api/User/GetDriverInfo?uid=${userInfo.uid}`
+      fetch(`https://localhost:7127/api/User/GetDriverInfo?uid=${userInfo.uid}`
         )
         .then((response) => response.json())
         .then((data) => {
@@ -32,7 +32,7 @@ const AddDriver = () => {
     } else {
       nav('/login');  // Redirect to login if user is not logged in
     }
-  }, [logged, userInfo.uid, nav]);
+  },[]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -76,7 +76,7 @@ const AddDriver = () => {
   return (
     <>
       <Navbar />
-      <div className="container mt-5">
+      <div className="container mt-5" style={{maxWidth:'500px', border:'2px dotted black'}}>
         <h2>Mandatory Details to Publish Ride</h2>
         {!isDriverRegistered ? (
           <form onSubmit={handleSubmit} className="mt-4">

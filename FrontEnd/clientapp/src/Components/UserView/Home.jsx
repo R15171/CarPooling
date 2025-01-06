@@ -19,7 +19,7 @@ const Home = () => {
     {/* Left Button */}
     <div className="col-md-6">
       <button className="btn custom-btn" style={{ width: "100%" }}>
-        <Link to="/regDriver" className="custom-link">
+        <Link to="/publishRide" className="custom-link">
           Publish Ride
         </Link>
       </button>
