@@ -31,11 +31,11 @@ const VerifyDriver = () => {
                     setdata(data);
                 }
             })
-    }, [])
+    }, data)
 
     const handleVerify = (driverId) => {
         fetch(`https://localhost:7127/api/Carpooling/VerifyDriver/${driverId}`, {
-            method: 'PUT', // Assuming a PUT request for updating
+            method: 'PUT', 
             headers: {
                 'Content-Type': 'application/json',
             },

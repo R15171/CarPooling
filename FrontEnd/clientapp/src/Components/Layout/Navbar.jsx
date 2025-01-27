@@ -78,9 +78,9 @@ const Navbar = () => {
               Admin
             </Link>
           )}
-          <button className="dropdown-link logout-btn" onClick={handleLogout}>
+          {logged.login && <button className="dropdown-link logout-btn" onClick={handleLogout}>
             Logout
-          </button>
+          </button>}
         </div>
       )}
       </nav>

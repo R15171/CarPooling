@@ -61,14 +61,21 @@ const FindRide = () => {
       fetch(`https://localhost:7127/api/User/BookRide`, reqInf)
         .then(res => {
           if (!res.ok) {
-            throw new Error(res.statusText);
+            res.json().then(r => {
+              console.log(r);
+              alert(`${res.status} : ${r.message}`)
+              nav('/')
+            })
           }
-          return res;
+          else {
+            alert("Ride Booking Successful");
+            nav('/');
+          }
         })
-        .then(res => {
-          alert("Ride Booking Successful")
+        .catch(error => {
+          console.log('Something went wrong with the connection')
           nav('/')
-        })
+        });
 
     }
   }
@@ -106,11 +113,11 @@ const FindRide = () => {
   };
 
   return (
-    <>
+    <div style={{ paddingTop: '150px' }}>
       <Navbar />
 
       {/* Book a Ride Section */}
-      <div className="book-ride-container">
+      <div className="book-ride-container" >
         <h2>Find a Ride</h2>
         <form onSubmit={handleSubmit} className="book-ride-form">
           {/* Pickup Location */}
@@ -211,7 +218,7 @@ const FindRide = () => {
           ))}
         </div>
       </div>
-    </>
+    </div>
 
   );
 };

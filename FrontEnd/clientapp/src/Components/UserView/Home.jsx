@@ -9,7 +9,7 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <div className="home-container">
+      <div className="home-container"  >
         {/* Content Row */}
         <div className="row content-row">
           {/* Left Section with GIF */}

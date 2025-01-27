@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../Css/PublishRide.css'; // Assuming you will create a separate CSS file for styling
 import Navbar from '../Layout/Navbar';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const PublishRide = () => { 
 
@@ -74,7 +74,7 @@ const PublishRide = () => {
     // Logic for navigation (if required) can be added here.
   };
 
-  return (<><Navbar/>
+  return (<div style={{paddingTop:'150px'}}><Navbar/>
     <div className="publish-ride-container" style={{marginTop:'20px'}}>
       
       <h2>Publish a Ride</h2>
@@ -132,12 +132,12 @@ const PublishRide = () => {
         </div>
         <div className="button-group">
           <button type="submit" className="publish-btn">Publish</button>
-          <button type="button" className="back-btn" onClick={handleBack}>Back</button>
+          <button type="button" className="back-btn"><Link to="/">Back</Link></button>
           <button type="button" className="reset-btn" onClick={handleReset}>Reset</button>
         </div>
       </form>
     </div>
-    </>
+    </div>
   );
 };
 

@@ -13,6 +13,7 @@ const AdminHome = () => {
                 background: 'rgb(238, 229, 229)', // Set background color for the entire page
                 minHeight: "100vh", // Ensure it covers the full viewport height
                 padding: "20px", // Optional: Add padding for spacing
+                paddingTop: "150px"
             }}
         >
             <Navbar />

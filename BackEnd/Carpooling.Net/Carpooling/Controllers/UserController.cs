@@ -123,23 +123,29 @@ namespace Carpooling.Controllers
         }
 
         [HttpPost]
-        public StatusCodeResult BookRide(Booking book)
+        public IActionResult BookRide(Booking book)
         {
             using (carpoolingContext con = new carpoolingContext())
             {
                 try
                 {
+                    Booking b = con.Bookings.FirstOrDefault(x => x.RideId == book.RideId && x.Uid == book.Uid);
+                    if (b != null)
+                    {
+                        return StatusCode(409, new { Message = "Booking already exists" });
+                    }
                     con.Bookings.Add(book);
                     con.SaveChanges();
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.ToString());
-                    return StatusCode(500);
+                    return StatusCode(500, new { Message = "Internal server error", Error = ex.Message });
                 }
             }
-            return StatusCode(200);
+            return StatusCode(200, new { Message = "Booking successful" });
         }
+
         [HttpGet]
         public IActionResult GetDriverInfo(int uid)
         {
@@ -166,8 +172,6 @@ namespace Carpooling.Controllers
                 }
             }
         }
-
-
 
     }
 }

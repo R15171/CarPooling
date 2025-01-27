@@ -4,7 +4,7 @@
   justify-content: space-between;
   align-items: center;
   background: linear-gradient(90deg, #ff7e5f, #feb47b); /* Vibrant gradient */
-  padding: 10px 20px;
+  padding: 0px 20px;
   color: white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   position: fixed; /* Fix navbar at the top */
@@ -16,7 +16,7 @@
 
 /* Body Padding to Avoid Overlap */
 body {
-  padding-top: 150px; /* Matches the height of the navbar */
+  padding-top: 10px; /* Matches the height of the navbar */
 }
 
 /* Logo and Title */

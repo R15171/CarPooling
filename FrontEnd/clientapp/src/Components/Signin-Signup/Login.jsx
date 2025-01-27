@@ -40,8 +40,8 @@ const Login = () => {
         console.log("Response Login"+response);
         if (!response.ok) {
 
-          console.error("Error: Network response was not ok", response.status);
-          throw new Error("Network response was not ok");
+          console.error("Error: Server response was not ok", response.status);
+          throw new Error("Server response was not ok");
         }
         return response.json();
       })
@@ -63,7 +63,6 @@ const Login = () => {
 
 
   return (<>
-  
     <div className="d-flex justify-content-center align-items-center mt-5">
 
       <div className="container border rounded p-4 shadow"
@@ -106,6 +105,9 @@ const Login = () => {
               Login
             </button>
           </div>
+          <p className="mt-3 text-center">
+            Don't have an account? <a href="/register">Register here</a>
+          </p>
         </form>
         <div className='text text-danger' style={{ textAlign: 'center', padding: '10px' }}>
           {msg}
