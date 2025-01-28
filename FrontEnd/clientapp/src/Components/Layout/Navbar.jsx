@@ -73,6 +73,11 @@ const Navbar = () => {
           <Link to="/Noti" className="dropdown-link">
             Notification
           </Link>
+          {logged.login && 
+            <Link to="/rides" className="dropdown-link">
+            Rides
+          </Link>
+          }
           {role == '1' && (
             <Link to="/admin" className="dropdown-link">
               Admin

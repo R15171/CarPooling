@@ -173,5 +173,32 @@ namespace Carpooling.Controllers
             }
         }
 
+        [HttpGet]
+        public List<Ride> GetUserRides(int uid)
+        {
+            using (carpoolingContext con = new carpoolingContext())
+            {
+                var rides = con.Rides
+                               .Where(r => r.Driver.Uid == uid && r.Status != "c")
+                               .Include(r => r.SourceCityNavigation)
+                               .Include(r => r.DestinationCityNavigation)
+                               .ToList();
+
+                return rides;
+            }
+        }
+
+        [HttpGet]
+        public List<Booking> GetUserBookinks(int uid)
+        {
+            using (carpoolingContext con = new carpoolingContext())
+            {
+                var booking = con.Bookings
+                               .Where(r => r.Uid == uid && r.Ride.Status=="a").Include(i=>i.Ride.SourceCityNavigation).Include(i => i.Ride.DestinationCityNavigation).ToList();
+
+                return booking;
+            }
+        }
+
     }
 }

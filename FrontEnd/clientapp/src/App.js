@@ -11,6 +11,7 @@ import PublishRide from './Components/DriverView/PublishRide';
 import AddDriver from './Components/DriverView/AddDriver';
 import Footer from './Components/Layout/Footer';
 import RegistrationNew from './Components/Signin-Signup/RegistrationNew';
+import UserRides from './Components/UserView/UserRides';
 
 
 
@@ -41,7 +42,7 @@ function App() {
       <Route path="/publishRide" element={<PublishRide />} />
       <Route path='/regDriver' element={<AddDriver />} />
       <Route path="/findRide" element={<FindRide />} />
-      <Route path="/rides" element={''} />
+      <Route path="/rides" element={<UserRides/>} />
       <Route path="/profile" element={''} />
       <Route path="/admin/*" element={<AdminHome />} />
       <Route path='*' element={<Home />} />

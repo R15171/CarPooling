@@ -3,7 +3,8 @@ use P13_Carpooling;
 INSERT INTO `user` (`Name`, `Contactno`, `Email`, `gender`, `dob`, `Password`, `Address`) 
 VALUES 
 ('A-Rushikesh Patil', '9313350998', 'rishispatil2002@gmail.com', 'male', '2002-05-24', 'Abc1234', 'abc street, surat, gujarat -100000'),
-('A-Omkar Patil','7038171191','ompatil1304@gmail.com','male','2001-04-13','Omkar13045','Shree vihar nigdi behind appughar-411044'),
+('A-Omkar Patil','7038171191','ompatil1304@gmail.com','male','2001-04-13','Omkar1
+3045','Shree vihar nigdi behind appughar-411044'),
 ('A-Siddharth Patil','8830150091', 'sidpatil851@gmail.com','male', '2001-08-26', 'Sid@2001', '202, Tivona Aprtments, Baner'),
 ('Rahul Deshmukh', '9098765432', 'rahul.deshmukh@gmail.com', 'male', '2001-06-22', 'Rahul@567', '33 Sunrise Apartments, Nagpur, Maharashtra - 440001'),
 ('Sneha Sharma', '8877665544', 'sneha.sharma@yahoo.com', 'female', '1995-03-15', 'Sneha#789', '45 Green Valley, Pune, Maharashtra - 411001'),
@@ -50,10 +51,10 @@ UPDATE driver SET `status` = 'v' WHERE (`DriverID` = '6');
 INSERT INTO ride (`DriverID`, `SourceCity`, `DestinationCity`, `Fare`, `noseat`, `ridedate`,`ridecomplete`) 
 VALUES 
 ('1', '4', '2', '2000', '3', '2024-12-12 10:45:00', '2024-12-12 20:45:00'),
-('1', '2', '1', '3000', '4', '2025-01-02 09:30:00','2025-01-02 19:30:00'),
-('2', '2', '3', '1000', '5', '2025-01-10 19:30:00', '2025-01-11 00:30:00'),
-('7', '2', '4', '700', '2', '2025-01-12 22:45:00', '2025-01-13 05:45:00'),
-('1', '2', '4', '500', '4', '2025-01-02 09:30:00','2025-01-02 15:30:00'),
+('1', '2', '1', '3000', '4', '2025-02-02 09:30:00','2025-02-02 19:30:00'),
+('2', '2', '3', '1000', '5', '2025-02-10 19:30:00', '2025-02-11 00:30:00'),
+('7', '2', '4', '700', '2', '2025-02-12 22:45:00', '2025-02-13 05:45:00'),
+('1', '2', '4', '500', '4', '2025-02-04 09:30:00','2025-02-04 15:30:00'),
 ('6', '1', '2', '1000', '5', '2025-01-10 22:30:00', '2025-01-11 05:30:00'),
 ('6', '1', '2', '8000', '3', '2025-01-20 18:45:00', '2025-01-21 08:45:00');
 
@@ -64,6 +65,7 @@ INSERT INTO booking (`bookingdate`, `RideID`, `UID`) VALUES
 ('2024-12-10', '1', '3'),
 ('2025-01-01', '4', '15'),
 ('2024-12-29', '6', '11'),
+('2024-12-29', '3', '1'),
 ('2024-12-24', '3', '7');
 
 INSERT INTO `payment` (`Amount`, `date`, `BookingID`, `Status`)
