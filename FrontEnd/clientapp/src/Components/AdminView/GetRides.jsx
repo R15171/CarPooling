@@ -7,7 +7,7 @@ const GetRides = () => {
     // Define the formatDate function
     const formatDate = (date) => {
         if (!date) return ''; // Handle null or undefined dates
-        const formattedDate = new Date(date).toLocaleDateString(); // Format the date
+        const formattedDate = new Date(date).toLocaleDateString('en-GB'); // Format the date
         return formattedDate;
     };
 
@@ -42,7 +42,7 @@ const GetRides = () => {
                             <td>{ride.destinationCityNavigation.cityname}</td>
                             <td>{ride.fare}</td>
                             <td>{ride.noseat}</td>
-                            <td>{ride.status}</td>
+                            <td>{ride.status==="c" ? "Completed" : ride.status=== "n" ? "Not Verified" : "Active"}</td>
                             <td>{formatDate(ride.ridedate)}</td>
                         </tr>
                     ))}

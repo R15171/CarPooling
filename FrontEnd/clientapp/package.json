@@ -6,6 +6,7 @@
     "@reduxjs/toolkit": "^2.5.0",
     "bootstrap": "^5.3.3",
     "cra-template": "1.2.0",
+    "date-fns": "^4.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.54.2",
@@ -15,7 +16,7 @@
     "web-vitals": "^4.2.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "set PORT=3013 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

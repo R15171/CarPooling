@@ -6,7 +6,7 @@ const GetUser = () => {
  // Define the formatDate function
  const formatDate = (date) => {
   if (!date) return ''; // Handle null or undefined dates
-  const formattedDate = new Date(date).toLocaleDateString(); // Format the date
+  const formattedDate = new Date(date).toLocaleDateString('en-GB'); // Format the date
   return formattedDate;
 };
 

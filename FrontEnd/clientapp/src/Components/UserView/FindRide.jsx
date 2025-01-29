@@ -18,7 +18,7 @@ const FindRide = () => {
 
   const formatDate = (date) => {
     if (!date) return ''; // Handle null or undefined dates
-    const formattedDate = new Date(date).toLocaleDateString() + " " + new Date(date).toLocaleTimeString(); // Format the date
+    const formattedDate = new Date(date).toLocaleDateString('en-GB') + " " + new Date(date).toLocaleTimeString(); // Format the date
     return formattedDate;
   };
 
@@ -30,7 +30,7 @@ const FindRide = () => {
       [name]: value,
     }));
   };
-  const dispatch = useDispatch();
+
   let nav = useNavigate();
   const [msg, setMsg] = useState("");
 
@@ -95,17 +95,14 @@ const FindRide = () => {
           console.error("Error: Network response was not ok", response.status);
           throw new Error("Network response was not ok");
         }
-        return response.json(); // Parse the response to JSON
+        return response.json();
       })
       .then((data) => {
         console.log(data);
-        //dispatch(addride(data));
         setRides(data);
-        //nav("/rides");
       }
       )
       .catch((error) => {
-        // Log the actual error for debugging
         console.error("Error during login:", error);
         setMsg("An error occurred while logging in");
       });
@@ -170,16 +167,12 @@ const FindRide = () => {
               required
             />
           </div>
-
-          {/* Submit Button */}
           <button type="submit" className="submit-btn">Find Ride</button>
         </form>
-
-        {/* Display the current form values (for debugging purposes) */}
-        <h1>{JSON.stringify(find)}</h1>
       </div>
 
       {/* Available Rides Section */}
+      {rides.length >0 &&
       <div className="available-rides container mt-5">
         <h2>Available Rides</h2>
         <div className="row justify-content-center">
@@ -218,7 +211,9 @@ const FindRide = () => {
           ))}
         </div>
       </div>
+}
     </div>
+  
 
   );
 };

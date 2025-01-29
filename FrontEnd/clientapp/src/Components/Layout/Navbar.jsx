@@ -65,7 +65,8 @@ const Navbar = () => {
           <Link to="/" className="dropdown-link">
             Home
           </Link>
-          <Link to="/profile" className="dropdown-link">
+          {logged.login && 
+          <><Link to="/profile" className="dropdown-link">
             Profile
           </Link>
           <Link to="/history" className="dropdown-link">
@@ -74,10 +75,10 @@ const Navbar = () => {
           <Link to="/Noti" className="dropdown-link">
             Notification
           </Link>
-          {logged.login && 
             <Link to="/rides" className="dropdown-link">
             Rides
           </Link>
+          </>
           }
           {role == '1' && (
             <Link to="/admin" className="dropdown-link">

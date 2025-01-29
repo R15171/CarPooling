@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import '../Css/PublishRide.css'; // Assuming you will create a separate CSS file for styling
+import '../Css/PublishRide.css'; 
 import Navbar from '../Layout/Navbar';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
@@ -224,8 +224,8 @@ const PublishRide = () => {
               required
             />
           </div>
-
-          <div className="form-group">
+          <div className="container" style={{ display: 'flex', gap: '1rem' }}>
+          <div className="form-group" style={{ flex: 1 }}>
             <label htmlFor="noseat">Total Seats</label>
             <input
               type="number"
@@ -233,21 +233,24 @@ const PublishRide = () => {
               name="noseat"
               value={ride.noseat}
               onChange={handleChange}
+              placeholder='4'
               min="1"
               required
             />
           </div>
 
-          <div className="form-group">
+          <div className="form-group" style={{ flex: 1 }}>
             <label htmlFor="fare">Fare Charges</label>
             <input
               type="number"
               id="fare"
               name="fare"
               value={ride.fare}
+              placeholder="Rs."
               onChange={handleChange}
               required
             />
+          </div>
           </div>
 
           <div className="button-group">

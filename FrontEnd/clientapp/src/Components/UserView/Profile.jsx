@@ -3,161 +3,180 @@ import Navbar from '../Layout/Navbar';
 import { useSelector } from 'react-redux';
 
 const UserProfile = () => {
-  // Initial state for user profile
   const userInfo = useSelector((state) => state.user.userInfo);
-  const [profile, setProfile] = useState({
+
+  const initialProfile = {
     name: userInfo.name,
     contactNo: userInfo.contactno,
     email: userInfo.email,
     gender: userInfo.gender,
     dob: userInfo.dob,
     address: userInfo.address,
-  });
+  };
 
-  // Handle input changes
+  const [profile, setProfile] = useState(initialProfile);
+  const [isEditable, setIsEditable] = useState(false);
+
+  const formatDate = (date) => {
+    if (!date) return '';
+    const d = new Date(date);
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setProfile({ ...profile, [name]: value });
   };
 
-  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Logic to handle form submission (e.g., sending data to the server)
     console.log('Profile updated:', profile);
   };
 
-  return (<>
-  <Navbar/>
-    <div className="container mt-5" style={{paddingTop:"130px"}}>
-      <h2 className="text-center mb-4">Edit Profile</h2>
-      <form onSubmit={handleSubmit}>
-        <table className="table table-bordered">
-          <tbody>
-            {/* Name */}
-            <tr>
-              <td>
-                <label>Name:</label>
-              </td>
-              <td>
-                <input
-                  type="text"
-                  name="name"
-                  className="form-control"
-                  value={profile.name}
-                  onChange={handleChange}
-                  placeholder="Enter your name"
-                  required
-                />
-              </td>
-            </tr>
+  const toggleEdit = () => {
+    setIsEditable(!isEditable);
+    if (isEditable) {
+      setProfile(initialProfile);
+    }
+  };
 
-            {/* Contact Number */}
-            <tr>
-              <td>
-                <label>Contact Number:</label>
-              </td>
-              <td>
-                <input
-                  type="tel"
-                  name="contactNo"
-                  className="form-control"
-                  value={profile.contactNo}
-                  onChange={handleChange}
-                  placeholder="Enter your contact number"
-                  required
-                />
-              </td>
-            </tr>
+  // Calculate the maximum date (18 years ago from today)
+  const calculateMaxDate = () => {
+    const today = new Date();
+    const maxDate = new Date(today.setFullYear(today.getFullYear() - 18));
+    return maxDate.toISOString().split('T')[0]; // Format as yyyy-MM-dd
+  };
 
-            {/* Email */}
-            <tr>
-              <td>
-                <label>Email:</label>
-              </td>
-              <td>
-                <input
-                  type="email"
-                  name="email"
-                  className="form-control"
-                  value={profile.email}
-                  onChange={handleChange}
-                  placeholder="Enter your email"
-                  required
-                />
-              </td>
-            </tr>
-
-            {/* Gender */}
-            <tr>
-              <td>
-                <label>Gender:</label>
-              </td>
-              <td>
-                <select
-                  name="gender"
-                  className="form-control"
-                  value={profile.gender}
-                  onChange={handleChange}
-                  required
-                >
-                  <option value="" disabled>
-                    Select gender
-                  </option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                  <option value="Other">Other</option>
-                </select>
-              </td>
-            </tr>
-
-            {/* Date of Birth */}
-            <tr>
-              <td>
-                <label>Date of Birth:</label>
-              </td>
-              <td>
-                <input
-                  type="date"
-                  name="dob"
-                  className="form-control"
-                  value={profile.dob}
-                  onChange={handleChange}
-                  required
-                />
-              </td>
-            </tr>
-
-            {/* Address */}
-            <tr>
-              <td>
-                <label>Address:</label>
-              </td>
-              <td>
-                <textarea
-                  name="address"
-                  className="form-control"
-                  value={profile.address}
-                  onChange={handleChange}
-                  placeholder="Enter your address"
-                  rows="3"
-                  required
-                />
-              </td>
-            </tr>
-          </tbody>
-        </table>
-
-        {/* Submit Button */}
-        <div className="text-center mt-4">
-          <button type="submit" className="btn btn-primary">
-            Save Changes
+  return (
+    <>
+      <Navbar />
+      <div className="container mt-5" style={{ paddingTop: '130px' }}>
+        <div className="d-flex justify-content-between align-items-center mb-4">
+          <h2>{isEditable ? 'Edit Profile' : 'Profile'}</h2>
+          <button
+            onClick={toggleEdit}
+            className="btn btn-secondary"
+          >
+            {isEditable ? 'Cancel Edit' : 'Edit Profile'}
           </button>
         </div>
-      </form>
-    </div>
+
+        <form onSubmit={handleSubmit}>
+          <table className="table table-bordered">
+            <tbody>
+              <tr>
+                <td><label>Name:</label></td>
+                <td>
+                  <input
+                    type="text"
+                    name="name"
+                    className="form-control"
+                    value={profile.name}
+                    onChange={handleChange}
+                    placeholder="Enter your name"
+                    required
+                    readOnly={!isEditable}
+                  />
+                </td>
+              </tr>
+
+              <tr>
+                <td><label>Contact Number:</label></td>
+                <td>
+                  <input
+                    type="tel"
+                    name="contactNo"
+                    className="form-control"
+                    value={profile.contactNo}
+                    onChange={handleChange}
+                    placeholder="Enter your contact number"
+                    required
+                    readOnly={!isEditable}
+                  />
+                </td>
+              </tr>
+
+              <tr>
+                <td><label>Email:</label></td>
+                <td>
+                  <input
+                    type="email"
+                    name="email"
+                    className="form-control"
+                    value={profile.email}
+                    onChange={handleChange}
+                    placeholder="Enter your email"
+                    required
+                    readOnly={!isEditable}
+                  />
+                </td>
+              </tr>
+
+              <tr>
+                <td><label>Gender:</label></td>
+                <td>
+                  <select
+                    name="gender"
+                    className="form-control"
+                    value={profile.gender}
+                    onChange={handleChange}
+                    required
+                    disabled={!isEditable}
+                  >
+                    <option value="" disabled>Select gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </td>
+              </tr>
+
+              <tr>
+                <td><label>Date of Birth:</label></td>
+                <td>
+                  <input
+                    type="date"
+                    name="dob"
+                    className="form-control"
+                    value={formatDate(profile.dob)}
+                    onChange={handleChange}
+                    required
+                    readOnly={!isEditable}
+                    max={calculateMaxDate()} // Set the maximum date to 18 years ago
+                  />
+                </td>
+              </tr>
+
+              <tr>
+                <td><label>Address:</label></td>
+                <td>
+                  <textarea
+                    name="address"
+                    className="form-control"
+                    value={profile.address}
+                    onChange={handleChange}
+                    placeholder="Enter your address"
+                    rows="3"
+                    required
+                    readOnly={!isEditable}
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div className="text-center mt-4">
+            <button type="submit" className="btn btn-primary" disabled={!isEditable}>
+              Save Changes
+            </button>
+          </div>
+        </form>
+      </div>
     </>
   );
 };
 
-export default UserProfile;
+export default UserProfile;

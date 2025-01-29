@@ -9,7 +9,7 @@ const TripHistory = () => {
 
   const formatDate = (date) => {
     if (!date) return '';
-    const formattedDate = new Date(date).toLocaleDateString() + " " + new Date(date).toLocaleTimeString(); // Format the date
+    const formattedDate = new Date(date).toLocaleDateString('en-GB') + " " + new Date(date).toLocaleTimeString(); // Format the date
     return formattedDate;
   };
 

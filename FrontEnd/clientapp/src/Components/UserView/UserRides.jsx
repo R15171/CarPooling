@@ -8,8 +8,8 @@ const UserRides = () => {
   const userInfo = useSelector((state) => state.user.userInfo);
 
   const formatDate = (date) => {
-    if (!date) return ''; // Handle null or undefined dates
-    const formattedDate = new Date(date).toLocaleDateString() + " " + new Date(date).toLocaleTimeString(); // Format the date
+    if (!date) return '';
+    const formattedDate = new Date(date).toLocaleDateString('en-GB') + " " + new Date(date).toLocaleTimeString(); // Format the date
     return formattedDate;
   };
 
