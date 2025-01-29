@@ -11,7 +11,7 @@ const GetUser = () => {
 };
 
   useEffect(() => {
-    fetch(`https://localhost:7127/api/Carpooling/GetUsers`)
+    fetch(`https://localhost:9131/api/Carpooling/GetUsers`)
       .then(response => response.json())
       .then(data => setUsers(data))
       .catch(error => console.error("Error:", error));

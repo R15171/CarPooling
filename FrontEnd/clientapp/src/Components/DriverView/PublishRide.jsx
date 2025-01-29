@@ -82,7 +82,7 @@ const PublishRide = () => {
       body: JSON.stringify(ride),
     };
 
-    fetch('https://localhost:7127/api/User/PublishRide', publishRide)
+    fetch('https://localhost:9131/api/User/PublishRide', publishRide)
     .then((res)=>{
       if(!res.ok){
         throw new Error(`Somthing went wrong`);
@@ -103,7 +103,7 @@ const PublishRide = () => {
   // Check if the user is a registered driver
   useEffect(() => {
     if (logged.login && userInfo.uid) {
-      fetch(`https://localhost:7127/api/User/GetDriverInfo?uid=${userInfo.uid}`)
+      fetch(`https://localhost:9131/api/User/GetDriverInfo?uid=${userInfo.uid}`)
         .then((response) => {
           if (response.status === 204) {
             nav('/regDriver');
@@ -126,7 +126,7 @@ const PublishRide = () => {
       nav('/login');
     }
 
-    fetch('https://localhost:7127/api/Carpooling/GetCities')
+    fetch('https://localhost:9131/api/Carpooling/GetCities')
       .then((response) => response.json())
       .then((data) => setCities(data))
       .catch((error) => console.error('Error fetching cities:', error));

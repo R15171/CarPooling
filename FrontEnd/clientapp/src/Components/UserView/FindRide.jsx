@@ -36,7 +36,7 @@ const FindRide = () => {
 
   // Fetch cities data
   useEffect(() => {
-    fetch('https://localhost:7127/api/Carpooling/GetCities')
+    fetch('https://localhost:9131/api/Carpooling/GetCities')
       .then(response => response.json())
       .then(data => setCities(data))
       .catch(error => console.error('Something went wrong with the connection', error));
@@ -58,7 +58,7 @@ const FindRide = () => {
         })
       }
       console.log(reqInf.body)
-      fetch(`https://localhost:7127/api/User/BookRide`, reqInf)
+      fetch(`https://localhost:9131/api/User/BookRide`, reqInf)
         .then(res => {
           if (!res.ok) {
             res.json().then(r => {
@@ -87,7 +87,7 @@ const FindRide = () => {
 
     console.log('Booking Ride:', find);
 
-    fetch(`https://localhost:7127/api/User/GetRides?source=${find.source}&desti=${find.destination}&date=${find.rideDate}`)
+    fetch(`https://localhost:9131/api/User/GetRides?source=${find.source}&desti=${find.destination}&date=${find.rideDate}`)
       .then((response) => {
         console.log(response);
         if (!response.ok) {

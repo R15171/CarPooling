@@ -15,7 +15,7 @@ const UserRides = () => {
 
   useEffect(() => {
 // Fetch data for rides published by the user
-fetch(`https://localhost:7127/api/User/GetUserRides?uid=${userInfo.uid}`)
+fetch(`https://localhost:9131/api/User/GetUserRides?uid=${userInfo.uid}`)
   .then(response => response.json())
   .then(data => {
     // Set the published rides first
@@ -24,7 +24,7 @@ fetch(`https://localhost:7127/api/User/GetUserRides?uid=${userInfo.uid}`)
   .catch(error => console.error('Error fetching published rides:', error));
 
     // Fetch data for rides booked by the user
-    fetch(`https://localhost:7127/api/User/GetUserBookinks?uid=${userInfo.uid}`) // Fill the link for fetching booked rides
+    fetch(`https://localhost:9131/api/User/GetUserBookinks?uid=${userInfo.uid}`) // Fill the link for fetching booked rides
       .then(response => response.json())
       .then(data => setBookedRides(data))
       .catch(error => console.error('Error fetching booked rides:', error));

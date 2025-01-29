@@ -247,6 +247,58 @@
   },
   {
     "ContainingType": "Carpooling.Controllers.UserController",
+    "Method": "GetUserCompletedBookinks",
+    "RelativePath": "api/User/GetUserCompletedBookinks",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "uid",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[Carpooling.Models.Booking, Carpooling, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Carpooling.Controllers.UserController",
+    "Method": "GetUserCompletedRides",
+    "RelativePath": "api/User/GetUserCompletedRides",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "uid",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[Carpooling.Models.Ride, Carpooling, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Carpooling.Controllers.UserController",
     "Method": "GetUserRides",
     "RelativePath": "api/User/GetUserRides",
     "HttpMethod": "GET",

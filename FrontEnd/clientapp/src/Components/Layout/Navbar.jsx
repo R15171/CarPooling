@@ -16,6 +16,7 @@ const Navbar = () => {
   const role = userInfo?.rid;
 
   const handleLogout = () => {
+    alert('You have been logged out');
     dispatch(logout());
     navigate('/');
   };

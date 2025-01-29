@@ -12,7 +12,7 @@ const GetRides = () => {
     };
 
     useEffect(() => {
-        fetch(`https://localhost:7127/api/Carpooling/GetRides`)
+        fetch(`https://localhost:9131/api/Carpooling/GetRides`)
             .then((response) => response.json())
             .then((data) => setRides(data))
             .catch((error) => console.error('Error:', error));

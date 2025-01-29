@@ -28,7 +28,7 @@ const AddDriver = () => {
 
     if (drivingLicence && vehicleInfo) {
      
-      fetch('https://localhost:7127/api/User/RegDriver', {
+      fetch('https://localhost:9131/api/User/RegDriver', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
