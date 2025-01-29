@@ -13,6 +13,7 @@ import Footer from './Components/Layout/Footer';
 import RegistrationNew from './Components/Signin-Signup/RegistrationNew';
 import UserRides from './Components/UserView/UserRides';
 import TripHistory from './Components/UserView/TripHistory';
+import UserProfile from './Components/UserView/Profile';
 
 
 
@@ -44,7 +45,7 @@ function App() {
       <Route path='/regDriver' element={<AddDriver />} />
       <Route path="/findRide" element={<FindRide />} />
       <Route path="/rides" element={<UserRides/>} />
-      <Route path="/profile" element={''} />
+      <Route path="/profile" element={<UserProfile/>} />
       <Route path="/admin/*" element={<AdminHome />} />
       <Route path="/history" element={<TripHistory/>} />
       

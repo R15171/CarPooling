@@ -5,7 +5,7 @@ const initialState = {
     uid: '',
     name: '',
     email: '',
-    contact: '',
+    contactno: '',
     address: '',
     gender: '',
     dob: '',

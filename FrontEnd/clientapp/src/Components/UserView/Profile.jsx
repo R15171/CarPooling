@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import Navbar from '../Layout/Navbar';
+import { useSelector } from 'react-redux';
 
 const UserProfile = () => {
   // Initial state for user profile
+  const userInfo = useSelector((state) => state.user.userInfo);
   const [profile, setProfile] = useState({
-    name: '',
-    contactNo: '',
-    email: '',
-    gender: '',
-    dob: '',
-    address: '',
+    name: userInfo.name,
+    contactNo: userInfo.contactno,
+    email: userInfo.email,
+    gender: userInfo.gender,
+    dob: userInfo.dob,
+    address: userInfo.address,
   });
 
   // Handle input changes

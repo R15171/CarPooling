@@ -1,12 +1,11 @@
 {
   "Version": 1,
-  "Hash": "9T4Dn0gv1+i6rZmyyI5tBv+8lXueg9PfXCBRp2oJ3pw=",
+  "Hash": "m0UPGiayh6BG8ZKCaneP2Itb9zW8dlZOuOxyNljT+3U=",
   "Source": "Carpooling",
   "BasePath": "_content/Carpooling",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": [],
-  "Endpoints": []
+  "Assets": []
 }
