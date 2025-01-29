@@ -227,6 +227,31 @@ namespace Carpooling.Controllers
             }
         }
 
+        [HttpPut]
+        public StatusCodeResult ProfileUpdate(User profile)
+        {
+            using (carpoolingContext con = new carpoolingContext())
+            {
+                User old = con.Users.Find(profile.Uid); 
+
+                if (old == null)
+                {
+                    return NotFound(); 
+                }
+
+                old.Name = profile.Name;
+                old.Email = profile.Email;
+                old.Contactno = profile.Contactno;
+                old.Address= profile.Address;
+                old.Dob= profile.Dob;
+                old.Password = profile.Password;
+                old.Gender= profile.Gender;
+                con.SaveChanges(); 
+
+                return Ok();
+            }
+        }
+
 
     }
 }

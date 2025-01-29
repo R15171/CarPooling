@@ -105,7 +105,7 @@ const PublishRide = () => {
     if (logged.login && userInfo.uid) {
       fetch(`https://localhost:9131/api/User/GetDriverInfo?uid=${userInfo.uid}`)
         .then((response) => {
-          if (response.status === 204) {
+          if (response.status === 404) {
             nav('/regDriver');
             return null;
           }

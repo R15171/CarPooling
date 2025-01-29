@@ -56,22 +56,23 @@ const AddDriver = () => {
   return (
     <>
       <Navbar />
+      <div style={{paddingTop:'100px'}}>
       <div className="container mt-5" style={{maxWidth:'500px', border:'2px dotted black'}}>
         <h2>Mandatory Details to Publish Ride</h2>
         {!isDriverRegistered ? (
           <form onSubmit={handleSubmit} className="mt-4">
             {/* Driving License Input */}
             <div className="mb-3">
-              <label htmlFor="drivingLicense" className="form-label">Driving License</label>
-              <input
-                type="text"
-                id="drivingLicense"
-                name="drivingLicense"
-                className="form-control"
-                value={driverData.DrivingLicense}
-                onChange={handleInputChange}
-                required
-              />
+            <label htmlFor="drivingLicence" className="form-label">Driving License</label>
+<input
+  type="text"
+  id="drivingLicence"
+  name="drivingLicence"
+  className="form-control"
+  value={driverData.drivingLicence}
+  onChange={handleInputChange}
+  required
+/>
             </div>
 
             {/* Vehicle Info Input */}
@@ -82,7 +83,7 @@ const AddDriver = () => {
                 id="vehicleInfo"
                 name="vehicleInfo"
                 className="form-control"
-                value={driverData.VehicleInfo}
+                value={driverData.vehicleInfo}
                 onChange={handleInputChange}
                 required
               />
@@ -99,6 +100,7 @@ const AddDriver = () => {
             <button className="btn btn-secondary" onClick={() => nav('/')}>Go to Home</button>
           </div>
         )}
+      </div>
       </div>
     </>
   );

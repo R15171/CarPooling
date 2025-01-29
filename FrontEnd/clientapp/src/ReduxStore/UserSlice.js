@@ -10,6 +10,7 @@ const initialState = {
     gender: '',
     dob: '',
     rid:'',  
+    password: '',
   },
   logstate: {   // Should be part of the state
     login: false,  // To store login status

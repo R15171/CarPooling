@@ -2,7 +2,7 @@ use P13_Carpooling;
 
 INSERT INTO `user` (`Name`, `Contactno`, `Email`, `gender`, `dob`, `Password`, `Address`) 
 VALUES 
-('A-Rushikesh Patil', '9313350998', 'rishispatil2002@gmail.com', 'male', '2002-05-24', 'Abc1234', 'abc street, surat, gujarat -100000'),
+('A-Rushikesh Patil', '9313350998', 'rishispatil2002@gmail.com', 'male', '2002-05-24', 'Abc@1234', 'abc street, surat, gujarat -100000'),
 ('A-Omkar Patil','7038171191','ompatil1304@gmail.com','male','2001-04-13','Omkar1
 3045','Shree vihar nigdi behind appughar-411044'),
 ('A-Siddharth Patil','8830150091', 'sidpatil851@gmail.com','male', '2001-08-26', 'Sid@2001', '202, Tivona Aprtments, Baner'),

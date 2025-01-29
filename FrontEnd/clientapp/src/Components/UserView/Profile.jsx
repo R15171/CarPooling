@@ -1,21 +1,26 @@
 import React, { useState } from 'react';
 import Navbar from '../Layout/Navbar';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const UserProfile = () => {
   const userInfo = useSelector((state) => state.user.userInfo);
+  const nav = useNavigate();
 
   const initialProfile = {
+    uid: userInfo.uid,
     name: userInfo.name,
     contactNo: userInfo.contactno,
     email: userInfo.email,
     gender: userInfo.gender,
     dob: userInfo.dob,
     address: userInfo.address,
+    password: userInfo.password,
   };
 
   const [profile, setProfile] = useState(initialProfile);
   const [isEditable, setIsEditable] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const formatDate = (date) => {
     if (!date) return '';
@@ -34,6 +39,28 @@ const UserProfile = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Profile updated:', profile);
+    fetch("https://localhost:9131/api/User/ProfileUpdate", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(profile),
+    })
+    .then(response => {
+      if (response.status === 200) { 
+        console.log("Profile updated successfully.");
+        alert("Profile updated successfully.");
+        nav('/login');
+      } else if (response.status === 404) {
+        console.error("User not found.");
+        alert("User not found.");
+      } else {
+        console.error("Unexpected error:", response.status);
+      }
+    })
+    .catch(error => {
+      console.error("Network error:", error);
+      });
   };
 
   const toggleEdit = () => {
@@ -43,12 +70,28 @@ const UserProfile = () => {
     }
   };
 
-  // Calculate the maximum date (18 years ago from today)
+
   const calculateMaxDate = () => {
     const today = new Date();
     const maxDate = new Date(today.setFullYear(today.getFullYear() - 18));
-    return maxDate.toISOString().split('T')[0]; // Format as yyyy-MM-dd
+    return maxDate.toISOString().split('T')[0];
   };
+
+  const [error, setError] = useState("");
+
+  const validatePassword = (e) => {
+    const value = e.target.value;
+    const pattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@%$_.-])[A-Za-z\d@%$_.-]{8,12}$/;
+    
+    if (!pattern.test(value)) {
+      setError("Password must be 8-12 characters long and include at least one letter, one number, and one special character (@, %, $, _, ., -).");
+    } else {
+      setError(""); 
+    }
+
+    handleChange(e); 
+  };
+
 
   return (
     <>
@@ -163,6 +206,32 @@ const UserProfile = () => {
                     required
                     readOnly={!isEditable}
                   />
+                </td>
+              </tr>
+              <tr>
+                <td><label>Password:</label></td>
+                <td>
+                  <div className="input-group">
+                  <input
+        type={showPassword ? "text" : "password"}
+        name="password"
+        className="form-control"
+        value={profile.password}
+        onChange={validatePassword}
+        required
+        pattern="(?=.*[A-Za-z])(?=.*\d)(?=.*[@%$_.-])[A-Za-z\d@%$_.-]{8,12}"
+        title="Password must be 8-12 characters long and include at least one letter, one number, and one special character (@, %, $, _, ., -)."
+        readOnly={!isEditable}
+      />
+      <button
+        type="button"
+        className="btn btn-outline-secondary"
+        onClick={() => setShowPassword(!showPassword)}
+      >
+        {showPassword ? "🙈" : "👁️"}
+      </button>
+      {error && <div className="text-danger mt-2">{error}</div>}
+                  </div>
                 </td>
               </tr>
             </tbody>

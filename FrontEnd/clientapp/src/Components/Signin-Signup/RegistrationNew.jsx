@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import gif from '../Images/gif.gif';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
 const RegistrationNew = () => {
   const nav = useNavigate();
+   const [showPassword, setShowPassword] = useState(false);
   const {
     register,
     handleSubmit,
@@ -152,9 +153,11 @@ const RegistrationNew = () => {
               />
               {errors.dob && <small className="text-danger">{errors.dob.message}</small>}
             </div>
+
             <div className="mb-3">
+            <div className="input-group">
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 className="form-control"
                 placeholder="Set Password"
                 {...register("password", {
@@ -165,8 +168,18 @@ const RegistrationNew = () => {
                   },
                 })}
               />
+              <button
+                  type="button"
+                  className="btn btn-outline-secondary"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? "🙈" : "👁️"}
+                </button>
               {errors.password && <small className="text-danger">{errors.password.message}</small>}
             </div>
+            </div>
+
+
             <button type="submit" className="btn btn-primary w-100">
               Register
             </button>
