@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Navbar from '../Layout/Navbar';
 
 const UserProfile = () => {
   // Initial state for user profile
@@ -24,8 +25,9 @@ const UserProfile = () => {
     console.log('Profile updated:', profile);
   };
 
-  return (
-    <div className="container mt-5">
+  return (<>
+  <Navbar/>
+    <div className="container mt-5" style={{paddingTop:"130px"}}>
       <h2 className="text-center mb-4">Edit Profile</h2>
       <form onSubmit={handleSubmit}>
         <table className="table table-bordered">
@@ -152,6 +154,7 @@ const UserProfile = () => {
         </div>
       </form>
     </div>
+    </>
   );
 };
 
