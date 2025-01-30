@@ -1,4 +1,5 @@
 ﻿using Carpooling.Models;
+using Carpooling.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,36 @@ namespace Carpooling.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
+
+
+        private readonly EmailService _emailService;
+
+        public UserController(EmailService emailService)
+        {
+            _emailService = emailService;
+        }
+
+        [HttpGet]
+        public Boolean SendEmail(Dictionary<string, string> request)
+        {
+            string name = request.ContainsKey("Name") ? request["Name"] : "User";
+            string email = request.ContainsKey("Email") ? request["Email"] : string.Empty;
+            string msg = request.ContainsKey("Msg") ? request["Msg"] : string.Empty;
+            string sub = request.ContainsKey("Sub") ? request["Sub"] : string.Empty;
+
+
+            if (string.IsNullOrEmpty(email))
+            {
+                return false;
+            }
+
+
+           _emailService.SendEmail(email, sub, msg);
+
+            return true;
+        }
+
+
         [HttpPost]
         public User Login([FromBody] Dictionary<string, string> loginData)
         {
@@ -92,6 +123,21 @@ namespace Carpooling.Controllers
                 {
                     con.Drivers.Add(driver);
                     con.SaveChanges();
+
+                    Driver dnew = con.Drivers.Where(d=>d.DrivingLicence==driver.DrivingLicence).Include(d=>d.UidNavigation).First();
+                    if (dnew != null && dnew.UidNavigation != null)
+                    {
+                        Dictionary<string, string> data = new Dictionary<string, string>();
+                        data.Add("Email", dnew.UidNavigation.Email);
+                        data.Add("Name", dnew.UidNavigation.Name);
+                        data.Add("Msg", $"Thanks for registering as a Driver Mr./Mrs. {dnew.UidNavigation.Name} \n Hope You Your Enjoy Rides...!");
+                        data.Add("Sub", "Driver Registration");
+                        SendEmail(data);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Driver not found or UidNavigation is null.");
+                    }
                 }
                 catch (Exception ex)
                 {

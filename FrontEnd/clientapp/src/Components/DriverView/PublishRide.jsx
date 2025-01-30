@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import '../Css/PublishRide.css'; 
+import '../Css/PublishRide.css';
 import Navbar from '../Layout/Navbar';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
@@ -47,7 +47,7 @@ const PublishRide = () => {
     rideStartTime.setHours(rideStartTime.getHours() + Number(hours));
 
     const year = rideStartTime.getFullYear();
-    const month = (rideStartTime.getMonth() + 1).toString().padStart(2, '0'); 
+    const month = (rideStartTime.getMonth() + 1).toString().padStart(2, '0');
     const day = rideStartTime.getDate().toString().padStart(2, '0');
 
     const hour = rideStartTime.getHours().toString().padStart(2, '0');
@@ -83,21 +83,22 @@ const PublishRide = () => {
     };
 
     fetch('https://localhost:9131/api/User/PublishRide', publishRide)
-    .then((res)=>{
-      if(!res.ok){
-        throw new Error(`Somthing went wrong`);
-      }
-      return res.json();
-    })
-    .then(data=>{
-      console.log(data);
-      alert("Ride Published!..");
-      nav('/')
-    })
-    .catch((err)=>{console.error('Error fetching driver data:', err);
-      alert("Not published!...")
-      nav('/')
-    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`Somthing went wrong`);
+        }
+        return res.json();
+      })
+      .then(data => {
+        console.log(data);
+        alert("Ride Published!..");
+        nav('/')
+      })
+      .catch((err) => {
+        console.error('Error fetching driver data:', err);
+        alert("Not published!...")
+        nav('/')
+      })
   };
 
   // Check if the user is a registered driver
@@ -146,7 +147,7 @@ const PublishRide = () => {
     setRideTime('');
   };
 
-  const handleBack=()=>{
+  const handleBack = () => {
     nav('/')
   }
 
@@ -199,8 +200,10 @@ const PublishRide = () => {
                 value={rideDate}
                 onChange={(e) => setRideDate(e.target.value)}
                 required
+                min={new Date().toISOString().split("T")[0]}
               />
             </div>
+
             <div className="form-group" style={{ flex: 1 }}>
               <label htmlFor="rideTime">Ride Time</label>
               <input
@@ -225,32 +228,32 @@ const PublishRide = () => {
             />
           </div>
           <div className="container" style={{ display: 'flex', gap: '1rem' }}>
-          <div className="form-group" style={{ flex: 1 }}>
-            <label htmlFor="noseat">Total Seats</label>
-            <input
-              type="number"
-              id="noseat"
-              name="noseat"
-              value={ride.noseat}
-              onChange={handleChange}
-              placeholder='4'
-              min="1"
-              required
-            />
-          </div>
+            <div className="form-group" style={{ flex: 1 }}>
+              <label htmlFor="noseat">Total Seats</label>
+              <input
+                type="number"
+                id="noseat"
+                name="noseat"
+                value={ride.noseat}
+                onChange={handleChange}
+                placeholder='4'
+                min="1"
+                required
+              />
+            </div>
 
-          <div className="form-group" style={{ flex: 1 }}>
-            <label htmlFor="fare">Fare Charges</label>
-            <input
-              type="number"
-              id="fare"
-              name="fare"
-              value={ride.fare}
-              placeholder="Rs."
-              onChange={handleChange}
-              required
-            />
-          </div>
+            <div className="form-group" style={{ flex: 1 }}>
+              <label htmlFor="fare">Fare Charges</label>
+              <input
+                type="number"
+                id="fare"
+                name="fare"
+                value={ride.fare}
+                placeholder="Rs."
+                onChange={handleChange}
+                required
+              />
+            </div>
           </div>
 
           <div className="button-group">

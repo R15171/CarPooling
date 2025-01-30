@@ -164,6 +164,7 @@ const FindRide = () => {
               name="rideDate"
               value={find.rideDate}
               onChange={handleChange}
+              min={new Date().toISOString().split("T")[0]}
               required
             />
           </div>
