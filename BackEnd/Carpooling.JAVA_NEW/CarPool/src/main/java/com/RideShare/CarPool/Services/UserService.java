@@ -31,16 +31,37 @@ public class UserService {
         return userRepository.findById(id).orElse(null);
     }//find user by id
 
+//    public User userRegister(User user) {
+//        User savedUser = userRepository.save(user);
+//
+//        // Send welcome email
+//        String subject = "Welcome to RideShare!";
+//        String body = "Hello " + user.getName() + ",\n\nWelcome to Carpool! Your account has been successfully created.\n\nEnjoy your rides!\n\nBest Regards,\nCarpooling Team";
+//        emailService.sendEmail(user.getEmail(), subject, body);
+//
+//        return savedUser;
+//    }//user Register
+    
+    
+    
     public User userRegister(User user) {
         User savedUser = userRepository.save(user);
 
         // Send welcome email
-        String subject = "Welcome to RideShare!";
-        String body = "Hello " + user.getName() + ",\n\nWelcome to Carpool! Your account has been successfully created.\n\nEnjoy your rides!\n\nBest Regards,\nCarpooling Team";
+        String subject = "Welcome to Carpool!";
+        String body = "<html>" +
+                      "<body>" +
+                      "<h2>Hello " + user.getName() + ",</h2>" +
+                      "<p>Welcome to <strong>Carpool!</strong> Your account has been successfully created.</p>" +
+                      "<p>Enjoy your rides!</p>" +
+                      "<p>Best Regards,<br>Carpooling Team</p>" +
+                      "</body>" +
+                      "</html>";
+
         emailService.sendEmail(user.getEmail(), subject, body);
 
         return savedUser;
-    }//user Register
+    }
 
 
 

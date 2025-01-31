@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../../ReduxStore/UserSlice';
-import imgLogin from '../Images/securelogin.jpg';
+
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -66,7 +66,7 @@ const Login = () => {
 
       <div className="col-md-4 d-flex justify-content-center">
         <img
-          src={imgLogin}
+          src=""
           alt="Left"
           className="img-fluid rounded"
           style={{ maxWidth: "100%", height: "auto" }}
