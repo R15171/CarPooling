@@ -40,6 +40,7 @@ const Login = () => {
           console.error("Error: Server response was not ok", response.status);
           throw new Error("Server response was not ok");
         }
+        
         return response.json();
       })
       .then((data) => {
