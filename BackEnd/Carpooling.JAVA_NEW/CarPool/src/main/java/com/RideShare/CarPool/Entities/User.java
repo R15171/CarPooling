@@ -21,10 +21,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Setter
-@Getter
 @Entity
 @Table(name = "user")
 public class User {
@@ -63,8 +63,6 @@ public class User {
 
 
 	
-	
-
 	
 	
 

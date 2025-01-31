@@ -69,7 +69,7 @@ const FindRide = () => {
           }
           else {
             alert("Ride Booking Successful");
-            nav('/');
+            nav('/payment');
           }
         })
         .catch(error => {
