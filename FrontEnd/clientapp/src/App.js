@@ -13,7 +13,8 @@ import Footer from './Components/Layout/Footer';
 import RegistrationNew from './Components/Signin-Signup/RegistrationNew';
 import UserRides from './Components/UserView/UserRides';
 import TripHistory from './Components/UserView/TripHistory';
-import UserProfile from './Components/UserView/Profile';
+import UserProfile from './Components/Signin-Signup/Profile';
+
 
 
 
