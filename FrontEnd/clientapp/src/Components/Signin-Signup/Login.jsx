@@ -33,13 +33,14 @@ const Login = () => {
       body: JSON.stringify(loginData),
     };
 
-    fetch("https://localhost:9131/api/User/Login", reqInf)
+    fetch("http://localhost:8131/Login", reqInf)
       .then((response) => {
         console.log("Response Login: ", response);
         if (!response.ok) {
           console.error("Error: Server response was not ok", response.status);
           throw new Error("Server response was not ok");
         }
+        
         return response.json();
       })
       .then((data) => {

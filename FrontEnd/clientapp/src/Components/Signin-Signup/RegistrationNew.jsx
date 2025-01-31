@@ -22,7 +22,7 @@ const RegistrationNew = () => {
       body: JSON.stringify(data),
     };
 
-    fetch("https://localhost:9131/api/User/Register", reqInf)
+    fetch("http://localhost:8131/Register", reqInf)
       .then((response) => {
         if (!response.ok) {
           alert("Registration Failed");
