@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../../ReduxStore/UserSlice';
+import imgLogin from '../Images/securelogin.jpg';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -60,15 +61,25 @@ const Login = () => {
 
   return (
     <>
-      <div className="d-flex justify-content-center align-items-center mt-5">
-        <div className="container border rounded p-4 shadow" style={{ maxWidth: "450px", width: "100%" }}>
+  <div className="container mt-5">
+    <div className="row justify-content-center align-items-center">
+
+      <div className="col-md-4 d-flex justify-content-center">
+        <img
+          src={imgLogin}
+          alt="Left"
+          className="img-fluid rounded"
+          style={{ maxWidth: "100%", height: "auto" }}
+        />
+      </div>
+
+      <div className="col-md-4">
+        <div className="border rounded p-4 shadow" style={{ maxWidth: "450px", width: "100%" }}>
           <h2 className="text-center mb-4">Login</h2>
 
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
-              <label htmlFor="contactno" className="form-label">
-                Username
-              </label>
+              <label htmlFor="contactno" className="form-label">Username</label>
               <input
                 type="text"
                 className="form-control"
@@ -105,9 +116,7 @@ const Login = () => {
             </div>
 
             <div className="d-flex justify-content-center align-items-center">
-              <button type="submit" className="btn btn-primary w-30 mt-3">
-                Login
-              </button>
+              <button type="submit" className="btn btn-primary w-30 mt-3">Login</button>
             </div>
 
             <p className="mt-3 text-center">
@@ -118,7 +127,12 @@ const Login = () => {
           <div className='text-danger text-center mt-2'>{msg}</div>
         </div>
       </div>
-    </>
+
+      
+    </div>
+  </div>
+</>
+
   );
 };
 

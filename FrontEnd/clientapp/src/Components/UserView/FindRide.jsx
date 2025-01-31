@@ -197,7 +197,8 @@ const FindRide = () => {
                         <td><strong>Age:</strong> {r.driver.age}</td>
                       </tr>
                       <tr>
-                        <td colSpan={2}><strong>Fare:</strong> {r.fare}</td>
+                        <td><strong>Fare:</strong> {r.fare}</td>
+                        <td><strong>Contact:</strong> {r.driver.uidNavigation.contactno}</td>
                       </tr>
                       <tr>
                         <td colSpan={2}>

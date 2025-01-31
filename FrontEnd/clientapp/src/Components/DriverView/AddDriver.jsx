@@ -27,7 +27,7 @@ const AddDriver = () => {
     const { drivingLicence, vehicleInfo } = driverData;
 
     if (drivingLicence && vehicleInfo) {
-     
+
       fetch('https://localhost:9131/api/User/RegDriver', {
         method: 'POST',
         headers: {
@@ -56,51 +56,51 @@ const AddDriver = () => {
   return (
     <>
       <Navbar />
-      <div style={{paddingTop:'100px'}}>
-      <div className="container mt-5" style={{maxWidth:'500px', border:'2px dotted black'}}>
-        <h2>Mandatory Details to Publish Ride</h2>
-        {!isDriverRegistered ? (
-          <form onSubmit={handleSubmit} className="mt-4">
-            {/* Driving License Input */}
-            <div className="mb-3">
-            <label htmlFor="drivingLicence" className="form-label">Driving License</label>
-<input
-  type="text"
-  id="drivingLicence"
-  name="drivingLicence"
-  className="form-control"
-  value={driverData.drivingLicence}
-  onChange={handleInputChange}
-  required
-/>
-            </div>
+      <div style={{ paddingTop: '100px' }}>
+        <div className="container mt-5" style={{ maxWidth: '500px', border: '2px dotted black' }}>
+          <h2>Mandatory Details to Publish Ride</h2>
+          {!isDriverRegistered ? (
+            <form onSubmit={handleSubmit} className="mt-4">
+              {/* Driving License Input */}
+              <div className="mb-3">
+                <label htmlFor="drivingLicence" className="form-label">Driving License</label>
+                <input
+                  type="text"
+                  id="drivingLicence"
+                  name="drivingLicence"
+                  className="form-control"
+                  value={driverData.drivingLicence}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
 
-            {/* Vehicle Info Input */}
-            <div className="mb-3">
-              <label htmlFor="vehicleInfo" className="form-label">Vehicle Information</label>
-              <input
-                type="text"
-                id="vehicleInfo"
-                name="vehicleInfo"
-                className="form-control"
-                value={driverData.vehicleInfo}
-                onChange={handleInputChange}
-                required
-              />
-            </div>
+              {/* Vehicle Info Input */}
+              <div className="mb-3">
+                <label htmlFor="vehicleInfo" className="form-label">Vehicle Information</label>
+                <input
+                  type="text"
+                  id="vehicleInfo"
+                  name="vehicleInfo"
+                  className="form-control"
+                  value={driverData.vehicleInfo}
+                  onChange={handleInputChange}
+                  required
+                />
+              </div>
 
-            {/* Submit Button */}
-            <div className="mb-3">
-              <button type="submit" className="btn btn-primary">Add Details</button>
+              {/* Submit Button */}
+              <div className="mb-3">
+                <button type="submit" className="btn btn-primary">Add Details</button>
+              </div>
+            </form>
+          ) : (
+            <div>
+              <h3>You are already registered as a driver!</h3>
+              <button className="btn btn-secondary" onClick={() => nav('/')}>Go to Home</button>
             </div>
-          </form>
-        ) : (
-          <div>
-            <h3>You are already registered as a driver!</h3>
-            <button className="btn btn-secondary" onClick={() => nav('/')}>Go to Home</button>
-          </div>
-        )}
-      </div>
+          )}
+        </div>
       </div>
     </>
   );
