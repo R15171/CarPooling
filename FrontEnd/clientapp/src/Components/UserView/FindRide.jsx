@@ -14,6 +14,8 @@ const FindRide = () => {
   const logged = useSelector((state) => state.user.logstate);
   const userInfo = useSelector((state) => state.user.userInfo);
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const [rides, setRides] = useState([]);
 
   const formatDate = (date) => {
@@ -46,6 +48,7 @@ const FindRide = () => {
     if (!logged.login) {
       nav('/login');
     } else {
+      setIsLoading(true);
       const reqInf = {
         method: "POST",
         headers: {
@@ -202,7 +205,7 @@ const FindRide = () => {
                       </tr>
                       <tr>
                         <td colSpan={2}>
-                          <button className="btn btn-primary" onClick={() => handleRide(r)}>Book Ride</button>
+                          <button className="btn btn-primary" onClick={() => handleRide(r)} disabled={isLoading}>{isLoading ? "⌛ Loading..." : "Book Ride"}</button>
                         </td>
                       </tr>
                     </tbody>

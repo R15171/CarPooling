@@ -14,6 +14,7 @@ import RegistrationNew from './Components/Signin-Signup/RegistrationNew';
 import UserRides from './Components/UserView/UserRides';
 import TripHistory from './Components/UserView/TripHistory';
 import UserProfile from './Components/Signin-Signup/Profile';
+import Payment from './Components/UserView/Payment';
 
 
 
@@ -49,6 +50,8 @@ function App() {
       <Route path="/profile" element={<UserProfile/>} />
       <Route path="/admin/*" element={<AdminHome />} />
       <Route path="/history" element={<TripHistory/>} />
+      <Route path="/payment" element={<Payment/>} />
+      
       
       <Route path='*' element={<Home />} />
     </Routes>

@@ -3,7 +3,7 @@ import { useState } from "react";
 import  CarpoolPaymentUPI from "./CarpoolPaymentUPI";
 import { useNavigate } from "react-router-dom";
 // Example usage:
-const MyComponent = () => {
+const Payment = () => {
     const [paymentSuccess, setPaymentSuccess] = useState(false);
     const [paymentError, setPaymentError] = useState(null);
     const nav = useNavigate();
@@ -40,7 +40,7 @@ const MyComponent = () => {
     );
   };
   
-  export default MyComponent;
+  export default Payment;
 
 
 
