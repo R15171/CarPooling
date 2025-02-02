@@ -37,7 +37,7 @@ const FindRide = () => {
   const [msg, setMsg] = useState("");
 
   // Fetch cities data
-  useEffect(() => {
+  useEffect(() => {      
     fetch('https://localhost:9131/api/Carpooling/GetCities')
       .then(response => response.json())
       .then(data => setCities(data))
@@ -71,7 +71,6 @@ const FindRide = () => {
             })
           }
           else {
-            alert("Ride Booking Successful");
             nav('/payment');
           }
         })
@@ -79,7 +78,6 @@ const FindRide = () => {
           console.log('Something went wrong with the connection')
           nav('/')
         });
-
     }
   }
 
