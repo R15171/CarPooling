@@ -15,7 +15,7 @@ footer {
   
   footer a.hover-link:hover {
     text-decoration: underline;
-    color: #ffd5b5; /* Slightly lighter color on hover */
+    color: #bab5ff; /* Slightly lighter color on hover */
   }
   
   footer .social-links a {
@@ -23,7 +23,7 @@ footer {
   }
   
   footer .social-links a:hover {
-    color: #ffd5b5; /* Light color for hover effect */
+    color: #b5d0ff; /* Light color for hover effect */
   }
   
   footer hr {

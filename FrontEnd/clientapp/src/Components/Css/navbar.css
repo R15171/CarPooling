@@ -3,7 +3,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(90deg, #ff7e5f, #feb47b); /* Vibrant gradient */
+  background: linear-gradient(90deg, #86A7FC, #3468C0); /* Vibrant gradient */
   padding: 0px 20px;
   color: white;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -79,7 +79,7 @@ body {
 /* Auth Buttons */
 .navbar-auth .navbar-btn {
   background-color: white;
-  color: #ff7e5f; /* Complementary color from the gradient */
+  color: #3468C0; /* Complementary color from the gradient */
   border: 1px solid white;
   border-radius: 20px;
   padding: 5px 15px;
@@ -88,7 +88,7 @@ body {
 }
 
 .navbar-auth .navbar-btn:hover {
-  background-color: #feb47b; /* Second color from the gradient */
+  background-color: #86A7FC; /* Second color from the gradient */
   color: white;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
 }
@@ -96,7 +96,7 @@ body {
 /* Dropdown Menu */
 .navbar-dropdown {
   background-color: #fff;
-  color: #ff7e5f; /* Complementary color */
+  color: #86A7FC; /* Complementary color */
   position: absolute;
   top: 100%; /* Aligns dropdown below navbar */
   left: 0;
@@ -111,7 +111,7 @@ body {
 
 .dropdown-link {
   padding: 10px 20px;
-  color: #ff7e5f; /* Complementary color */
+  color: #86A7FC; /* Complementary color */
   text-decoration: none;
   font-weight: bold;
   border-radius: 5px;
@@ -120,14 +120,14 @@ body {
 }
 
 .dropdown-link:hover {
-  background-color: #ff7e5f;
+  background-color: #3468C0;
   color: white;
 }
 
 .logout-btn {
   background: none;
   border: none;
-  color: #ff7e5f;
+  color: #86A7FC;
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;

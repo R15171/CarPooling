@@ -9,7 +9,7 @@ const initialState = {
     address: '',
     gender: '',
     dob: '',
-    rid:'',  
+    role:'',  
     password: '',
   },
   logstate: {   // Should be part of the state
