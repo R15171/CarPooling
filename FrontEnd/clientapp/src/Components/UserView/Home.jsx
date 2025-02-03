@@ -2,7 +2,6 @@ import React from 'react';
 import Navbar from '../Layout/Navbar';
 import { Link } from 'react-router-dom';
 import gif1 from '../Images/carpool.gif';
-import gif2 from '../Images/carpool2.gif';
 import '../Css/Home.css'; // Import the CSS file
 
 const Home = () => {
@@ -34,10 +33,6 @@ const Home = () => {
             </div>
           </div>
 
-          {/* Right Section with GIF */}
-          {/* <div className="col-md-5 gif-section animate-slide-right">
-            <img src={gif2} alt="Carpool GIF" className="gif-image" />
-          </div> */}
         </div>
       </div>
     </>

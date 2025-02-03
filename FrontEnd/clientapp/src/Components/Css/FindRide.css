@@ -4,7 +4,7 @@
   max-width: 900px;
   margin: 40px auto;
   padding: 30px;
-  background: #fff;
+  background: #A1E3F9;
   border: 1px solid #ddd;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -14,7 +14,7 @@
   text-align: center;
   margin-bottom: 20px;
   font-size: 2rem;
-  color: #ff7e5f;
+  color: #3468C0;
   margin-bottom: 15px;
 
 }
@@ -44,20 +44,20 @@ select, input {
   border-radius: 8px;
   font-size: 1rem;
   color: #333;
-  background-color: #fff;
+  background-color: #D1F8EF;
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 select:focus, input:focus {
-  border-color: #ff7e5f;
-  box-shadow: 0 0 5px rgba(255, 126, 95, 0.7);
+  border-color: #3468C0;
+  box-shadow: 0 0 5px rgb(52, 104, 192, 0.7);
   outline: none;
 }
 
 button.submit-btn {
   width: 100%;
   padding: 12px;
-  background: linear-gradient(90deg, #ff7e5f, #feb47b);
+  background: linear-gradient(90deg, #578FCA, #3674B5);
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -68,7 +68,7 @@ button.submit-btn {
 }
 
 button.submit-btn:hover {
-  background: linear-gradient(90deg, #feb47b, #ff7e5f);
+  background: linear-gradient(90deg, #3674B5, #578FCA);
   transform: scale(1.05);
 }
 
@@ -77,7 +77,7 @@ button.submit-btn:hover {
   max-width: 1200px;
   margin: 40px auto;
   padding: 20px;
-  background: #fff;
+  background: #A1E3F9;
   border: 1px solid #ddd;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -87,11 +87,11 @@ button.submit-btn:hover {
   text-align: center;
   margin-bottom: 30px;
   font-size: 2rem;
-  color: #ff7e5f;
+  color: #2973B2;
 }
 
 .custom-card {
-  background-color: #fdf6f0;
+  background-color: #f0f2fd;
   border: none;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -108,7 +108,7 @@ button.submit-btn:hover {
 }
 
 .card-body h4 {
-  color: #ff7e5f;
+  color: #2973B2;
   margin-bottom: 15px;
   font-size: 1.5rem;
 }
@@ -122,7 +122,7 @@ button.submit-btn:hover {
 button.btn-primary {
   width: 100%;
   padding: 10px;
-  background: linear-gradient(90deg, #ff7e5f, #feb47b);
+  background: linear-gradient(90deg, #578FCA, #3674B5);
   color: #fff;
   border: none;
   border-radius: 6px;
@@ -132,7 +132,7 @@ button.btn-primary {
 }
 
 button.btn-primary:hover {
-  background: linear-gradient(90deg, #feb47b, #ff7e5f);
+  background: linear-gradient(90deg, #3674B5, #578FCA);
   transform: scale(1.05);
 }
 

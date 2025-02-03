@@ -1,70 +1,44 @@
-# Getting Started with Create React App
+# Car Pooling Project - CDAC
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Introduction
+The Car Pooling Project is designed to offer an efficient, eco-friendly, and cost-effective ride-sharing solution that connects drivers with passengers through a seamless and user-friendly interface. By reducing the number of vehicles on the road, the platform contributes to environmental sustainability and lowers commuting costs.
 
-## Available Scripts
+## Backend and Frontend Clarification
+The backend of the system is developed using two powerful frameworks:
+- **.NET Core Web API**: Provides high scalability, performance, and lightweight microservices-based architecture for handling requests efficiently. It also manages the core business logic, ensuring smooth operations.
+- **Spring Boot (Java)**: Supports secure API services and facilitates integration with other system components.
 
-In the project directory, you can run:
+The frontend is built using **ReactJS**, offering an interactive and responsive user interface that enhances the overall user experience.
 
-### `npm start`
+## Automation Features
+The system leverages automation for seamless operations, including:
+- **Driver Verification**: The platform allows drivers to submit required documents, and an admin manually verifies the driver's status. Once approved, SQL triggers update the driver's status in real time.
+- **Ride Status Updates**: The system automatically tracks the ride status, updating it based on seat availability and driver verification.
+- **Real-Time Synchronization**: A robust MySQL database with well-defined triggers ensures data consistency and synchronization between drivers and passengers.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Security & Performance
+Security and performance optimization are key priorities:
+- **Security Measures**:
+  - Implementation of authentication and authorization mechanisms using **Spring Security**.
+  - Data encryption to safeguard user details and sensitive ride information.
+  - Role-based access control to ensure secure interactions within the platform.
+  - **JWT Authentication in Java**: Secure access control is enforced through JSON Web Tokens (JWT) with Spring Security in Java, ensuring authenticated sessions for users.
+- **Performance Optimization**:
+  
+  - Efficient API design with optimized queries to handle high traffic seamlessly.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Features
+- **Ride Publishing & Booking**: Drivers can publish available rides, while passengers can book seats conveniently.
+- **Seat Management**: The system automatically updates seat availability based on bookings.
+- **User Profile Management**: Users can manage their profiles, update ride preferences, and track booking history with secure JWT authentication in Java.
 
-### `npm test`
+## Tools & Technologies
+- **Backend:** .NET Core Web API, Spring Boot (Java)
+- **Frontend:** ReactJS
+- **Database:** MySQL with SQL triggers
+- **Security:** Spring Security, JWT Authentication (Java)
+- **Development Tools:** Postman (API Testing), Git (Version Control)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Conclusion
+The Car Pooling Project is a step toward smarter and more sustainable urban mobility. By integrating advanced technologies and automation, it ensures a seamless and secure experience for both drivers and passengers.
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

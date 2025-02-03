@@ -113,7 +113,6 @@ const FindRide = () => {
   return (
     <div style={{ paddingTop: '150px' }}>
       <Navbar />
-
       {/* Book a Ride Section */}
       <div className="book-ride-container" >
         <h2>Find a Ride</h2>

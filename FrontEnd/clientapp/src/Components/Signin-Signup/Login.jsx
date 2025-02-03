@@ -64,7 +64,7 @@ const Login = () => {
     <div className="container mt-5">
       <div className="row justify-content-center align-items-center">
         <div className="col-md-4 d-flex justify-content-center">
-          <img src={imgg} alt="Secure Login" className="img-fluid rounded" style={{ maxWidth: "100%", height: "auto" }} />
+          <img src={imgg} alt="Secure Login" className="img-fluid rounded" style={{ maxWidth: "100%", height: "auto",marginTop:"10px" }} />
         </div>
         <div className="col-md-4">
           <div className="border rounded p-4 shadow" style={{ maxWidth: "450px", width: "100%" }}>

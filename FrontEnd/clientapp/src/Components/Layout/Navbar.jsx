@@ -13,7 +13,9 @@ const Navbar = () => {
 
   const userInfo = useSelector((state) => state.user.userInfo);
   const logged = useSelector((state) => state.user.logstate);
-  const role = userInfo?.rid;
+  const role = userInfo?.role?.rid ?? 0;
+
+  console.log(role);
 
   const handleLogout = () => {
     alert('You have been logged out');
@@ -71,9 +73,6 @@ const Navbar = () => {
           </Link>
           <Link to="/history" className="dropdown-link">
             Trip History
-          </Link>
-          <Link to="/Noti" className="dropdown-link">
-            Notification
           </Link>
             <Link to="/rides" className="dropdown-link">
             Rides
