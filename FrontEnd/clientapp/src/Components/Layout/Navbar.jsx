@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from '../Images/Logo2.jpg';
 import register from '../Images/Register.jpg';
 import { Link, useNavigate } from 'react-router-dom';
@@ -7,15 +7,17 @@ import { logout } from '../../ReduxStore/UserSlice';
 import '../Css/navbar.css';
 
 const Navbar = () => {
-  const [showDropdown, setShowDropdown] = useState(true);
+  const [showDropdown, setShowDropdown] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  useEffect(() => {
+    if(windowWidth > 768) setShowDropdown(true);
+  }, [windowWidth]);
 
   const userInfo = useSelector((state) => state.user.userInfo);
   const logged = useSelector((state) => state.user.logstate);
   const role = userInfo?.role?.rid ?? 0;
-
-  console.log(role);
 
   const handleLogout = () => {
     alert('You have been logged out');
@@ -72,7 +74,7 @@ const Navbar = () => {
             Profile
           </Link>
           <Link to="/history" className="dropdown-link">
-            Trip History
+            History
           </Link>
             <Link to="/rides" className="dropdown-link">
             Rides

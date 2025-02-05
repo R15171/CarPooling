@@ -28,7 +28,7 @@ const TripHistory = () => {
 
   return (<>
     <Navbar />
-    <div className="container mt-4" style={{ paddingTop: "130px" }}>
+    <div className="container mt-4" style={{ paddingTop: "150px" }}>
       <div className="row">
         {/* Column for Trips Published */}
         <div className="col-md-6">

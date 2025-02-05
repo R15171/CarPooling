@@ -27,7 +27,6 @@ const VerifyDriver = () => {
                 if (data === null) {
                     setMsg("All drivers are verified");
                 } else {
-                    console.log(data);
                     setdata(data);
                 }
             })

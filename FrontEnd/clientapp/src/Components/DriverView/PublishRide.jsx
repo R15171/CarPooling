@@ -227,8 +227,9 @@ const PublishRide = () => {
               required
             />
           </div>
-          <div className="container" style={{ display: 'flex', gap: '1rem' }}>
-            <div className="form-group" style={{ flex: 1 }}>
+
+          <div className="container" style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
+            <div className="form-group" style={{ flex: '1 1 200px' }}>
               <label htmlFor="noseat">Total Seats</label>
               <input
                 type="number"
@@ -236,13 +237,14 @@ const PublishRide = () => {
                 name="noseat"
                 value={ride.noseat}
                 onChange={handleChange}
-                placeholder='4'
+                placeholder="4"
                 min="1"
                 required
+                style={{ width: '100%' }}
               />
             </div>
 
-            <div className="form-group" style={{ flex: 1 }}>
+            <div className="form-group" style={{ flex: '1 1 200px' }}>
               <label htmlFor="fare">Fare Charges</label>
               <input
                 type="number"
@@ -252,6 +254,7 @@ const PublishRide = () => {
                 placeholder="Rs."
                 onChange={handleChange}
                 required
+                style={{ width: '100%' }}
               />
             </div>
           </div>

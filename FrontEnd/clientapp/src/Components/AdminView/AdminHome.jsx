@@ -13,7 +13,7 @@ const AdminHome = () => {
                 background: 'rgb(255, 255, 255)',
                 minHeight: "100vh",
                 padding: "20px",
-                paddingTop: "110px"
+                paddingTop: "180px"
             }}
         >
             <Navbar />
