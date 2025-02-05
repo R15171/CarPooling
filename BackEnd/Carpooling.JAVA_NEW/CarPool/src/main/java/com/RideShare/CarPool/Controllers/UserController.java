@@ -61,7 +61,6 @@ public class UserController {
 		
 			if( user!=null  && user.getPassword().equals(password)) {
 				System.out.println("if "+contact+" "+password);
-				System.out.println(" com ");
 				return user;
 			}
 			else {

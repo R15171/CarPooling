@@ -9,18 +9,14 @@ import GetRides from "./GetRides";
 const AdminHome = () => {
     return (
         <div
-            style={{
-                background: 'rgb(255, 255, 255)',
-                minHeight: "100vh",
-                padding: "20px",
-                paddingTop: "180px"
-            }}
+            
+            className="admin-home"
         >
             <Navbar />
 
             <div
                 className="container border rounded p-2 shadow"
-                
+                style={{backgroundColor: "rgb(158, 210, 231)"}}
             >
                 <table style={{ width: "100%", textAlign: "center", display: "flex", justifyContent: "center" }}>
                     <tbody
@@ -60,7 +56,7 @@ const AdminHome = () => {
 
             <div
                 className="container border rounded shadow"
-                style={{ width: "100%"}}
+                style={{ width: "100%", backgroundColor: "rgb(158, 210, 231)" }}
             >
                 <h1 className="text-center mb-4">Admin Home</h1>
                 <Routes>

@@ -190,7 +190,6 @@ const PublishRide = () => {
               ))}
             </select>
           </div>
-
           <div className="container" style={{ display: 'flex', gap: '1rem' }}>
             <div className="form-group" style={{ flex: 1 }}>
               <label htmlFor="rideDate">Ride Date</label>
@@ -203,7 +202,6 @@ const PublishRide = () => {
                 min={new Date().toISOString().split("T")[0]}
               />
             </div>
-
             <div className="form-group" style={{ flex: 1 }}>
               <label htmlFor="rideTime">Ride Time</label>
               <input
@@ -215,7 +213,6 @@ const PublishRide = () => {
               />
             </div>
           </div>
-
           <div className="form-group" style={{ flex: 1 }}>
             <label htmlFor="expectedJourneyTime">Expected Journey Time</label>
             <input
@@ -227,7 +224,6 @@ const PublishRide = () => {
               required
             />
           </div>
-
           <div className="container" style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
             <div className="form-group" style={{ flex: '1 1 200px' }}>
               <label htmlFor="noseat">Total Seats</label>

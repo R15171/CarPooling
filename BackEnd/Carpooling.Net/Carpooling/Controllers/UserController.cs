@@ -330,6 +330,7 @@ namespace Carpooling.Controllers
                                .Where(r => r.Driver.Uid == uid && r.Status != "c")
                                .Include(r => r.SourceCityNavigation)
                                .Include(r => r.DestinationCityNavigation)
+                               .Include(r => r.Bookings)
                                .ToList();
 
                 return rides;
@@ -342,7 +343,11 @@ namespace Carpooling.Controllers
             using (carpoolingContext con = new carpoolingContext())
             {
                 var booking = con.Bookings
-                               .Where(r => r.Uid == uid && r.Ride.Status=="a").Include(i=>i.Ride.SourceCityNavigation).Include(i => i.Ride.DestinationCityNavigation).ToList();
+                               .Where(r => r.Uid == uid && r.Ride.Status=="a")
+                               .Include(i=>i.Ride.SourceCityNavigation)
+                               .Include(i => i.Ride.DestinationCityNavigation)
+                               .Include(i => i.Ride.Driver.UidNavigation)
+                               .ToList();
 
                 return booking;
             }
@@ -357,6 +362,8 @@ namespace Carpooling.Controllers
                                .Where(r => r.Driver.Uid == uid && r.Status == "c")
                                .Include(r => r.SourceCityNavigation)
                                .Include(r => r.DestinationCityNavigation)
+                               .Include(r => r.Triphistories)
+                               .Include(r=>r.Bookings)
                                .ToList();
 
                 return rides;
@@ -399,7 +406,24 @@ namespace Carpooling.Controllers
                 return Ok();
             }
         }
-
+        [HttpPost]
+        public Ride PublishRide(Ride ride)
+        {
+            using (carpoolingContext con = new carpoolingContext())
+            {
+                try
+                {
+                    con.Rides.Add(ride);
+                    con.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                    throw;
+                }
+            }
+            return ride;
+        }
 
     }
 }

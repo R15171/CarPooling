@@ -34,7 +34,7 @@ CREATE TABLE `booking` (
   KEY `booking_ibfk_2_idx` (`UID`),
   CONSTRAINT `booking_ibfk_1` FOREIGN KEY (`RideID`) REFERENCES `ride` (`RideID`) ON DELETE CASCADE,
   CONSTRAINT `booking_ibfk_2` FOREIGN KEY (`UID`) REFERENCES `user` (`UID`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +43,6 @@ CREATE TABLE `booking` (
 
 LOCK TABLES `booking` WRITE;
 /*!40000 ALTER TABLE `booking` DISABLE KEYS */;
-INSERT INTO `booking` VALUES (1,'2024-12-11 00:00:00.000000',1,8),(2,'2024-12-24 00:00:00.000000',3,10),(3,'2024-12-09 00:00:00.000000',1,2),(4,'2024-12-10 00:00:00.000000',1,3),(5,'2025-01-01 00:00:00.000000',4,15),(6,'2024-12-29 00:00:00.000000',6,11),(7,'2024-12-24 00:00:00.000000',3,7);
 /*!40000 ALTER TABLE `booking` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -124,7 +123,7 @@ CREATE TABLE `driver` (
   UNIQUE KEY `DrivingLicence` (`DrivingLicence`),
   KEY `driver_ibfk_1_idx` (`UID`),
   CONSTRAINT `driver_ibfk_1` FOREIGN KEY (`UID`) REFERENCES `user` (`UID`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133,7 +132,6 @@ CREATE TABLE `driver` (
 
 LOCK TABLES `driver` WRITE;
 /*!40000 ALTER TABLE `driver` DISABLE KEYS */;
-INSERT INTO `driver` VALUES (1,'GJ0520051234567',22,1,'GJ05AA1000 Range Rover','v'),(2,'KA0420209876543',23,2,'KA12BD0001 Toyota Innova','v'),(3,'DL0320197654321',23,3,'DL01AA0033 Hyundai Creta','v'),(4,'GJ0620223456789',35,8,'GJ06NN5555 Ford EcoSport','n'),(5,'MH1220151234567',28,11,'MH12DE1234 Maruti Suzuki Swift','n'),(6,'KA0420189876543',29,20,'KA03PQ5678 Hyundai i20','v'),(7,'DL0520207654321',27,13,'DL05LM4321 Tata Nexon','n'),(8,'TN1120193456789',29,5,'TN11GH8765 Mahindra Scorpio','n');
 /*!40000 ALTER TABLE `driver` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -245,7 +243,7 @@ CREATE TABLE `payment` (
   PRIMARY KEY (`PaymentID`),
   KEY `BookingID` (`BookingID`),
   CONSTRAINT `payment_ibfk_1` FOREIGN KEY (`BookingID`) REFERENCES `booking` (`BookingID`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -254,7 +252,6 @@ CREATE TABLE `payment` (
 
 LOCK TABLES `payment` WRITE;
 /*!40000 ALTER TABLE `payment` DISABLE KEYS */;
-INSERT INTO `payment` VALUES (1,2000,'2024-12-13 15:45:00.000000',1,'s'),(2,2000,'2024-12-13 15:45:00.000000',3,'s'),(3,2000,'2024-12-13 15:45:00.000000',4,'s');
 /*!40000 ALTER TABLE `payment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -274,7 +271,7 @@ CREATE TABLE `ride` (
   `noseat` int NOT NULL,
   `ridedate` datetime(6) NOT NULL,
   `RideComplete` datetime NOT NULL,
-  `status` char(1) NOT NULL,
+  `status` char(1) DEFAULT NULL,
   PRIMARY KEY (`RideID`),
   KEY `ride_cityid_s_idx` (`SourceCity`),
   KEY `ride_cityid_d_idx` (`DestinationCity`),
@@ -282,7 +279,7 @@ CREATE TABLE `ride` (
   CONSTRAINT `ride_cityid_d` FOREIGN KEY (`DestinationCity`) REFERENCES `city` (`CityId`) ON DELETE CASCADE,
   CONSTRAINT `ride_cityid_s` FOREIGN KEY (`SourceCity`) REFERENCES `city` (`CityId`) ON DELETE CASCADE,
   CONSTRAINT `ride_ibfk_1` FOREIGN KEY (`DriverID`) REFERENCES `driver` (`DriverID`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -291,7 +288,6 @@ CREATE TABLE `ride` (
 
 LOCK TABLES `ride` WRITE;
 /*!40000 ALTER TABLE `ride` DISABLE KEYS */;
-INSERT INTO `ride` VALUES (1,1,4,2,2000,3,'2024-12-12 10:45:00.000000','2024-12-12 20:45:00','c'),(2,1,2,1,3000,4,'2025-01-02 09:30:00.000000','2025-01-02 19:30:00','c'),(3,2,2,3,1000,5,'2025-01-10 19:30:00.000000','2025-01-11 00:30:00','a'),(4,7,2,4,700,2,'2025-01-12 22:45:00.000000','2025-01-13 05:45:00','n'),(5,1,2,4,500,4,'2025-01-02 09:30:00.000000','2025-01-02 15:30:00','c'),(6,6,1,2,1000,5,'2025-01-10 22:30:00.000000','2025-01-11 05:30:00','a'),(7,6,1,2,8000,3,'2025-01-20 18:45:00.000000','2025-01-21 08:45:00','a');
 /*!40000 ALTER TABLE `ride` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -323,6 +319,8 @@ DELIMITER ;;
         -- RideComplete is in the past or equal to the current time
         IF driver_status = 'v' THEN
             SET NEW.`status` = 'c';
+		ELSEIF driver_status = 'n' THEN
+			SET NEW.`status` = 'c';
         END IF;
     END IF;
 END */;;
@@ -363,29 +361,10 @@ DELIMITER ;;
         -- RideComplete is in the past or equal to the current time
         IF driver_status = 'v' THEN
             SET NEW.`status` = 'c';
+		ELSEIF driver_status = 'n' THEN
+			SET NEW.`status` = 'c';
         END IF;
-    END IF;
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `after_ride_update_completed` AFTER UPDATE ON `ride` FOR EACH ROW BEGIN
-    -- Check if the status is updated to 'completed' and was not previously 'completed'
-    IF NEW.status = 'c' AND OLD.status != 'c' THEN
-        -- Insert the RideID into the triphistory table
-        INSERT INTO triphistory (RideID)
-        VALUES (NEW.RideID);
+        -- SET NEW.`status` ='c';
     END IF;
 END */;;
 DELIMITER ;
@@ -433,7 +412,7 @@ CREATE TABLE `triphistory` (
   PRIMARY KEY (`TripID`),
   KEY `RideID` (`RideID`),
   CONSTRAINT `triphistory_ibfk_1` FOREIGN KEY (`RideID`) REFERENCES `ride` (`RideID`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -442,7 +421,6 @@ CREATE TABLE `triphistory` (
 
 LOCK TABLES `triphistory` WRITE;
 /*!40000 ALTER TABLE `triphistory` DISABLE KEYS */;
-INSERT INTO `triphistory` VALUES (1,1,8,'Excellent'),(2,1,2,'Very Good');
 /*!40000 ALTER TABLE `triphistory` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -467,7 +445,7 @@ CREATE TABLE `user` (
   UNIQUE KEY `Contactno` (`Contactno`),
   KEY `rid_fk_idx` (`RID`),
   CONSTRAINT `rid_fk` FOREIGN KEY (`RID`) REFERENCES `role` (`rid`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -476,7 +454,6 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'A-Rushikesh Patil','9313350998','rishispatil2002@gmail.com','male','2002-05-24','Abc1234','abc street, surat, gujarat -100000',1),(2,'A-Omkar Patil','7038171191','ompatil1304@gmail.com','male','2001-04-13','Omkar13045','Shree vihar nigdi behind appughar-411044',1),(3,'A-Siddharth Patil','8830150091','sidpatil851@gmail.com','male','2001-08-26','Sid@2001','202, Tivona Aprtments, Baner',1),(4,'Rahul Deshmukh','9098765432','rahul.deshmukh@gmail.com','male','2001-06-22','Rahul@567','33 Sunrise Apartments, Nagpur, Maharashtra - 440001',2),(5,'Sneha Sharma','8877665544','sneha.sharma@yahoo.com','female','1995-03-15','Sneha#789','45 Green Valley, Pune, Maharashtra - 411001',2),(6,'Aman Verma','9988776655','aman.verma@outlook.com','male','1992-09-12','Aman@123','12 Lake View, Bhopal, Madhya Pradesh - 462001',2),(7,'Priya Singh','9876543210','priya.singh@gmail.com','female','1998-07-20','Priya@456','55 Rosewood Apartments, Jaipur, Rajasthan - 302001',2),(8,'Kunal Thakur','8765432109','kunal.thakur@gmail.com','male','1989-02-10','Kunal$321','8 Palm Grove, Chandigarh - 160001',2),(9,'Anjali Mehta','9654321098','anjali.mehta@gmail.com','female','1993-11-25','Anjali!789','23 Amber Heights, Surat, Gujarat - 395007',2),(10,'Rohit Patil','8543210987','rohit.patil@yahoo.com','male','2000-01-10','Rohit%123','67 Marine Drive, Mumbai, Maharashtra - 400001',2),(11,'Megha Kapoor','9432109876','megha.kapoor@outlook.com','female','1996-05-18','Megha*567','90 Silver Springs, Lucknow, Uttar Pradesh - 226001',2),(12,'Arjun Khanna','8321098765','arjun.khanna@gmail.com','male','1994-08-30','Arjun@999','19 Park Avenue, Hyderabad, Telangana - 500001',2),(13,'Riya Agarwal','7210987654','riya.agarwal@gmail.com','female','1997-10-14','Riya@234','29 Maple Residency, Indore, Madhya Pradesh - 452001',2),(14,'Vikas Yadav','9109876543','vikas.yadav@gmail.com','male','1991-04-22','Vikas@567','44 Sunrise Towers, Delhi - 110001',2),(15,'Pooja Bansal','8098765432','pooja.bansal@gmail.com','female','1990-06-19','Pooja@678','32 Emerald Plaza, Kolkata, West Bengal - 700001',2),(16,'Nikhil Jain','7987654321','nikhil.jain@gmail.com','male','1988-03-12','Nikhil@789','12 Blossom Villa, Bangalore, Karnataka - 560001',2),(17,'Simran Kaur','6876543210','simran.kaur@gmail.com','female','1999-12-01','Simran@890','56 Ocean Heights, Chennai, Tamil Nadu - 600001',2),(18,'Manish Gupta','5765432109','manish.gupta@gmail.com','male','1987-09-09','Manish@123','88 Pearl Residency, Ahmedabad, Gujarat - 380001',2),(19,'Neha Saxena','4654321098','neha.saxena@gmail.com','female','1994-07-21','Neha@345','45 Sunshine Towers, Kanpur, Uttar Pradesh - 208001',2),(20,'Abhishek Malhotra','3543210987','abhishek.malhotra@gmail.com','male','1995-11-15','Abhishek@567','31 Star Apartments, Patna, Bihar - 800001',2),(21,'Isha Rai','2432109876','isha.rai@gmail.com','female','1992-08-25','Isha@678','73 Skyline Plaza, Coimbatore, Tamil Nadu - 641001',2),(22,'Rajesh Kumar','1321098765','rajesh.kumar@gmail.com','male','1990-02-05','Rajesh@789','50 Moonlight Towers, Bhubaneswar, Odisha - 751001',2),(23,'Anita Chauhan','0210987654','anita.chauhan@gmail.com','female','1989-10-29','Anita@890','11 Valley View, Jaipur, Rajasthan - 302002',2),(24,'New Temp','1234567890','abcd123@gmail.com','male','2000-11-11','Abc1234@','pune maharastra',2);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -517,4 +494,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-06 15:45:33
+-- Dump completed on 2025-02-05 23:01:30

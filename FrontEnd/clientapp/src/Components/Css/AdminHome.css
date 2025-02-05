@@ -1,5 +1,7 @@
-.features{
-    background: #B1F0F7;
-    min-height : "100vh";
-    padding: "20px";
+.admin-home {
+
+    min-height : 100vh;
+    background-color: #D4EBF8;
+    padding: 20px;
+    padding-top: 180px
 }

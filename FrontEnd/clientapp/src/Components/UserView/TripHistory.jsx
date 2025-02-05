@@ -29,10 +29,10 @@ const TripHistory = () => {
   return (<>
     <Navbar />
     <div className="container mt-4" style={{ paddingTop: "150px" }}>
-      <div className="row">
+      <div className="row" >
         {/* Column for Trips Published */}
-        <div className="col-md-6">
-          <div className="card shadow-lg border-0">
+        <div className="col-md-6" >
+          <div className="card shadow-lg border-0" style={{ backgroundColor: "rgba(125, 145, 255, 0.53)" }} >
             <div className="card-body">
               <h2 className="card-title mb-4 text-center">Trips Published</h2>
 
@@ -46,6 +46,12 @@ const TripHistory = () => {
                         <p className="mb-1">Seats Available: {trip.noseat}</p>
                         <p className="mb-1">Fare ₹: {trip.fare}</p>
                         <p className="mb-0">Status: {trip.status === 'c' ? 'Completed' : 'Canceled'}</p>
+                        <p className="mb-0">Bookings: {trip.bookings.length}</p>
+                        <p className="mb-0">Rating: {
+                        trip.triphistories.map((tripHistory) => tripHistory.rating)
+                        .reduce((a, b) => a + b, 0) / trip.triphistories.length
+                        }</p>
+                        
                       </div>
                     </div>
                   </div>
@@ -58,7 +64,7 @@ const TripHistory = () => {
 
         {/* Column for Trips Booked */}
         <div className="col-md-6">
-          <div className="card shadow-lg border-0">
+          <div className="card shadow-lg border-0" style={{ backgroundColor: "rgba(125, 145, 255, 0.53)" }}>
             <div className="card-body">
               <h2 className="card-title mb-4 text-center">Trips Booked</h2>
 
