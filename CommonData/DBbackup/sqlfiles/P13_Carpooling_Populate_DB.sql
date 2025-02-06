@@ -24,11 +24,13 @@ VALUES
 ('Abhishek Malhotra', '3543210987', 'abhishek.malhotra@abc.com', 'male', '1995-11-15', 'Abhishek@567', '31 Star Apartments, Patna, Bihar - 800001'),
 ('Isha Rai', '2432109876', 'isha.rai@abc.com', 'female', '1992-08-25', 'Isha@678', '73 Skyline Plaza, Coimbatore, Tamil Nadu - 641001'),
 ('Rajesh Kumar', '1321098765', 'rajesh.kumar@abc.com', 'male', '1990-02-05', 'Rajesh@789', '50 Moonlight Towers, Bhubaneswar, Odisha - 751001'),
-('Anita Chauhan', '0210987654', 'anita.chauhan@abc.com', 'female', '1989-10-29', 'Anita@890', '11 Valley View, Jaipur, Rajasthan - 302002');
+('Anita Chauhan', '0210987654', 'anita.chauhan@abc.com', 'female', '1989-10-29', 'Anita@890', '11 Valley View, Jaipur, Rajasthan - 302002'),
+('A-Rinkesh Mailapur', '8971263768', 'rinkeshmailapur229@gmail.com.com', 'male', '2000-08-01', 'Rinkesh@2000', 'Kalburgi, Karnataka -585104');
 
 UPDATE `user` SET `rid` = '1' WHERE (`uid` = '1');
 UPDATE `user` SET `rid` = '1' WHERE (`uid` = '2');
 UPDATE `user` SET `rid` = '1' WHERE (`uid` = '3');
+UPDATE `user` SET `rid` = '1' WHERE (`uid` = '24');
 
 INSERT INTO driver (`DrivingLicence`, `UID`, `VehicleInfo`) 
 VALUES 

@@ -9,6 +9,7 @@ const TripHistory = () => {
   const [selectedTrip, setSelectedTrip] = useState(null);
   const [rating, setRating] = useState(0);
   const [feedback, setfeedback] = useState('');
+  const [feedbackSubmitted, setFeedbackSubmitted] = useState(false);
   const userInfo = useSelector((state) => state.user.userInfo);
 
   const formatDate = (date) => {
@@ -42,6 +43,7 @@ const TripHistory = () => {
       alert("Please provide both rating and feedback.");
       return;
     }
+    setFeedbackSubmitted(true);
 
     const feedbackData = {
       rideId: selectedTrip.rideId,
@@ -61,6 +63,7 @@ const TripHistory = () => {
         setShowFeedbackModal(false);
         setRating(0);
         setfeedback('');
+        setFeedbackSubmitted(false);
       })
       .catch(error => console.error('Error submitting feedback:', error));
   };
@@ -85,8 +88,8 @@ const TripHistory = () => {
                         <p className="mb-1">Fare ₹: {trip.fare}</p>
                         <p className="mb-0">Status: {trip.status === 'c' ? 'Completed' : 'Canceled'}</p>
                         <p className="mb-0">Bookings: {trip.bookings.length}</p>
-                        <p className="mb-0">Rating: {trip.triphistories.length > 0 
-                          ? (trip.triphistories.reduce((a, b) => a + b.rating, 0) / trip.triphistories.length).toFixed(1) 
+                        <p className="mb-0">Rating: {trip.triphistories.length > 0
+                          ? (trip.triphistories.reduce((a, b) => a + b.rating, 0) / trip.triphistories.length).toFixed(1)
                           : "No Ratings Yet"}</p>
                       </div>
                     </div>
@@ -126,37 +129,41 @@ const TripHistory = () => {
       {/* Feedback Modal */}
       {showFeedbackModal && (
         <div className="modal fade show d-block" tabIndex="-1" role="dialog">
-          <div className="modal-dialog" role="document">
-            <div className="modal-content">
-              <div className="modal-header" >
-                <h5 className="modal-title">Submit Feedback</h5>
-                <button type="button" className="close" onClick={() => setShowFeedbackModal(false)}>
-                  <span>&times;</span>
-                </button>
-              </div>
-              <div className="modal-body">
-                <label>Rating (0-10):</label>
-                <input
-                  type="number"
-                  min="0"
-                  max="10"
-                  className="form-control"
-                  value={rating}
-                  onChange={(e) => setRating(parseInt(e.target.value))}
-                />
-                <label className="mt-3">Feedback:</label>
-                <textarea
-                  className="form-control"
-                  rows="3"
-                  value={feedback}
-                  onChange={(e) => setfeedback(e.target.value)}
-                />
-              </div>
-              <div className="modal-footer">
-                <button type="button" className="btn btn-primary" onClick={submitFeedback}>Submit</button>
-              </div>
+        <div className="modal-dialog" role="document" style={{ paddingTop: '120px' }}>
+          <div className="modal-content">
+      
+            <div className="modal-header d-flex justify-content-between">
+              <h5 className="modal-title">Submit Feedback</h5>
+              <button type="button" className="close" onClick={() => setShowFeedbackModal(false)}>
+                <span>❌</span>
+              </button>
+            </div>
+      
+            <div className="modal-body">
+              <label>Rating (0-10):</label>
+              <input
+                type="number"
+                min="0"
+                max="10"
+                className="form-control"
+                value={rating}
+                onChange={(e) => setRating(parseInt(e.target.value))}
+              />
+              <label className="mt-3">Feedback:</label>
+              <textarea
+                className="form-control"
+                rows="3"
+                value={feedback}
+                onChange={(e) => setfeedback(e.target.value)}
+              />
+            </div>
+            <div className="modal-footer">
+              <button type="button" className="btn btn-primary" onClick={submitFeedback}>
+                {feedbackSubmitted ? "Submitting..." : "Submit"}
+              </button>
             </div>
           </div>
+        </div>      
         </div>
       )}
     </>

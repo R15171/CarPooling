@@ -247,35 +247,84 @@ namespace Carpooling.Controllers
                     data.Add("Email", driver.Email);
                     data.Add("Name", driver.Name);
                     data.Add("Msg", $@"
-    <html>
-    <head>
-        <style>
-            body {{ font-family: Arial, sans-serif; line-height: 1.6; }}
-            .container {{ padding: 20px; border: 1px solid #ddd; border-radius: 5px; background-color: #f9f9f9; }}
-            h2 {{ color: #007bff; }}
-            p {{ margin: 10px 0; }}
-            .details {{ font-weight: bold; }}
-        </style>
-    </head>
-    <body>
-        <div class='container'>
-            <h2>New Ride Booking Notification</h2>
-            <p>Dear <b>{driver.Name}</b>,</p>
-            <p>You have a new ride booking for your ride.</p>
-            <p><span class='details'>From:</span> {ride.SourceCityNavigation.Cityname} </p>
-            <p><span class='details'>To:</span> {ride.DestinationCityNavigation.Cityname} </p>
-            <p><span class='details'>Date:</span> {ride.Ridedate}</p>
-            
-            <h3>Passenger Details:</h3>
-            <p><span class='details'>Name:</span> {passenger.Name}</p>
-            <p><span class='details'>Contact:</span> {passenger.Contactno}</p>
-            <p><span class='details'>Email:</span> {passenger.Email}</p>
+                            <html>
+                                <head>
+                                    <style>
+                                        body {{
+                                            font-family: Arial, sans-serif;
+                                            background-color: #f4f4f4;
+                                            padding: 20px;
+                                        }}
+                                        .container {{
+                                            max-width: 600px;
+                                            margin: 0 auto;
+                                            background: #ffffff;
+                                            padding: 20px;
+                                            border-radius: 8px;
+                                            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                                        }}
+                                        h2 {{
+                                            color: #2C3E50;
+                                            text-align: center;
+                                            background-color: #007bff;
+                                            padding: 10px;
+                                            border-radius: 5px;
+                                            color: white;
+                                        }}
+                                        h3 {{
+                                            color: #E67E22;
+                                            margin-top: 20px;
+                                            border-bottom: 2px solid #E67E22;
+                                            padding-bottom: 5px;
+                                        }}
+                                        p {{
+                                            font-size: 16px;
+                                            line-height: 1.5;
+                                            color: #34495E;
+                                        }}
+                                        .details {{
+                                            font-weight: bold;
+                                            color: #E74C3C;
+                                        }}
+                                        .ride-info {{
+                                            background-color: #ECF0F1;
+                                            padding: 15px;
+                                            border-radius: 5px;
+                                            margin: 10px 0;
+                                        }}
+                                        .footer {{
+                                            margin-top: 20px;
+                                            font-size: 12px;
+                                            color: #888;
+                                            text-align: center;
+                                        }}
+                                    </style>
+                                </head>
+                                <body>
+                                    <div class='container'>
+                                        <h2>🚗 New Ride Booking Notification</h2>
+                                        <p>Dear <b>{driver.Name}</b>,</p>
+                                        <p>You have a new ride booking for your scheduled ride. Below are the details:</p>
 
-            <p>Thank you for using our ride-sharing service!</p>
-        </div>
-    </body>
-    </html>
-");
+                                        <div class='ride-info'>
+                                            <p><strong>🛣 From:</strong> {ride.SourceCityNavigation.Cityname}</p>
+                                            <p><strong>📍 To:</strong> {ride.DestinationCityNavigation.Cityname}</p>
+                                            <p><strong>📅 Date:</strong> {ride.Ridedate}</p>
+                                        </div>
+
+                                        <h3>👤 Passenger Details:</h3>
+                                        <p><span class='details'>Name:</span> {passenger.Name}</p>
+                                        <p><span class='details'>📞 Contact:</span> {passenger.Contactno}</p>
+                                        <p><span class='details'>✉ Email:</span> {passenger.Email}</p>
+
+                                        <p>Thank you for using our ride-sharing service! 🚀</p>
+
+                                        <hr>
+                                        <p class='footer'>This is an automated email. Please do not reply.</p>
+                                    </div>
+                                </body>
+                                </html>
+                                ");
 
                     data.Add("Sub", "Booking Notification");
 
@@ -443,6 +492,96 @@ namespace Carpooling.Controllers
                 {
                     con.Triphistories.Add(trip);
                     con.SaveChanges();
+
+                    Dictionary<string, string> data = new Dictionary<string, string>();
+
+
+                    Ride ride = con.Rides.Where(r => r.RideId == trip.RideId)
+                        .Include(d=>d.Driver)
+                        .Include(c=>c.SourceCityNavigation)
+                        .Include(c=>c.DestinationCityNavigation)
+                        .First();
+                    Booking booking = con.Bookings.Where(b => b.BookingId == trip.BookingId).First();
+
+                    User passenger = con.Users.FirstOrDefault(p => p.Uid == booking.Uid);  
+                    User driver = con.Users.FirstOrDefault(d => d.Uid == ride.Driver.Uid);
+
+                    data.Add("Email", driver.Email);
+                    data.Add("Name", driver.Name);
+                    data.Add("Msg", $@"
+                                <html>
+                                    <head>
+                                        <style>
+                                            body {{
+                                                font-family: Arial, sans-serif;
+                                                background-color: #f4f4f4;
+                                                padding: 20px;
+                                            }}
+                                            .container {{
+                                                max-width: 600px;
+                                                margin: 0 auto;
+                                                background: #ffffff;
+                                                padding: 20px;
+                                                border-radius: 8px;
+                                                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                                            }}
+                                            h2 {{
+                                                color: #2C3E50;
+                                                text-align: center;
+                                                background-color: #F39C12;
+                                                padding: 10px;
+                                                border-radius: 5px;
+                                                color: white;
+                                            }}
+                                            p {{
+                                                font-size: 16px;
+                                                line-height: 1.5;
+                                                color: #34495E;
+                                            }}
+                                            strong {{
+                                                color: #E74C3C;
+                                            }}
+                                            .ride-info {{
+                                                background-color: #ECF0F1;
+                                                padding: 15px;
+                                                border-radius: 5px;
+                                                margin: 10px 0;
+                                            }}
+                                            .footer {{
+                                                margin-top: 20px;
+                                                font-size: 12px;
+                                                color: #888;
+                                                text-align: center;
+                                            }}
+                                        </style>
+                                    </head>
+                                    <body>
+                                        <div class='container'>
+                                            <h2>Feedback</h2>
+                                            <p><strong>From:</strong> Mr./Mrs. {passenger.Name}</p>
+                                            <hr>
+
+                                            <div class='ride-info'>
+                                                <p><strong>For your ride:</strong></p>
+                                                <p><strong>From:</strong> {ride.SourceCityNavigation.Cityname}</p>
+                                                <p><strong>To:</strong> {ride.DestinationCityNavigation.Cityname}</p>
+                                                <p><strong>Date:</strong> {ride.Ridedate}</p>
+                                            </div>
+
+                                            <p><strong>Rating:</strong> ⭐ {trip.Rating}</p>
+                                            <p><strong>Feedback:</strong> {trip.Feedback}</p>
+
+                                            <hr>
+                                            <p class='footer'>This is an automated email. Please do not reply.</p>
+                                        </div>
+                                    </body>
+                                    </html>
+                                    ");
+
+                    data.Add("Sub", "FeedBack from Passenger");
+                 
+                    SendEmail(data);
+
                     return Ok(new { message = "Feedback submitted successfully." });
                 }
             }
