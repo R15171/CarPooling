@@ -376,36 +376,40 @@ namespace Carpooling.Controllers
             using (carpoolingContext con = new carpoolingContext())
             {
                 var booking = con.Bookings
-                               .Where(r => r.Uid == uid && r.Ride.Status == "c").Include(i => i.Ride.SourceCityNavigation).Include(i => i.Ride.DestinationCityNavigation).ToList();
+                               .Where(r => r.Uid == uid && r.Ride.Status == "c")
+                               .Include(i => i.Ride.SourceCityNavigation)
+                               .Include(i => i.Ride.DestinationCityNavigation)
+                               .Include(i => i.Triphistories)
+                               .ToList();
 
                 return booking;
             }
         }
 
-        [HttpPut]
-        public StatusCodeResult ProfileUpdate(User profile)
-        {
-            using (carpoolingContext con = new carpoolingContext())
-            {
-                User old = con.Users.Find(profile.Uid); 
+        //[HttpPut]
+        //public StatusCodeResult ProfileUpdate(User profile)
+        //{
+        //    using (carpoolingContext con = new carpoolingContext())
+        //    {
+        //        User old = con.Users.Find(profile.Uid); 
 
-                if (old == null)
-                {
-                    return NotFound(); 
-                }
+        //        if (old == null)
+        //        {
+        //            return NotFound(); 
+        //        }
 
-                old.Name = profile.Name;
-                old.Email = profile.Email;
-                old.Contactno = profile.Contactno;
-                old.Address= profile.Address;
-                old.Dob= profile.Dob;
-                old.Password = profile.Password;
-                old.Gender= profile.Gender;
-                con.SaveChanges(); 
+        //        old.Name = profile.Name;
+        //        old.Email = profile.Email;
+        //        old.Contactno = profile.Contactno;
+        //        old.Address= profile.Address;
+        //        old.Dob= profile.Dob;
+        //        old.Password = profile.Password;
+        //        old.Gender= profile.Gender;
+        //        con.SaveChanges(); 
 
-                return Ok();
-            }
-        }
+        //        return Ok();
+        //    }
+        //}
         [HttpPost]
         public Ride PublishRide(Ride ride)
         {
@@ -423,6 +427,33 @@ namespace Carpooling.Controllers
                 }
             }
             return ride;
+        }
+
+        [HttpPost]
+        public IActionResult GiveFeedback([FromBody] Triphistory trip)
+        {
+            if (trip == null)
+            {
+                return BadRequest("Trip information cannot be null.");
+            }
+
+            try
+            {
+                using (var con = new carpoolingContext())
+                {
+                    con.Triphistories.Add(trip);
+                    con.SaveChanges();
+                    return Ok(new { message = "Feedback submitted successfully." });
+                }
+            }
+            catch (DbUpdateException dbEx)
+            {
+                return StatusCode(500, new { message = "Database update failed.", error = dbEx.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "An unexpected error occurred.", error = ex.Message });
+            }
         }
 
     }

@@ -1,5 +1,5 @@
-CREATE DATABASE  IF NOT EXISTS `p13_carpooling` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `p13_carpooling`;
+CREATE DATABASE  IF NOT EXISTS `carpooling` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `carpooling`;
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
 -- Host: localhost    Database: p13_carpooling
@@ -409,8 +409,11 @@ CREATE TABLE `triphistory` (
   `RideID` int NOT NULL,
   `rating` int DEFAULT NULL,
   `Feedback` varchar(255) DEFAULT NULL,
+  `BookingId` int DEFAULT NULL,
   PRIMARY KEY (`TripID`),
   KEY `RideID` (`RideID`),
+  KEY `booking_fk_idx` (`BookingId`),
+  CONSTRAINT `booking_fk` FOREIGN KEY (`BookingId`) REFERENCES `booking` (`BookingID`),
   CONSTRAINT `triphistory_ibfk_1` FOREIGN KEY (`RideID`) REFERENCES `ride` (`RideID`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -494,4 +497,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-02-05 23:01:30
+-- Dump completed on 2025-02-06  0:56:52

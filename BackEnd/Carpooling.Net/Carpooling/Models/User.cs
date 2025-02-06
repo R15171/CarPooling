@@ -26,4 +26,3 @@ namespace Carpooling.Models
         public virtual ICollection<Driver> Drivers { get; set; }
     }
 }
-    

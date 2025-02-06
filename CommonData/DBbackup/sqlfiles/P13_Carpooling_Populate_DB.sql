@@ -1,4 +1,4 @@
-use P13_Carpooling;
+use p13_carpooling;
 
 INSERT INTO `user` (`Name`, `Contactno`, `Email`, `gender`, `dob`, `Password`, `Address`) 
 VALUES 
@@ -36,10 +36,15 @@ VALUES
 ('KA0420209876543', '2', 'KA12BD0001 Toyota Innova'),
 ('DL0320197654321', '3', 'DL01AA0033 Hyundai Creta'),
 ('GJ0620223456789', '8', 'GJ06NN5555 Ford EcoSport'),
-('MH1220151234567', '11', 'MH12DE1234 Maruti Suzuki Swift'),
+('MH1220151234567', '11', 'MH12DE1234 MarutiSuzuki Swift'),
 ('KA0420189876543', '20', 'KA03PQ5678 Hyundai i20'),
 ('DL0520207654321', '13', 'DL05LM4321 Tata Nexon'),
-('TN1120193456789', '5', 'TN11GH8765 Mahindra Scorpio');
+('TN1120193456789', '5', 'TN11GH8765 Mahindra Scorpio'),
+('HR0320197654321', '6', 'HR01AA0032 Hyundai Creta'),
+('MP0620223456789', '18', 'MP06NN5525 Ford EcoSport'),
+('KL1220151234567', '10', 'KL12DE1284 Maruti Suzuki Swift'),
+('TN0420189876543', '21', 'TN03PQ5698 Hyundai i20'),
+('PB0520207654321', '22', 'PB05LM4351 Tata Nexon');
 
 
 UPDATE driver SET `status` = 'v' WHERE (`DriverID` = '1');
@@ -47,6 +52,12 @@ UPDATE driver SET `status` = 'v' WHERE (`DriverID` = '2');
 UPDATE driver SET `status` = 'v' WHERE (`DriverID` = '3');
 UPDATE driver SET `status` = 'v' WHERE (`DriverID` = '6');
 UPDATE driver SET `status` = 'v' WHERE (`DriverID` = '8');
+UPDATE driver SET `status` = 'v' WHERE (`DriverID` = '10');
+UPDATE driver SET `status` = 'v' WHERE (`DriverID` = '5');
+UPDATE driver SET `status` = 'v' WHERE (`DriverID` = '11');
+
+
+
 INSERT INTO ride (`DriverID`, `SourceCity`, `DestinationCity`, `Fare`, `noseat`, `ridedate`,`ridecomplete`) 
 VALUES 
 ('1', '4', '2', '2000', '3', '2024-12-12 10:45:00', '2024-12-12 20:45:00'),
@@ -60,7 +71,18 @@ VALUES
 ('7', '2', '4', '700', '2', '2025-02-21 22:45:00', '2025-02-22 05:45:00'),
 ('1', '2', '4', '500', '4', '2025-03-01 09:30:00','2025-03-01 15:30:00'),
 ('6', '1', '2', '1000', '5', '2025-03-15 22:30:00', '2025-03-16 05:30:00'),
-('8', '1', '2', '8000', '3', '2025-02-20 18:45:00', '2025-02-21 08:45:00');
+('8', '1', '2', '8000', '3', '2025-02-20 18:45:00', '2025-02-21 08:45:00'),
+('10', '4', '2', '2000', '3', '2024-12-12 10:45:00', '2024-12-12 20:45:00'),
+('10', '2', '1', '3000', '4', '2025-02-10 09:30:00','2025-02-10 19:30:00'),
+('5', '2', '3', '1000', '5', '2025-02-10 19:30:00', '2025-02-11 00:30:00'),
+('11', '2', '4', '700', '2', '2025-02-12 22:45:00', '2025-02-13 05:45:00'),
+('11', '2', '4', '500', '4', '2025-02-04 09:30:00','2025-02-04 15:30:00'),
+('6', '1', '2', '1000', '5', '2025-01-10 22:30:00', '2025-01-11 05:30:00'),
+('1', '2', '1', '3000', '4', '2025-02-11 09:30:00','2025-02-11 19:30:00'),
+('6', '2', '3', '1000', '5', '2025-02-14 19:30:00', '2025-02-15 00:30:00'),
+('5', '2', '4', '700', '2', '2025-02-21 22:45:00', '2025-02-22 05:45:00'),
+('8', '2', '4', '500', '4', '2025-03-01 09:30:00','2025-03-01 15:30:00'),
+('10', '1', '2', '1000', '5', '2025-03-15 22:30:00', '2025-03-16 05:30:00');
 
 INSERT INTO booking (`bookingdate`, `RideID`, `UID`) VALUES 
 ('2024-12-11', '1', '8'),
@@ -77,7 +99,8 @@ INSERT INTO booking (`bookingdate`, `RideID`, `UID`) VALUES
 ('2024-12-24', '3', '1'),
 ('2025-01-21','8','1'),
 ('2025-02-01','12','1'),
-('2025-01-25','5','20');
+('2025-01-30','17','1'),
+('2025-01-8','18','1');
 
 INSERT INTO `payment` (`Amount`, `date`, `BookingID`, `Status`)
 VALUES
@@ -85,9 +108,7 @@ VALUES
 ('2000', '2024-12-13 15:45:00', '3', 's'),
 ('2000', '2024-12-13 15:45:00', '4', 's');
 
-INSERT INTO triphistory (`RideID`,`rating`, `Feedback`) 
+INSERT INTO `triphistory` (`RideID`,`rating`, `Feedback`,`BookingId`) 
 VALUES
-('1', '8', 'Excellent'),
-('1', '6', 'Very Good'),
-('5', '8', 'Excellent'),
-('5', '7', 'Very Good');
+('1', '8', 'Excellent','1'),
+('5', '7', 'Very Good','15');

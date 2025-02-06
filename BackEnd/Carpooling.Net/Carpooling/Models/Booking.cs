@@ -8,6 +8,7 @@ namespace Carpooling.Models
         public Booking()
         {
             Payments = new HashSet<Payment>();
+            Triphistories = new HashSet<Triphistory>();
         }
 
         public int BookingId { get; set; }
@@ -18,5 +19,6 @@ namespace Carpooling.Models
         public virtual Ride? Ride { get; set; } = null!;
         public virtual User? UidNavigation { get; set; } = null!;
         public virtual ICollection<Payment> Payments { get; set; }
+        public virtual ICollection<Triphistory> Triphistories { get; set; }
     }
 }

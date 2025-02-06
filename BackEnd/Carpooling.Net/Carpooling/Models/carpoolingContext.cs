@@ -30,7 +30,7 @@ namespace Carpooling.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseMySql("server=localhost;port=3306;user=root;password=1215;database=P13_Carpooling", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.2.0-mysql"));
+                optionsBuilder.UseMySql("server=localhost;port=3306;user=root;password=1215;database=p13_carpooling", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.2.0-mysql"));
             }
         }
 
@@ -184,7 +184,7 @@ namespace Carpooling.Models
                 entity.Property(e => e.Rid).HasColumnName("rid");
 
                 entity.Property(e => e.Rname)
-                    .HasMaxLength(10)
+                    .HasMaxLength(255)
                     .HasColumnName("rname");
             });
 
@@ -197,6 +197,8 @@ namespace Carpooling.Models
 
                 entity.HasIndex(e => e.RideId, "RideID");
 
+                entity.HasIndex(e => e.BookingId, "booking_fk_idx");
+
                 entity.Property(e => e.TripId).HasColumnName("TripID");
 
                 entity.Property(e => e.Feedback).HasMaxLength(255);
@@ -204,6 +206,11 @@ namespace Carpooling.Models
                 entity.Property(e => e.Rating).HasColumnName("rating");
 
                 entity.Property(e => e.RideId).HasColumnName("RideID");
+
+                entity.HasOne(d => d.Booking)
+                    .WithMany(p => p.Triphistories)
+                    .HasForeignKey(d => d.BookingId)
+                    .HasConstraintName("booking_fk");
 
                 entity.HasOne(d => d.Ride)
                     .WithMany(p => p.Triphistories)
@@ -227,9 +234,7 @@ namespace Carpooling.Models
 
                 entity.Property(e => e.Address).HasMaxLength(255);
 
-                entity.Property(e => e.Dob)
-                    .HasMaxLength(6)
-                    .HasColumnName("dob");
+                entity.Property(e => e.Dob).HasColumnName("dob");
 
                 entity.Property(e => e.Email).HasMaxLength(255);
 
@@ -243,7 +248,7 @@ namespace Carpooling.Models
 
                 entity.Property(e => e.Rid)
                     .HasColumnName("RID")
-                    .HasDefaultValueSql("'3'");
+                    .HasDefaultValueSql("'2'");
 
                 entity.HasOne(d => d.RidNavigation)
                     .WithMany(p => p.Users)

@@ -51,7 +51,6 @@ E:\CDAC\CarPooling\BackEnd\Carpooling.Net\Carpooling\obj\Debug\net6.0\refint\Car
 E:\CDAC\CarPooling\BackEnd\Carpooling.Net\Carpooling\obj\Debug\net6.0\Carpooling.pdb
 E:\CDAC\CarPooling\BackEnd\Carpooling.Net\Carpooling\obj\Debug\net6.0\Carpooling.genruntimeconfig.cache
 E:\CDAC\CarPooling\BackEnd\Carpooling.Net\Carpooling\obj\Debug\net6.0\ref\Carpooling.dll
-E:\CDAC\CarPooling\BackEnd\Carpooling.Net\Carpooling\obj\Debug\net6.0\staticwebassets.upToDateCheck.txt
 C:\Users\omkar\OneDrive\Documents\GitHub\CarPooling\BackEnd\Carpooling.Net\Carpooling\bin\Debug\net6.0\appsettings.Development.json
 C:\Users\omkar\OneDrive\Documents\GitHub\CarPooling\BackEnd\Carpooling.Net\Carpooling\bin\Debug\net6.0\appsettings.json
 C:\Users\omkar\OneDrive\Documents\GitHub\CarPooling\BackEnd\Carpooling.Net\Carpooling\bin\Debug\net6.0\Carpooling.exe
@@ -110,3 +109,4 @@ E:\CDAC\CarPooling\BackEnd\Carpooling.Net\Carpooling\bin\Debug\net6.0\System.Sec
 E:\CDAC\CarPooling\BackEnd\Carpooling.Net\Carpooling\bin\Debug\net6.0\System.Text.Encoding.CodePages.dll
 E:\CDAC\CarPooling\BackEnd\Carpooling.Net\Carpooling\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll
 E:\CDAC\CarPooling\BackEnd\Carpooling.Net\Carpooling\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Text.Encoding.CodePages.dll
+E:\CDAC\CarPooling\BackEnd\Carpooling.Net\Carpooling\obj\Debug\net6.0\staticwebassets.upToDateCheck.txt

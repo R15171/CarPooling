@@ -9,7 +9,9 @@ namespace Carpooling.Models
         public int RideId { get; set; }
         public int? Rating { get; set; }
         public string? Feedback { get; set; }
+        public int? BookingId { get; set; }
 
-        public virtual Ride Ride { get; set; } = null!;
+        public virtual Booking? Booking { get; set; }
+        public virtual Ride? Ride { get; set; } = null!;
     }
 }
