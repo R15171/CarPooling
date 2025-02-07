@@ -113,6 +113,9 @@ const Login = () => {
               <p className="mt-3 text-center">
                 Don't have an account? <a href="/register">Register here</a>
               </p>
+              <p className="mt-3 text-center">
+                 <a href="/forget">Forget Password?</a>
+              </p>
             </form>
             <div className='text-danger text-center mt-2'>{msg}</div>
           </div>

@@ -2,11 +2,9 @@ import logo from './logo.svg';
 import './App.css';
 import Login from './Components/Signin-Signup/Login';
 import Home from './Components/UserView/Home';
-import RegistrationForm from './Components/Signin-Signup/RegistrationForm';
 import { Route, Routes, Link } from 'react-router-dom';
 import FindRide from './Components/UserView/FindRide';
 import AdminHome from './Components/AdminView/AdminHome';
-import VerifyDriver from './Components/AdminView/VerifyDriver';
 import PublishRide from './Components/DriverView/PublishRide';
 import AddDriver from './Components/DriverView/AddDriver';
 import Footer from './Components/Layout/Footer';
@@ -15,12 +13,13 @@ import UserRides from './Components/UserView/UserRides';
 import TripHistory from './Components/UserView/TripHistory';
 import UserProfile from './Components/Signin-Signup/Profile';
 import Payment from './Components/UserView/Payment';
+import ForgotPassword from './Components/Signin-Signup/Forget';
 
 
 
 
 function App() {
-  return (<div className="App" >
+  return (<div className="App">
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
@@ -33,6 +32,7 @@ function App() {
       <Route path="/admin/*" element={<AdminHome />} />
       <Route path="/history" element={<TripHistory/>} />
       <Route path="/payment" element={<Payment/>} />
+      <Route path="/forget" element={<ForgotPassword/>} />
       <Route path='*' element={<Home />} />
     </Routes>
     <div>
