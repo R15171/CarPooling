@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import com.RideShare.CarPool.Entities.User;
 import com.RideShare.CarPool.Repositories.UserRepository;
@@ -50,11 +52,26 @@ public class UserService {
         // Send welcome email
         String subject = "Welcome to Carpool!";
         String body = "<html>" +
+                      "<head>" +
+                      "<style>" +
+                      "body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; }" +
+                      ".container { max-width: 600px; background: #ffffff; padding: 20px; border-radius: 10px; " +
+                      "box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); text-align: center; }" +
+                      "h2 { color: #333; }" +
+                      "p { font-size: 16px; color: #555; }" +
+                      ".footer { margin-top: 20px; font-size: 14px; color: #777; text-align: center; }" +
+                      ".button { display: inline-block; padding: 10px 20px; font-size: 16px; color: #fff; " +
+                      "background: #007bff; text-decoration: none; border-radius: 5px; margin-top: 15px; }" +
+                      "</style>" +
+                      "</head>" +
                       "<body>" +
-                      "<h2>Hello " + user.getName() + ",</h2>" +
-                      "<p>Welcome to <strong>Carpool!</strong> Your account has been successfully created.</p>" +
-                      "<p>Enjoy your rides!</p>" +
-                      "<p>Best Regards,<br>Carpooling Team</p>" +
+                      "<div class='container'>" +
+                      "<h2>Welcome, " + user.getName() + "!</h2>" +
+                      "<p>We're excited to have you at <strong>Carpool!</strong> Your account has been successfully created.</p>" +
+                      "<p>Start booking or publishing rides now and enjoy seamless travel experiences.</p>" +
+                      "<a href='https://carpool.com/login' class='button'>Get Started</a>" +
+                      "<p class='footer'>&copy; 2025 Carpool. All rights reserved.</p>" +
+                      "</div>" +
                       "</body>" +
                       "</html>";
 
@@ -62,6 +79,7 @@ public class UserService {
 
         return savedUser;
     }
+
 
 
 
@@ -87,7 +105,44 @@ public class UserService {
         return true; // Successful update
     }
     
-    
+    public ResponseEntity<String> forgetPassword(String email, String contact) {
+        User user = userRepository.findUserBYEmail(email, contact);
+        
+        if (user == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found.");
+        }
+
+        String subject = "Password Recovery - Carpool";
+        String body = "<html>" +
+                      "<head>" +
+                      "<style>" +
+                      "body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; }" +
+                      ".container { max-width: 600px; background: #ffffff; padding: 20px; border-radius: 10px; " +
+                      "box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); text-align: center; }" +
+                      "h2 { color: #333; }" +
+                      "p { font-size: 16px; color: #555; }" +
+                      ".password-box { background: #f8d7da; padding: 10px; border-radius: 5px; " +
+                      "color: #721c24; font-weight: bold; display: inline-block; margin-top: 10px; }" +
+                      ".footer { margin-top: 20px; font-size: 14px; color: #777; text-align: center; }" +
+                      "</style>" +
+                      "</head>" +
+                      "<body>" +
+                      "<div class='container'>" +
+                      "<h2>Password Recovery</h2>" +
+                      "<p>Hello " + user.getName() + ",</p>" +
+                      "<p>You requested a password reset. Here is your password:</p>" +
+                      "<div class='password-box'>" + user.getPassword() + "</div>" +
+                      "<p>If you did not request this, please change your password immediately.</p>" +
+                      "<p class='footer'>&copy; 2025 Carpool. All rights reserved.</p>" +
+                      "</div>" +
+                      "</body>" +
+                      "</html>";
+
+        emailService.sendEmail(email, subject, body);
+        
+        return ResponseEntity.ok("Password sent to your email.");
+    }
+
     
 }//service class
 

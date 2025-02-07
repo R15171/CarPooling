@@ -12,5 +12,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	@Query("SELECT u FROM User u WHERE u.contactno = :contactno")
 	 User findUserByContact(String contactno);
 	
-	
+	@Query("SELECT u FROM User u WHERE u.email = :email AND u.contactno = :contact")
+	 User findUserBYEmail(String email,String contact);
 }//UserRepository

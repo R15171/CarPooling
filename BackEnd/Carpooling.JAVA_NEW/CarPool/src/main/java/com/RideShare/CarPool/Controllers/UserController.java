@@ -106,7 +106,13 @@ public class UserController {
 	    }
 	
 	
-	
+		@PostMapping("/forget")
+		public ResponseEntity<String> forgetPassword(@RequestBody Map<String, String> requestBody) {
+		    String email = requestBody.get("email");
+		    String contactNo = requestBody.get("contactNo");
+		    return userService.forgetPassword(email,contactNo);
+		}
+
 	
 	
 }//UserController
