@@ -227,7 +227,7 @@
 
 
 import React, { useState, useEffect } from 'react';
-import '../Css/FindRide.css'; // Assuming you will create a separate CSS file for styling
+import '../Css/FindRide.css'; 
 import Navbar from '../Layout/Navbar';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -247,23 +247,16 @@ const FindRide = () => {
   const [rides, setRides] = useState([]);
   const[isPressed ,setIsPressed] = useState(false);
 
-
-
   const handleClick = ()=>{
     setIsPressed(true);
   }
 
-
-
   const formatDate = (date) => {
-    if (!date) return ''; // Handle null or undefined dates
+    if (!date) return '';
     const formattedDate = new Date(date).toLocaleDateString('en-GB') + " " + new Date(date).toLocaleTimeString(); // Format the date
     return formattedDate;
   };
 
-
-
-  // Handle form input changes dynamically
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFind((prevData) => ({
@@ -287,8 +280,8 @@ const FindRide = () => {
   const handleRide = (ride) => {
     if (!logged.login) {
       nav('/login');
-    } else {
-      // Prepare the request data
+    } 
+    else {
       const reqInf = {
         method: "POST",
         headers: {
@@ -297,34 +290,15 @@ const FindRide = () => {
         body: JSON.stringify({
           'bookingdate': new Date(),
           'rideId': ride.rideId,
-          'uid': userInfo.uid
+          'uid': userInfo.uid,
+          'fare': ride.fare,
+          'driver':ride.driver.uidNavigation.name,
         })
       };
-  
-      // Navigate to payment page, passing reqInf as state
       nav('/payment', { state: { reqInf } });
     }
   };
-  
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // Handle form submit
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -352,24 +326,12 @@ const FindRide = () => {
 
   };
 
-  return (
-
-    
-    
-    
+  return (  
     <div style={{ paddingTop: '150px' }}>
-
-
-
-
-
-
       <Navbar />
-      {/* Book a Ride Section */}
       <div className="book-ride-container" >
         <h2>Find a Ride</h2>
         <form onSubmit={handleSubmit} className="book-ride-form">
-          {/* Pickup Location */}
           <div className="form-group">
             <label htmlFor="source">Source</label>
             <select
@@ -388,7 +350,6 @@ const FindRide = () => {
             </select>
           </div>
 
-          {/* Destination */}
           <div className="form-group">
             <label htmlFor="destination">Destination</label>
             <select
@@ -407,7 +368,6 @@ const FindRide = () => {
             </select>
           </div>
 
-          {/* Ride Date */}
           <div className="form-group">
             <label htmlFor="rideDate">Ride Date</label>
             <input
@@ -423,13 +383,6 @@ const FindRide = () => {
           <button type="submit" className="submit-btn" onClick={handleClick}>Find Ride</button>
         </form>
       </div>
-
-
-
-      
-
-      {/* Available Rides Section */}
-
 
       {rides.length > 0  ? (
     <div className="available-rides container mt-5">
