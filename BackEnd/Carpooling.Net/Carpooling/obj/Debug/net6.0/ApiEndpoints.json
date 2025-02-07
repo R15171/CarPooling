@@ -169,6 +169,22 @@
   },
   {
     "ContainingType": "Carpooling.Controllers.UserController",
+    "Method": "CheckBooking",
+    "RelativePath": "api/User/CheckBooking",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "book",
+        "Type": "Carpooling.Models.Booking",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Carpooling.Controllers.UserController",
     "Method": "GetDriverInfo",
     "RelativePath": "api/User/GetDriverInfo",
     "HttpMethod": "GET",

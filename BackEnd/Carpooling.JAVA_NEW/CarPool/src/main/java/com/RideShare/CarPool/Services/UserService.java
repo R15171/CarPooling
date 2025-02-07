@@ -50,7 +50,7 @@ public class UserService {
         User savedUser = userRepository.save(user);
 
         // Send welcome email
-        String subject = "Welcome to Carpool!";
+        String subject = "Welcome to Carpooling...!";
         String body = "<html>" +
                       "<head>" +
                       "<style>" +
@@ -67,10 +67,10 @@ public class UserService {
                       "<body>" +
                       "<div class='container'>" +
                       "<h2>Welcome, " + user.getName() + "!</h2>" +
-                      "<p>We're excited to have you at <strong>Carpool!</strong> Your account has been successfully created.</p>" +
+                      "<p>We're excited to have you at <strong>Carpooling..!</strong> Your account has been successfully created.</p>" +
                       "<p>Start booking or publishing rides now and enjoy seamless travel experiences.</p>" +
-                      "<a href='https://carpool.com/login' class='button'>Get Started</a>" +
-                      "<p class='footer'>&copy; 2025 Carpool. All rights reserved.</p>" +
+                      "" +
+                      "<p class='footer'>&copy; 2025 Carpooling. All rights reserved.</p>" +
                       "</div>" +
                       "</body>" +
                       "</html>";
@@ -112,7 +112,7 @@ public class UserService {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found.");
         }
 
-        String subject = "Password Recovery - Carpool";
+        String subject = "Password Recovery - Carpooling";
         String body = "<html>" +
                       "<head>" +
                       "<style>" +
@@ -133,7 +133,7 @@ public class UserService {
                       "<p>You requested a password reset. Here is your password:</p>" +
                       "<div class='password-box'>" + user.getPassword() + "</div>" +
                       "<p>If you did not request this, please change your password immediately.</p>" +
-                      "<p class='footer'>&copy; 2025 Carpool. All rights reserved.</p>" +
+                      "<p class='footer'>&copy; 2025 Carpooling. All rights reserved.</p>" +
                       "</div>" +
                       "</body>" +
                       "</html>";

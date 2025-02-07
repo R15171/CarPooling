@@ -142,12 +142,20 @@ const RegistrationNew = () => {
                   validate: (value) => {
                     const currentDate = new Date();
                     const dob = new Date(value);
+                    
+                    if (dob > currentDate) {
+                        return "Date of birth cannot be in the future.";
+                    }
+                
                     const age = currentDate.getFullYear() - dob.getFullYear();
                     const isMonthAhead = currentDate.getMonth() < dob.getMonth();
                     const isDayAhead =
-                      currentDate.getMonth() === dob.getMonth() &&
-                      currentDate.getDate() < dob.getDate();
-                    return age > 18 || (age === 18 && !isMonthAhead && !isDayAhead) || "You must be at least 18 years old.";
+                        currentDate.getMonth() === dob.getMonth() &&
+                        currentDate.getDate() < dob.getDate();
+                
+                    return age > 18 || (age === 18 && !isMonthAhead && !isDayAhead)
+                        ? true
+                        : "You must be at least 18 years old.";                
                   },
                 })}
               />

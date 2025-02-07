@@ -295,7 +295,24 @@ const FindRide = () => {
           'driver':ride.driver.uidNavigation.name,
         })
       };
-      nav('/payment', { state: { reqInf } });
+
+      fetch("https://localhost:9131/api/User/CheckBooking", reqInf)
+        .then((response) => {
+          if (response.ok) {
+            nav('/payment', { state: { reqInf } });
+          } else {
+            response.json().then((data) => {
+              alert(`Error: ${data.message}`);
+              nav("/")
+            });
+          }
+        })
+        .catch((error) => {
+          console.error("Error confirming booking:", error);
+          alert("Something went wrong. Please try again later.");
+          nav('/')
+        });
+
     }
   };
 

@@ -179,6 +179,34 @@ namespace Carpooling.Controllers
 
 
         [HttpPost]
+        public IActionResult CheckBooking(Booking book)
+        {
+            using (carpoolingContext con = new carpoolingContext())
+            {
+                try
+                {
+
+                    Booking b = con.Bookings
+                        .Where(x => x.RideId == book.RideId && x.Uid == book.Uid)
+                        .FirstOrDefault();
+
+                    if (b != null)
+                    {
+                        return StatusCode(409, new { Message = "Booking already exists" });
+                    }
+                    
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+
+                }
+            }
+            return StatusCode(200, new { Message = "Booking Not found" });
+        }
+
+
+        [HttpPost]
         public IActionResult BookRide(Booking book)
         {
             using (carpoolingContext con = new carpoolingContext())

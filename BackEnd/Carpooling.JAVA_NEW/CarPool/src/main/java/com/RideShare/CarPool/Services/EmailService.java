@@ -34,7 +34,7 @@ public class EmailService {
 	        MimeMessage message = mailSender.createMimeMessage();
 	        MimeMessageHelper helper = new MimeMessageHelper(message, true);
 	        
-	        helper.setFrom("carpooling1304@gmail.com", "Carpool");
+	        helper.setFrom("carpooling1304@gmail.com", "Carpooling");
 	        helper.setTo(to);
 	        helper.setSubject(subject);
 	        helper.setText(body, true); // Enable HTML content
