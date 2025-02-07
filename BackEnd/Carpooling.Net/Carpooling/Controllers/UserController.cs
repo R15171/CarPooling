@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace Carpooling.Controllers
 {
+
     [Route("api/[controller]/[action]/")]
     [ApiController]
     public class UserController : ControllerBase
@@ -207,7 +208,8 @@ namespace Carpooling.Controllers
                         return StatusCode(500, new { Message = "Error retrieving booking after save" });
                     }
 
-                    Ride ride = con.Rides.Include(x => x.Driver)
+                    Ride ride = con.Rides
+                        .Include(x => x.Driver)
                         .Include(s=>s.SourceCityNavigation)
                         .Include(d=>d.DestinationCityNavigation)
                         .Where(r => r.RideId == bnew.RideId)
@@ -302,7 +304,7 @@ namespace Carpooling.Controllers
                                 </head>
                                 <body>
                                     <div class='container'>
-                                        <h2>🚗 New Ride Booking Notification</h2>
+                                        <h2>New Ride Booking Notification</h2>
                                         <p>Dear <b>{driver.Name}</b>,</p>
                                         <p>You have a new ride booking for your scheduled ride. Below are the details:</p>
 
@@ -569,7 +571,11 @@ namespace Carpooling.Controllers
                                             </div>
 
                                             <p><strong>Rating:</strong> ⭐ {trip.Rating}</p>
-                                            <p><strong>Feedback:</strong> {trip.Feedback}</p>
+                                            <p><strong>Feedback:</strong> 
+
+
+
+{trip.Feedback}</p>
 
                                             <hr>
                                             <p class='footer'>This is an automated email. Please do not reply.</p>
