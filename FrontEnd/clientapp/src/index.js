@@ -8,6 +8,8 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './ReduxStore/Store';
 
+document.body.style.backgroundColor = "#d4ebf8";
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
