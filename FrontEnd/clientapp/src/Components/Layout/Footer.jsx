@@ -62,11 +62,11 @@ const Footer=()=>{
                 <h5>PUNE</h5>
                 <p>
                   Email:{" "}
-                  <a href="mailto:rishispatil2002@gmail.com" className="text-light">
-                    rishispatil2002@gmail.com
+                  <a href="mailto:ompatil1304@gmail.com" className="text-light">
+                    ompatil1304@gmail.com
                   </a>
                 </p>
-                <p>Phone: +91 9313350998</p>
+                <p>Phone: +91 7038171191</p>
               </div>
               <div className="social-links">
                 <a href="#" className="text-light me-3 hover-link">
@@ -92,11 +92,11 @@ const Footer=()=>{
                 <h5>PUNE</h5>
                 <p>
                   Email:{" "}
-                  <a href="mailto:rishispatil2002@gmail.com" className="text-light">
-                    rishispatil2002@gmail.com
+                  <a href="mailto:rinkeshvm@gmail.com" className="text-light">
+                    Rinkeshvm@gmail.com
                   </a>
                 </p>
-                <p>Phone: +91 9313350998</p>
+                <p>Phone: +91 8971263768</p>
               </div>
               <div className="social-links">
                 <a href="#" className="text-light me-3 hover-link">
