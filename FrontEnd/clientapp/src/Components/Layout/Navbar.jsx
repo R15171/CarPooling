@@ -86,7 +86,8 @@ const Navbar = () => {
               Admin
             </Link>
           )}
-          {logged.login && <button className="dropdown-link logout-btn" onClick={handleLogout}>
+          {logged.login && 
+          <button className="dropdown-link logout-btn" onClick={handleLogout}>
             Logout
           </button>}
         </div>
