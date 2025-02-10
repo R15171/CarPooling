@@ -1,18 +1,31 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import gif from '../Images/gif.gif';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { set } from 'date-fns';
 
 const RegistrationNew = () => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [isRegistered, setIsRegistered] = useState(false);
   const nav = useNavigate();
-   const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const onSubmit = (data) => {
+    setIsRegistered(true);
     console.log(data);
     const reqInf = {
       method: "POST",
@@ -22,28 +35,32 @@ const RegistrationNew = () => {
       body: JSON.stringify(data),
     };
 
-    fetch("http://localhost:8131/Register", reqInf)
+    fetch(`http://localhost:8130/auth/Register`, reqInf)
       .then((response) => {
         if (!response.ok) {
           alert("Registration Failed");
+          setIsRegistered(false);
         } else {
           nav('/login');
         }
       })
       .catch(() => alert("Error Occurred"));
+    
   };
 
   return (
     <>
       <div className="d-flex justify-content-center align-items-center mt-3">
-        <div className="card mx-5">
-          <img
-            src={gif}
-            alt="Playing GIF"
-            height={500}
-            style={{ maxWidth: "450px", width: "100%" }}
-          />
-        </div>
+        {!isMobile && (
+          <div className="card mx-5">
+            <img
+              src={gif}
+              alt="Playing GIF"
+              height={500}
+              style={{ maxWidth: "450px", width: "100%" }}
+            />
+          </div>
+        )}
 
         <div
           className="container border rounded p-4 shadow"
@@ -94,7 +111,9 @@ const RegistrationNew = () => {
                   },
                 })}
               />
-              {errors.email && <small className="text-danger">{errors.email.message}</small>}
+              <p>
+                {errors.email && <small className="text-danger">{errors.email.message}</small>}
+              </p>
             </div>
             <div className="mb-3">
               <textarea
@@ -130,7 +149,9 @@ const RegistrationNew = () => {
               <label htmlFor="female" style={{ paddingRight: "10px" }}>
                 Female
               </label>
-              {errors.gender && <small className="text-danger">{errors.gender.message}</small>}
+              <p>
+                {errors.gender && <small className="text-danger">{errors.gender.message}</small>}
+              </p>
             </div>
             <div className="mb-3">
               <label className="label">Date of Birth</label>
@@ -142,20 +163,20 @@ const RegistrationNew = () => {
                   validate: (value) => {
                     const currentDate = new Date();
                     const dob = new Date(value);
-                    
+
                     if (dob > currentDate) {
-                        return "Date of birth cannot be in the future.";
+                      return "Date of birth cannot be in the future.";
                     }
-                
+
                     const age = currentDate.getFullYear() - dob.getFullYear();
                     const isMonthAhead = currentDate.getMonth() < dob.getMonth();
                     const isDayAhead =
-                        currentDate.getMonth() === dob.getMonth() &&
-                        currentDate.getDate() < dob.getDate();
-                
+                      currentDate.getMonth() === dob.getMonth() &&
+                      currentDate.getDate() < dob.getDate();
+
                     return age > 18 || (age === 18 && !isMonthAhead && !isDayAhead)
-                        ? true
-                        : "You must be at least 18 years old.";                
+                      ? true
+                      : "You must be at least 18 years old.";
                   },
                 })}
               />
@@ -163,33 +184,34 @@ const RegistrationNew = () => {
             </div>
 
             <div className="mb-3">
-            <div className="input-group">
-              <input
-                type={showPassword ? "text" : "password"}
-                className="form-control"
-                placeholder="Set Password"
-                {...register("password", {
-                  required: "Password is required.",
-                  pattern: {
-                    value:  /^[A-Za-z0-9*@%$_.-]{8,12}$/,
-                    message: "Password must be 8-12 characters long and have at least one special character number and letter (e.g., 'James@007')",
-                  },
-                })}
-              />
-              <button
+              <div className="input-group">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  className="form-control"
+                  placeholder="Set Password"
+                  {...register("password", {
+                    required: "Password is required.",
+                    pattern: {
+                      value: /^[A-Za-z0-9*@%$_.-]{8,12}$/,
+                      message: "Password must be 8-12 characters long and have at least one special character number and letter (e.g., 'James@007')",
+                    },
+                  })}
+                />
+                <button
                   type="button"
                   className="btn btn-outline-secondary"
                   onClick={() => setShowPassword(!showPassword)}
                 >
                   {showPassword ? "🙈" : "👁️"}
                 </button>
-              {errors.password && <small className="text-danger">{errors.password.message}</small>}
-            </div>
-            </div>
 
-
+              </div>
+              <p>
+                {errors.password && <small className="text-danger">{errors.password.message}</small>}
+              </p>
+            </div>
             <button type="submit" className="btn btn-primary w-100">
-              Register
+              {isRegistered ? "Loading..." : "Register"}
             </button>
           </form>
           <p className="mt-3 text-center">
@@ -197,8 +219,8 @@ const RegistrationNew = () => {
           </p>
         </div>
 
-        <div className="card mx-5">
-          <div>
+        {!isMobile && (
+          <div className="card mx-5">
             <img
               src={gif}
               alt="Playing GIF"
@@ -206,9 +228,9 @@ const RegistrationNew = () => {
               style={{ maxWidth: "450px", width: "100%" }}
             />
           </div>
-        </div>
+        )}
       </div>
-      
+
     </>
   );
 };

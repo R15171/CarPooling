@@ -179,6 +179,27 @@ namespace Carpooling.Controllers
 
 
         [HttpPost]
+        public Ride PublishRide(Ride ride)
+        {
+            using (carpoolingContext con = new carpoolingContext())
+            {
+                try
+                {
+                    con.Rides.Add(ride);
+                    con.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                    throw;
+                }
+            }
+            return ride;
+        }
+
+
+
+        [HttpPost]
         public IActionResult CheckBooking(Booking book)
         {
             using (carpoolingContext con = new carpoolingContext())
@@ -204,6 +225,7 @@ namespace Carpooling.Controllers
             }
             return StatusCode(200, new { Message = "Booking Not found" });
         }
+
 
 
         [HttpPost]
@@ -489,25 +511,7 @@ namespace Carpooling.Controllers
         //        return Ok();
         //    }
         //}
-        [HttpPost]
-        public Ride PublishRide(Ride ride)
-        {
-            using (carpoolingContext con = new carpoolingContext())
-            {
-                try
-                {
-                    con.Rides.Add(ride);
-                    con.SaveChanges();
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.ToString());
-                    throw;
-                }
-            }
-            return ride;
-        }
-
+        
         [HttpPost]
         public IActionResult GiveFeedback([FromBody] Triphistory trip)
         {

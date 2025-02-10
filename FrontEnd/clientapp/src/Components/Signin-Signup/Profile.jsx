@@ -39,7 +39,7 @@ const UserProfile = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Profile updated:', profile);
-    fetch("https://localhost:9131/api/User/ProfileUpdate", {
+    fetch("http://localhost:8130/auth/ProfileUpdate", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

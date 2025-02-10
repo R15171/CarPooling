@@ -11,7 +11,7 @@ import com.RideShare.CarPool.Entities.Role;
 import com.RideShare.CarPool.Services.RoleService;
 
 
-@CrossOrigin(origins = "*")
+//@CrossOrigin(origins = "*")
 @RestController
 public class RoleController {
 

@@ -82,7 +82,7 @@ const PublishRide = () => {
       body: JSON.stringify(ride),
     };
 
-    fetch('https://localhost:9131/api/User/PublishRide', publishRide)
+    fetch('http://localhost:8130/api/User/PublishRide', publishRide)
       .then((res) => {
         if (!res.ok) {
           throw new Error(`Somthing went wrong`);
@@ -104,7 +104,7 @@ const PublishRide = () => {
   // Check if the user is a registered driver
   useEffect(() => {
     if (logged.login && userInfo.uid) {
-      fetch(`https://localhost:9131/api/User/GetDriverInfo?uid=${userInfo.uid}`)
+      fetch(`http://localhost:8130/api/User/GetDriverInfo?uid=${userInfo.uid}`)
         .then((response) => {
           if (response.status === 404) {
             nav('/regDriver');
@@ -127,7 +127,7 @@ const PublishRide = () => {
       nav('/login');
     }
 
-    fetch('https://localhost:9131/api/Carpooling/GetCities')
+    fetch('http://localhost:8130/api/Carpooling/GetCities')
       .then((response) => response.json())
       .then((data) => setCities(data))
       .catch((error) => console.error('Error fetching cities:', error));
@@ -166,7 +166,7 @@ const PublishRide = () => {
               required
             >
               <option value="">Select Source</option>
-              {cities.map((city) => (
+              {cities.map((city) => (ride.destinationCity!=city.cityname &&
                 <option key={city.cityId} value={city.cityId}>
                   {city.cityname}
                 </option>
@@ -183,7 +183,7 @@ const PublishRide = () => {
               required
             >
               <option value="">Select Destination</option>
-              {cities.map((city) => (
+              {cities.map((city) => (ride.sourceCity !=city.cityname &&
                 <option key={city.cityId} value={city.cityId}>
                   {city.cityname}
                 </option>

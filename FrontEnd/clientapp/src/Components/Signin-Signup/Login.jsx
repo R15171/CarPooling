@@ -37,7 +37,7 @@ const Login = () => {
       body: JSON.stringify(loginData),
     };
 
-    fetch("http://localhost:8131/Login", reqInf)
+    fetch("http://localhost:8130/auth/Login", reqInf)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Invalid credentials");

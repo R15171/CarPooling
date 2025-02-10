@@ -13,7 +13,7 @@ const VerifyDriver = () => {
     };
 
     useEffect(() => {
-        fetch('https://localhost:9131/api/Carpooling/GetDrivers')
+        fetch('http://localhost:8130/api/Carpooling/GetDrivers')
             .then(res => {
                 console.log(res);
                 if (!res.ok) {
@@ -33,7 +33,7 @@ const VerifyDriver = () => {
     }, data)
 
     const handleVerify = (driverId) => {
-        fetch(`https://localhost:9131/api/Carpooling/VerifyDriver/${driverId}`, {
+        fetch(`http://localhost:8130/api/Carpooling/VerifyDriver/${driverId}`, {
             method: 'PUT', 
             headers: {
                 'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ const VerifyDriver = () => {
     };
 
     const handleReject = (driverId) => {
-        fetch(`https://localhost:9131/api/Carpooling/RejectDriver/${driverId}`, {
+        fetch(`http://localhost:8130/api/Carpooling/RejectDriver/${driverId}`, {
             method: 'PUT', // Assuming a PUT request for updating
             headers: {
                 'Content-Type': 'application/json',

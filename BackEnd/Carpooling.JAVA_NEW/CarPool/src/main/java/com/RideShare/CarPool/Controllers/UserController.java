@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,24 +23,13 @@ import com.RideShare.CarPool.Services.UserService;
 import jakarta.servlet.http.HttpServletResponse;
 
 
-@CrossOrigin(origins = "*")
 @RestController
+@RequestMapping("/auth")
 public class UserController {
 
 	@Autowired
 	UserService userService;
-	
-	
 
-	
-	
-	// ***********************************************
-	
-	
-	
-	
-	
-	
 	@GetMapping("/getallusers")
 	public List<User> getAll(){
 		return userService.getAll(); 

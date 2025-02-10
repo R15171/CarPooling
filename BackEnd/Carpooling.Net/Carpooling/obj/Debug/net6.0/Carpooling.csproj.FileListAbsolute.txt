@@ -110,3 +110,14 @@ E:\CDAC\CarPooling\BackEnd\Carpooling.Net\Carpooling\bin\Debug\net6.0\System.Tex
 E:\CDAC\CarPooling\BackEnd\Carpooling.Net\Carpooling\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll
 E:\CDAC\CarPooling\BackEnd\Carpooling.Net\Carpooling\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Text.Encoding.CodePages.dll
 E:\CDAC\CarPooling\BackEnd\Carpooling.Net\Carpooling\obj\Debug\net6.0\staticwebassets.upToDateCheck.txt
+E:\CDAC\CarPooling\BackEnd\Carpooling.Net\Carpooling\bin\Debug\net6.0\Steeltoe.Common.dll
+E:\CDAC\CarPooling\BackEnd\Carpooling.Net\Carpooling\bin\Debug\net6.0\Steeltoe.Common.Abstractions.dll
+E:\CDAC\CarPooling\BackEnd\Carpooling.Net\Carpooling\bin\Debug\net6.0\Steeltoe.Common.Http.dll
+E:\CDAC\CarPooling\BackEnd\Carpooling.Net\Carpooling\bin\Debug\net6.0\Steeltoe.Connector.Abstractions.dll
+E:\CDAC\CarPooling\BackEnd\Carpooling.Net\Carpooling\bin\Debug\net6.0\Steeltoe.Connector.ConnectorBase.dll
+E:\CDAC\CarPooling\BackEnd\Carpooling.Net\Carpooling\bin\Debug\net6.0\Steeltoe.Discovery.Abstractions.dll
+E:\CDAC\CarPooling\BackEnd\Carpooling.Net\Carpooling\bin\Debug\net6.0\Steeltoe.Discovery.ClientBase.dll
+E:\CDAC\CarPooling\BackEnd\Carpooling.Net\Carpooling\bin\Debug\net6.0\Steeltoe.Discovery.ClientCore.dll
+E:\CDAC\CarPooling\BackEnd\Carpooling.Net\Carpooling\bin\Debug\net6.0\Steeltoe.Discovery.Eureka.dll
+E:\CDAC\CarPooling\BackEnd\Carpooling.Net\Carpooling\bin\Debug\net6.0\Steeltoe.Extensions.Configuration.Abstractions.dll
+E:\CDAC\CarPooling\BackEnd\Carpooling.Net\Carpooling\bin\Debug\net6.0\System.Reflection.MetadataLoadContext.dll

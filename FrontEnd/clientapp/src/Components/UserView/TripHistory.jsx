@@ -20,12 +20,12 @@ const TripHistory = () => {
   useEffect(() => {
     if (!userInfo?.uid) return;
 
-    fetch(`https://localhost:9131/api/User/GetUserCompletedRides?uid=${userInfo.uid}`)
+    fetch(`http://localhost:8130/api/User/GetUserCompletedRides?uid=${userInfo.uid}`)
       .then(response => response.json())
       .then(data => setPublishedTrips(data))
       .catch(error => console.error('Error fetching published trips:', error));
 
-    fetch(`https://localhost:9131/api/User/GetUserCompletedBookinks?uid=${userInfo.uid}`)
+    fetch(`http://localhost:8130/api/User/GetUserCompletedBookinks?uid=${userInfo.uid}`)
       .then(response => response.json())
       .then(data => setBookedTrips(data))
       .catch(error => console.error('Error fetching booked trips:', error));
@@ -52,7 +52,7 @@ const TripHistory = () => {
       feedback
     };
 
-    fetch('https://localhost:9131/api/User/GiveFeedback', {
+    fetch('http://localhost:8130/api/User/GiveFeedback', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(feedbackData)
