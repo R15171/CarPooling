@@ -33,21 +33,10 @@ public class UserService {
         return userRepository.findById(id).orElse(null);
     }//find user by id
 
-//    public User userRegister(User user) {
-//        User savedUser = userRepository.save(user);
-//
-//        // Send welcome email
-//        String subject = "Welcome to RideShare!";
-//        String body = "Hello " + user.getName() + ",\n\nWelcome to Carpool! Your account has been successfully created.\n\nEnjoy your rides!\n\nBest Regards,\nCarpooling Team";
-//        emailService.sendEmail(user.getEmail(), subject, body);
-//
-//        return savedUser;
-//    }//user Register
-    
-    
     
     public User userRegister(User user) {
         User savedUser = userRepository.save(user);
+        System.out.println("in Service");
 
         // Send welcome email
         String subject = "Welcome to Carpooling...!";
@@ -106,7 +95,9 @@ public class UserService {
     }
     
     public ResponseEntity<String> forgetPassword(String email, String contact) {
-        User user = userRepository.findUserBYEmail(email, contact);
+        System.out.println("Email found");
+    	User user = userRepository.findUserBYEmail(email, contact);
+        
         
         if (user == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found.");
@@ -139,7 +130,7 @@ public class UserService {
                       "</html>";
 
         emailService.sendEmail(email, subject, body);
-        
+        System.out.println("Email sent");
         return ResponseEntity.ok("Password sent to your email.");
     }
 

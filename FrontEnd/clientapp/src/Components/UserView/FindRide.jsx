@@ -105,13 +105,13 @@ const FindRide = () => {
         return response.json();
       })
       .then((data) => {
-        console.log(data);
-        setRides(data);
+        const filteredRides = data.filter(r => r.driver.uid !== userInfo.uid);
+        setRides(filteredRides);
         if(data.length === 0){
           setIsPressed(true);
         }
-      }
-      )
+      })
+
       .catch((error) => {
         console.error("Error during login:", error);
         setMsg("An error occurred while logging in");

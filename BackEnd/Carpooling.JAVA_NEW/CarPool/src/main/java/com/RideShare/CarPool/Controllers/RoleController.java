@@ -11,7 +11,6 @@ import com.RideShare.CarPool.Entities.Role;
 import com.RideShare.CarPool.Services.RoleService;
 
 
-//@CrossOrigin(origins = "*")
 @RestController
 public class RoleController {
 
@@ -19,11 +18,6 @@ public class RoleController {
 	
 	@Autowired
 	RoleService rService;
-	
-	@GetMapping("/getRoles")
-	public List<Role> getRoles(){
-		return rService.getRoles();
-	}//getRoles
 	
 	
 }//RoleController

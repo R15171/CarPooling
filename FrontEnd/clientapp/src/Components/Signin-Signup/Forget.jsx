@@ -31,7 +31,7 @@ const ForgotPassword = () => {
       return;
     }
 
-    fetch("http://localhost:8130/auth/forget", {
+    fetch("http://localhost:8130/user/forget-password", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, contactNo }), // Sending both fields

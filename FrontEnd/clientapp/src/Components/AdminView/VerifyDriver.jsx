@@ -15,7 +15,6 @@ const VerifyDriver = () => {
     useEffect(() => {
         fetch('http://localhost:8130/api/Carpooling/GetDrivers')
             .then(res => {
-                console.log(res);
                 if (!res.ok) {
                     // Log if the response was not OK (e.g., 404, 500)
                     console.error("Error: Network response was not ok", res.status);

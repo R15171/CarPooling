@@ -48,7 +48,7 @@ const Payment = () => {
       handlePaymentSuccess({ success: true, transactionId });
       setTransactionId("");
       setProcessing(false);
-    }, 1000);
+    }, 100);
   };
 
   const handlePaymentSuccess = (data) => {

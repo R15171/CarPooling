@@ -31,10 +31,12 @@ public class MyBeans {
     @Bean
     RouteLocator customRouterLocator(RouteLocatorBuilder builder) {
         return builder.routes()
-                .route("CarPool", r -> r.path("/auth/**")
+                .route("CarPool-auth", r -> r.path("/auth/**")
                         .uri("lb://CARPOOL")) // Ensure Eureka service name is correct
                 .route("UserService", r -> r.path("/api/**")
                         .uri("lb://USERSERVICE")) // Ensure this matches Eureka registration
+                .route("CarPool-user", r -> r.path("/user/**")
+                        .uri("lb://CARPOOL")) // Routes /user/** to CARPOOL service
                 .build();
 	}
 }

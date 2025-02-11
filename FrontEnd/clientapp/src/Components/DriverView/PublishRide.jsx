@@ -73,6 +73,10 @@ const PublishRide = () => {
   const handlePublish = (e) => {
     e.preventDefault();
     console.log('Publishing Ride:', { ride });
+    if (ride.sourceCity === ride.destinationCity) {
+      alert('Source and destination cities must be different.');
+      return;
+    }
 
     const publishRide = {
       method: 'POST',
@@ -166,7 +170,7 @@ const PublishRide = () => {
               required
             >
               <option value="">Select Source</option>
-              {cities.map((city) => (ride.destinationCity!=city.cityname &&
+              {cities.map((city) => (ride.destinationCity != city.cityname &&
                 <option key={city.cityId} value={city.cityId}>
                   {city.cityname}
                 </option>
@@ -183,7 +187,7 @@ const PublishRide = () => {
               required
             >
               <option value="">Select Destination</option>
-              {cities.map((city) => (ride.sourceCity !=city.cityname &&
+              {cities.map((city) => (ride.sourceCity != city.cityname &&
                 <option key={city.cityId} value={city.cityId}>
                   {city.cityname}
                 </option>
@@ -199,8 +203,9 @@ const PublishRide = () => {
                 value={rideDate}
                 onChange={(e) => setRideDate(e.target.value)}
                 required
-                min={new Date().toISOString().split("T")[0]}
+                min={new Date(Date.now() + 86400000).toISOString().split("T")[0]}
               />
+
             </div>
             <div className="form-group" style={{ flex: 1 }}>
               <label htmlFor="rideTime">Ride Time</label>
@@ -222,6 +227,7 @@ const PublishRide = () => {
               placeholder="Hours"
               onChange={(e) => addHours(e.target.value)}
               required
+              min={1}
             />
           </div>
           <div className="container" style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
@@ -251,6 +257,8 @@ const PublishRide = () => {
                 onChange={handleChange}
                 required
                 style={{ width: '100%' }}
+                min={100}
+                alert="The fare must be greater than Rs. 100."
               />
             </div>
           </div>

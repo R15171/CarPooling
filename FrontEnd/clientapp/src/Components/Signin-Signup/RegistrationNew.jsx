@@ -35,7 +35,7 @@ const RegistrationNew = () => {
       body: JSON.stringify(data),
     };
 
-    fetch(`http://localhost:8130/auth/Register`, reqInf)
+    fetch(`http://localhost:8130/auth/register`, reqInf)
       .then((response) => {
         if (!response.ok) {
           alert("Registration Failed");
@@ -88,7 +88,7 @@ const RegistrationNew = () => {
                 type="text"
                 className="form-control"
                 placeholder="Contact No"
-                {...register("contactno", {
+                {...register("contactNo", {
                   required: "Contact number is required.",
                   pattern: {
                     value: /^\d{10}$/,

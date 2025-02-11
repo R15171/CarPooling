@@ -14,11 +14,27 @@ import TripHistory from './Components/UserView/TripHistory';
 import UserProfile from './Components/Signin-Signup/Profile';
 import Payment from './Components/UserView/Payment';
 import ForgotPassword from './Components/Signin-Signup/Forget';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { login } from './ReduxStore/UserSlice';
 
 
 
 
 function App() {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const user = localStorage.getItem("user");
+
+    if (token && user) {
+      dispatch(login({ user: JSON.parse(user), token })); // Restore Redux state
+    }
+  }, [dispatch]);
+
+
   return (<div className="App">
     <Routes>
       <Route path="/" element={<Home />} />

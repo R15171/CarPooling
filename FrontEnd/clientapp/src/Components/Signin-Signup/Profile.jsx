@@ -20,8 +20,7 @@ const UserProfile = () => {
 
   const [profile, setProfile] = useState(initialProfile);
   const [isEditable, setIsEditable] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
-
+  
   const formatDate = (date) => {
     if (!date) return '';
     const d = new Date(date);
@@ -46,20 +45,20 @@ const UserProfile = () => {
       },
       body: JSON.stringify(profile),
     })
-    .then(response => {
-      if (response.status === 200) { 
-        console.log("Profile updated successfully.");
-        alert("Profile updated successfully.");
-        nav('/login');
-      } else if (response.status === 404) {
-        console.error("User not found.");
-        alert("User not found.");
-      } else {
-        console.error("Unexpected error:", response.status);
-      }
-    })
-    .catch(error => {
-      console.error("Network error:", error);
+      .then(response => {
+        if (response.status === 200) {
+          console.log("Profile updated successfully.");
+          alert("Profile updated successfully.");
+          nav('/login');
+        } else if (response.status === 404) {
+          console.error("User not found.");
+          alert("User not found.");
+        } else {
+          console.error("Unexpected error:", response.status);
+        }
+      })
+      .catch(error => {
+        console.error("Network error:", error);
       });
   };
 
@@ -75,21 +74,6 @@ const UserProfile = () => {
     const today = new Date();
     const maxDate = new Date(today.setFullYear(today.getFullYear() - 18));
     return maxDate.toISOString().split('T')[0];
-  };
-
-  const [error, setError] = useState("");
-
-  const validatePassword = (e) => {
-    const value = e.target.value;
-    const pattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@%$_.-])[A-Za-z\d@%$_.-]{8,12}$/;
-    
-    if (!pattern.test(value)) {
-      setError("Password must be 8-12 characters long and include at least one letter, one number, and one special character (@, %, $, _, ., -).");
-    } else {
-      setError(""); 
-    }
-
-    handleChange(e); 
   };
 
 
@@ -208,32 +192,7 @@ const UserProfile = () => {
                   />
                 </td>
               </tr>
-              <tr>
-                <td><label>Password:</label></td>
-                <td>
-                  <div className="input-group">
-                  <input
-        type={showPassword ? "text" : "password"}
-        name="password"
-        className="form-control"
-        value={profile.password}
-        onChange={validatePassword}
-        required
-        pattern="(?=.*[A-Za-z])(?=.*\d)(?=.*[@%$_.-])[A-Za-z\d@%$_.-]{8,12}"
-        title="Password must be 8-12 characters long and include at least one letter, one number, and one special character (@, %, $, _, ., -)."
-        readOnly={!isEditable}
-      />
-      <button
-        type="button"
-        className="btn btn-outline-secondary"
-        onClick={() => setShowPassword(!showPassword)}
-      >
-        {showPassword ? "🙈" : "👁️"}
-      </button>
-      {error && <div className="text-danger mt-2">{error}</div>}
-                  </div>
-                </td>
-              </tr>
+              
             </tbody>
           </table>
 

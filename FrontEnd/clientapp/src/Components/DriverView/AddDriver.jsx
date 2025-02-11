@@ -14,7 +14,7 @@ const AddDriver = () => {
   const userInfo = useSelector((state) => state.user.userInfo);
   const logged = useSelector((state) => state.user.logstate);
   const nav = useNavigate();
-
+  const [isLoading, setIsLoading] = useState(false);
   const licencePattern = /^[A-Z]{2}[0-9]{13}$/; // Match 2 uppercase letters followed by 13 digits
   const vehicleNumberPattern = /^[A-Z]{2}[0-9]{2}[A-Z]{2}[0-9]{4}$/; // Match pattern for vehicle number (KA12BD0001)
 
@@ -58,7 +58,7 @@ const AddDriver = () => {
   // Handle form submit
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    setIsLoading(true);
     // Validate inputs
     const isLicenceValid = validateDrivingLicence();
     const isVehicleNumberValid = validateVehicleNumber();
@@ -80,6 +80,7 @@ const AddDriver = () => {
       })
         .then((response) => response.json())
         .then(() => {
+          setIsLoading(false);
           alert('Driver registration successful!');
           nav('/publishRide'); // Redirect to Home page after successful registration
         })
@@ -149,7 +150,7 @@ const AddDriver = () => {
 
               {/* Submit Button */}
               <div className="mb-3">
-                <button type="submit" className="btn btn-primary">Add Details</button>
+                <button type="submit" className="btn btn-primary">{isLoading?"Registring..":"Add Details"}</button>
               </div>
             </form>
           ) : (

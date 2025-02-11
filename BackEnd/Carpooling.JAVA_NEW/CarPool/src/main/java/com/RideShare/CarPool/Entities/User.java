@@ -62,9 +62,4 @@ public class User {
 		Role role; 	
 
 
-	
-	
-	
-
-
 }//User
