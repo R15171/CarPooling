@@ -5,8 +5,8 @@ The Car Pooling Project is designed to offer an efficient, eco-friendly, and cos
 
 ## Backend and Frontend Clarification
 The backend of the system is developed using two powerful frameworks:
-- **.NET Core Web API**: Provides high scalability, performance, and lightweight microservices-based architecture for handling requests efficiently. It also manages the core business logic, ensuring smooth operations.
-- **Spring Boot (Java)**: Supports secure API services and facilitates integration with other system components.
+- **.NET Core Web API**: Provides high scalability, performance, and lightweight. It also manages the core business logic, ensuring smooth operations.
+- **Spring Boot (Java)**:  Microservices-based architecture for handling requests efficiently and Supports secure API services and facilitates integration with other system components.
 
 The frontend is built using **ReactJS**, offering an interactive and responsive user interface that enhances the overall user experience.
 
